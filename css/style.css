@@ -1,33 +1,49 @@
+/* ===== ROOT VARIABLES ===== */
 :root {
-    --primary: #FF6B35; /* Vibrant orange */
-    --secondary: #F7931E; /* Warm orange */
-    --accent: #FFD23F; /* Sunny yellow */
-    --light-bg: #FFF5E6; /* Slightly darker cream */
-    --text-dark: #333333;
-    --text-light: #FFFFFF;
-    --success: #4CAF50; /* Fresh green */
-    --danger: #EF4444; /* Alert red */
-    --off-white: #FFF9F0; /* Creamish off-white */
-    --darker-white: #f5f5f5; /* New darker white shade */
-    
-    /* Gradients */
-    --gradient-main: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
-    --gradient-secondary: linear-gradient(135deg, #FF9A8B 0%, #FF6B6B 100%);
-    --gradient-card: linear-gradient(135deg, #FF9A8B 0%, #FF6B6B 100%);
-    
-    /* UI Elements */
-    --card-bg: #FFFFFF;
-    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
-    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+  /* Colors */
+  --primary: #FF6B35; /* Vibrant orange */
+  --secondary: #F7931E; /* Warm orange */
+  --accent: #FFD23F; /* Sunny yellow */
+  --success: #4CAF50; /* Fresh green */
+  --danger: #EF4444; /* Alert red */
+  
+  /* Light Mode */
+  --light-bg: #FFF5E6;
+  --text-dark: #333333;
+  --off-white: #FFF9F0;
+  --darker-white: #f5f5f5;
+  --card-bg: #FFFFFF;
+  
+  /* Dark Mode */
+  --dark-bg: #1a1a1a;
+  --darker-card: #2d2d2d;
+  --text-light: #f0f0f0;
+  
+  /* Gradients */
+  --gradient-main: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+  --gradient-secondary: linear-gradient(135deg, #FF9A8B 0%, #FF6B6B 100%);
+  --gradient-card: linear-gradient(135deg, #FF9A8B 0%, #FF6B6B 100%);
+  
+  /* Shadows */
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
+/* ===== DARK MODE ===== */
+.dark-mode {
+  --light-bg: var(--dark-bg);
+  --text-dark: var(--text-light);
+  --card-bg: var(--darker-card);
+  --darker-white: var(--darker-card);
+}
+
+/* ===== BASE STYLES ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* ====== FLEXBOX LAYOUT FIX ====== */
 body {
     display: flex;
     flex-direction: column;
@@ -37,6 +53,18 @@ body {
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--light-bg);
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgba(255, 107, 53, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: -1;
 }
 
 .container {
@@ -54,18 +82,7 @@ main {
     padding-bottom: 20px;
 }
 
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(rgba(255, 107, 53, 0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
-    z-index: -1;
-}
-
+/* ===== NAVIGATION ===== */
 .nav {
     display: flex;
     justify-content: flex-end;
@@ -115,6 +132,7 @@ body::before {
     box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
 }
 
+/* ===== TITLE SECTION ===== */
 .title-section {
     text-align: center;
     margin-bottom: 40px;
@@ -170,6 +188,7 @@ body::before {
     margin-top: 20px;
 }
 
+/* ===== SEARCH SECTION ===== */
 .search-section {     
     background: var(--darker-white);
     padding: 40px;
@@ -261,6 +280,7 @@ body::before {
     color: var(--danger);
 }
 
+/* ===== FILTER BUTTONS ===== */
 .filter-buttons {
     display: flex;
     gap: 12px;
@@ -312,7 +332,7 @@ body::before {
     box-shadow: 0 10px 25px rgba(108, 99, 255, 0.3);
 }
 
-/* Restaurants Page */
+/* ===== RESTAURANTS PAGE ===== */
 .restaurants-page {
     display: none;
     animation: fadeIn 0.5s ease-out;
@@ -346,138 +366,127 @@ body::before {
     color: #6c757d;
 }
 
+/* ===== GRID LAYOUT ===== */
 .grid-container {
-display: grid;
-grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
-gap: 25px;
-padding: 20px;
-width: 100%;
-max-width: 1400px;
-margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+    gap: 25px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .outlet-card {
-background: var(--darker-white);
-border-radius: 20px;
-overflow: hidden;
-box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-cursor: pointer;
-position: relative;
-height: 100%;
-display: flex;
-flex-direction: column;
+    background: var(--darker-white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .outlet-card.hidden {
-opacity: 0;
-transform: scale(0.8);
-pointer-events: none;
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
 }
 
 .outlet-card:hover {
-transform: translateY(-8px) scale(1.02);
-box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-}
-
-@media (max-width: 1024px) {
-.grid-container {
-grid-template-columns: repeat(2, 1fr);
-}
-}
-
-@media (max-width: 768px) {
-.grid-container {
-grid-template-columns: 1fr; 
-gap: 20px;
-}
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
 }
 
 .outlet-header {
-background: var(--gradient-card);
-color: white;
-padding: 20px;
-position: relative;
+    background: var(--gradient-card);
+    color: white;
+    padding: 20px;
+    position: relative;
 }
 
 .outlet-name {
-font-size: 1.5rem;
-font-weight: 700;
-margin-bottom: 8px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
 }
 
 .outlet-cuisine {
-opacity: 0.9;
-font-size: 0.95rem;
-text-transform: capitalize;
+    opacity: 0.9;
+    font-size: 0.95rem;
+    text-transform: capitalize;
 }
 
 .rating {
-display: inline-block;
-background: rgba(255,255,255,0.2);
-padding: 6px 12px;
-border-radius: 20px;
-font-weight: 700;
-font-size: 0.9rem;
-margin-top: 10px;
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-top: 10px;
 }
 
 .phone-order {
-display: flex;
-align-items: center;
-gap: 5px;
-font-size: 0.85rem;
-margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85rem;
+    margin-top: 5px;
 }
 
 .phone-order i.fa-phone-alt {
-color: var(--success);
+    color: var(--success);
 }
 
 .phone-order i.fa-times-circle {
-color: var(--danger);
+    color: var(--danger);
 }
 
 .outlet-details {
-padding: 20px;
-color: #333;
-flex: 1;
+    padding: 20px;
+    color: #333;
+    flex: 1;
 }
 
 .detail-row {
-display: flex;
-justify-content: space-between;
-margin-bottom: 12px;
-font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
 }
 
 .detail-label {
-font-weight: 600;
-color: #555;
+    font-weight: 600;
+    color: #555;
 }
 
 .detail-value {
-font-weight: 500;
+    font-weight: 500;
 }
 
 .status {
-display: inline-block;
-padding: 6px 12px;
-border-radius: 20px;
-font-weight: 600;
-font-size: 0.85rem;
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
 }
 
 .status.open {
-background: #d4edda;
-color: #155724;
+    background: #d4edda;
+    color: #155724;
 }
 
 .status.closed {
-background: #f8d7da;
-color: #721c24;
+    background: #f8d7da;
+    color: #721c24;
 }
 
+/* ===== SEARCH RESULTS MESSAGE ===== */
 .search-results-message {
     text-align: center;
     color: var(--text-dark);
@@ -522,6 +531,7 @@ color: #721c24;
     to { transform: rotate(360deg); }
 }
 
+/* ===== ABOUT & CONTACT SECTIONS ===== */
 .about-section, .contact-section {
     max-width: 800px;
     margin: 40px auto;
@@ -550,6 +560,7 @@ color: #721c24;
     margin-right: 8px;
 }
 
+/* ===== FOOTER ===== */
 .footer {
     text-align: center;
     padding: 40px 0;
@@ -579,6 +590,7 @@ color: #721c24;
     text-decoration: underline;
 }
 
+/* ===== FLOATING ACTION BUTTON ===== */
 .fab {
     position: fixed;
     bottom: 30px;
@@ -604,6 +616,7 @@ color: #721c24;
     box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
 }
 
+/* ===== MODALS ===== */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -694,10 +707,16 @@ color: #721c24;
     margin-bottom: 8px;
 }
 
+/* ===== ORDER BUTTONS ===== */
+.order-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
 .order-link {
     display: inline-block;
     padding: 10px 20px;
-    background: var(--gradient-main);
     color: white;
     border-radius: 50px;
     text-decoration: none;
@@ -709,6 +728,16 @@ color: #721c24;
 .order-link:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+}
+
+.order-link.swiggy {
+    background: linear-gradient(to right, #fc8019, #f95100);
+    flex: 1;
+}
+
+.order-link.zomato {
+    background: linear-gradient(to right, #e23744, #cc1f2f);
+    flex: 1;
 }
 
 .badge {
@@ -830,9 +859,64 @@ color: #721c24;
     cursor: pointer;
 }
 
+/* ===== DARK MODE TOGGLE ===== */
+#darkModeToggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 100;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--gradient-main);
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* ===== ADD OUTLET MODAL ===== */
+#addOutletModal {
+    display: none;
+}
+
+#addOutletModal.active {
+    display: flex;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 15px;
+    }
+    
+    .grid-container {
+        grid-template-columns: 1fr; 
+        gap: 20px;
     }
     
     .search-section {
@@ -864,6 +948,11 @@ color: #721c24;
     .menu-image {
         width: 100%;
     }
+    
+    .outlet-card {
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -886,5 +975,18 @@ color: #721c24;
     .about-section, .contact-section {
         padding: 20px 15px;
         margin: 20px 15px;
+    }
+    
+    .nav-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .nav-btn {
+        width: 100%;
+    }
+    
+    .order-buttons {
+        flex-direction: column;
     }
 }
