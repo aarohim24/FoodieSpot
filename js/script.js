@@ -427,8 +427,7 @@ const restaurantData = [
       "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ShubhPahadi.jpeg"
     ]
   },
-
-{
+  {
     name: "Deepak",
     searchName: "deepak",
     cuisine: "North Indian",
@@ -438,15 +437,15 @@ const restaurantData = [
     contact: "+916396591060",
     minOrder: "Not specified",
     orderLink: "",
+    SwiggyLink: "", // Not found on Swiggy
     takesCallOrders: true,
     dishes: "Not specified",
     menuImages: [
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Deepak.jpeg",
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Deepak1.jpeg",
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Deepak.jpeg",
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Deepak1.jpeg"
     ]
-},
-
-{
+  },
+  {
     name: "Kanoha",
     searchName: "kanoha",
     cuisine: "Cafe",
@@ -455,17 +454,17 @@ const restaurantData = [
     timings: "11AM - 10PM",
     contact: "+919870601929",
     minOrder: "Not specified",
-    orderLink: "https://www.zomato.com/dehradun/konoha-cafe-bidholi",
+    ZomatoLink: "https://www.zomato.com/dehradun/konoha-cafe-bidholi",
+    SwiggyLink: "", // No matching Swiggy listing found
     takesCallOrders: true,
     dishes: "Not specified",
     menuImages: [
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Kanoha.jpeg",
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Kanoha1.jpeg",
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Kanoha2.jpeg",
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Kanoha.jpeg",
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Kanoha1.jpeg",
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Kanoha2.jpeg"
     ]
-},
-
-{
+  },
+  {
     name: "Gym diet",
     searchName: "gym diet",
     cuisine: "Healthy Food",
@@ -474,16 +473,15 @@ const restaurantData = [
     timings: "6AM - 11:30PM",
     contact: "+919759720152",
     minOrder: "Not specified",
-    orderLink: "https://www.zomato.com/dehradun/gym-diet-bidholi",
+    ZomatoLink: "https://www.zomato.com/dehradun/gym-diet-bidholi",
+    SwiggyLink: "", // Not listed
     takesCallOrders: true,
     dishes: "Not specified",
     menuImages: [
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/GymDiet.jpeg",
-
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/GymDiet.jpeg"
     ]
-},
-
-{
+  },
+  {
     name: "Pizza Dilite",
     searchName: "pizza dilite",
     cuisine: "Pizza",
@@ -493,35 +491,32 @@ const restaurantData = [
     contact: "+917037455700",
     minOrder: "Not specified",
     orderLink: "",
+    SwiggyLink: "", // No listing found
     takesCallOrders: true,
     dishes: "Not specified",
     menuImages: [
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/PizzaDilite.jpeg",
-
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/PizzaDilite.jpeg"
     ]
-},
-
-{
+  },
+  {
     name: "4 Loser",
     searchName: "4 loser",
     cuisine: "Cafe",
     rating: "4.2 ★ (90+ reviews)",
-    location: "near, via, near Sai Mandir, Prem Nagar, Bidholi, Dehradun, Uttarakhand 248007",
+    location: "near Sai Mandir, Prem Nagar, Bidholi, Dehradun, Uttarakhand 248007",
     timings: "Mon-Fri: 8AM-1PM, Sun: 10AM-2PM",
     contact: "+917906071734",
     minOrder: "Not specified",
-    orderLink: "https://www.zomato.com/dehradun/4-losers-restaurant-cafe-bidholi",
+    ZomatoLink: "https://www.zomato.com/dehradun/4-losers-restaurant-cafe-bidholi",
+    SwiggyLink: "", // Not available
     takesCallOrders: true,
     dishes: "Not specified",
     menuImages: [
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/4Loser.jpeg",
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/4Loser1.jpeg",
-
-
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/4Loser.jpeg",
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/4Loser1.jpeg"
     ]
-},
-
-{
+  },
+  {
     name: "Indie Cafe",
     searchName: "indie cafe",
     cuisine: "Cafe",
@@ -530,16 +525,14 @@ const restaurantData = [
     timings: "3AM - 11:30PM",
     contact: "+917409181819",
     minOrder: "Not specified",
-    orderLink: "https://www.swiggy.com/city/dehradun/the-indie-cafe-deheradun-township-bidholi-rest875255",
+    SwiggyLink: "https://www.swiggy.com/city/dehradun/the-indie-cafe-deheradun-township-bidholi-rest875255",
     takesCallOrders: true,
     dishes: "Not specified",
     menuImages: [
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/IndieCafe.jpeg",
-
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/IndieCafe.jpeg"
     ]
-},
-
-{
+  },
+  {
     name: "Burger Belly",
     searchName: "burger belly",
     cuisine: "Fast Food",
@@ -548,53 +541,49 @@ const restaurantData = [
     timings: "2PM - 4AM",
     contact: "Not specified",
     minOrder: "Not specified",
-    orderLink: "https://www.swiggy.com/city/dehradun/burger-belly-bidholi-rest999481",
+    SwiggyLink: "https://www.swiggy.com/city/dehradun/burger-belly-bidholi-rest999481",
     takesCallOrders: false,
     dishes: "Not specified",
     menuImages: [
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/BurgerBelly.jpeg",
-
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/BurgerBelly.jpeg"
     ]
-},
-
-{
+  },
+  {
     name: "Bunk Cafe",
     searchName: "bunk cafe",
     cuisine: "Cafe",
     rating: "4.4 ★ (130+ reviews)",
-    location: "near Avalon hostel, kandoli, vishanpur, Dehradun, Kharakhet, Uttarakhand 248001",
+    location: "near Avalon hostel, Kandoli, Vishanpur, Dehradun, Uttarakhand 248001",
     timings: "5PM - 4AM",
     contact: "+919891610696, +917895566236",
     minOrder: "Not specified",
-    orderLink: "https://www.zomato.com/dehradun/bunk-cafe-bidholi/order",
+    ZomatoLink: "https://www.zomato.com/dehradun/bunk-cafe-bidholi/order",
+    SwiggyLink: "", // No Swiggy listing found
     takesCallOrders: true,
     dishes: "Not specified",
     menuImages: [
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/BunkCafe.jpeg",
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/BunkCafe.jpeg"
     ]
-},
-
-{
+  },
+  {
     name: "Tongue'N Taste",
     searchName: "tongue n taste",
     cuisine: "Multi-Cuisine",
     rating: "4.2 ★ (100+ reviews)",
-    location: "9XW9+4C9, Infront of Jiya Hostel Upper, Kandoli, Tibet colony, Saundhon wali, Dehradun, Uttarakhand",
+    location: "9XW9+4C9, Infront of Jiya Hostel Upper, Kandoli, Dehradun, Uttarakhand",
     timings: "9:30AM - 11PM",
     contact: "+918439010011",
     minOrder: "Not specified",
-    orderLink: "https://www.zomato.com/dehradun/toungue-n-taste-bidholi",
+    ZomatoLink: "https://www.zomato.com/dehradun/toungue-n-taste-bidholi",
+    SwiggyLink: "", // Not listed
     takesCallOrders: true,
     dishes: "Not specified",
     menuImages: [
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/T'nT.jpeg",
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/T'nT1.jpeg",
-
-
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/T'nT.jpeg",
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/T'nT1.jpeg"
     ]
-},
-
-{
+  },
+  {
     name: "Threesome",
     searchName: "threesome",
     cuisine: "Multi-Cuisine",
@@ -603,13 +592,12 @@ const restaurantData = [
     timings: "10AM - 4AM",
     contact: "+918885552368",
     minOrder: "Not specified",
-    orderLink: "https://www.swiggy.com/city/dehradun/threesome-you-me-and-food-bidholi-rest971021",
+    SwiggyLink: "https://www.swiggy.com/city/dehradun/threesome-you-me-and-food-bidholi-rest971021",
     takesCallOrders: true,
     dishes: "Not specified",
     menuImages: []
-},
-
-{
+  },
+  {
     name: "Panjtara",
     searchName: "panjtara",
     cuisine: "Cafe",
@@ -618,15 +606,15 @@ const restaurantData = [
     timings: "Not specified",
     contact: "+918625841928",
     minOrder: "Not specified",
-    orderLink: "https://www.zomato.com/dehradun/cafe-panjtara-vikas-nagar",
+    ZomatoLink: "https://www.zomato.com/dehradun/cafe-panjtara-vikas-nagar",
+    SwiggyLink: "", // Not listed
     takesCallOrders: true,
     dishes: "Not specified",
     menuImages: [
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Panjtara.jpeg",
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Panjtara1.jpeg",
-
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Panjtara.jpeg",
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Panjtara1.jpeg"
     ]
-},
+  },
 
 {
     name: "Kandoli Adda",
@@ -637,17 +625,17 @@ const restaurantData = [
     timings: "11AM - 9:15PM",
     contact: "+918393870202",
     minOrder: "Not specified",
-    orderLink: "https://www.zomato.com/dehradun/kandoli-adda-bidholi/order",
+    ZomatoLink: "https://www.zomato.com/dehradun/kandoli-adda-bidholi/order",
+    SwiggyLink: "", // Not listed on Swiggy
     takesCallOrders: true,
     dishes: "Not specified",
     menuImages: [
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/KandoliAdda.jpeg",
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/KandoliAdda1.jpeg",
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/KandoliAdda2.jpeg",
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/KandoliAdda.jpeg",
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/KandoliAdda1.jpeg",
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/KandoliAdda2.jpeg"
     ]
-},
-
-{
+  },
+  {
     name: "Cafe Sky View",
     searchName: "cafe sky view",
     cuisine: "Cafe",
@@ -656,16 +644,17 @@ const restaurantData = [
     timings: "10:30AM - 10:45PM",
     contact: "+918171652916",
     minOrder: "Not specified",
-    orderLink: "https://www.zomato.com/dehradun/cafe-sky-view-bidholi/order",
+    ZomatoLink: "https://www.zomato.com/dehradun/cafe-sky-view-bidholi",
+    SwiggyLink: "", // No listing found on Swiggy
     takesCallOrders: true,
     dishes: "Not specified",
     menuImages: [
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SkyView.jpeg",
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SkyView1.jpeg",
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SkyView2.jpeg"
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SkyView.jpeg",
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SkyView1.jpeg",
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SkyView2.jpeg"
     ]
-},
-{
+  },
+  {
     name: "Kainchi Products/ Radhey Confectionary",
     searchName: "kainchi products",
     cuisine: "Bakery",
@@ -674,28 +663,30 @@ const restaurantData = [
     timings: "Not specified",
     contact: "+918630273212",
     minOrder: "Not specified",
-    orderLink: "",
+    ZomatoLink: "",
+    SwiggyLink: "", // Not listed
     takesCallOrders: true,
     dishes: "Not specified",
     menuImages: []
-},
-{
+  },
+  {
     name: "Sona Restaurant",
-    searchName: "Sona Restaurant",
+    searchName: "sona restaurant",
     cuisine: "Multi-Cuisine",
     rating: "4.0 ★ (50+ reviews)",
     location: "Not specified",
     timings: "Not specified",
-    contact: "+918057411534 +919259039141",
+    contact: "+918057411534, +919259039141",
     minOrder: "Not specified",
-    orderLink: "",
+    ZomatoLink: "",
+    SwiggyLink: "", 
     takesCallOrders: true,
     dishes: "Not specified",
     menuImages: [
-    "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Sona.jpeg",
+      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Sona.jpeg"
     ]
-},
-];    // Info content for modals
+  },
+];    
 const infoContent = {
     about: {
         title: "About FoodieSpot",
@@ -736,6 +727,269 @@ const infoContent = {
         `
     }
 };
+// Track current search state
+let currentSearchTerm = '';
+let currentFilter = 'all';
+
+// Switch between pages
+function showPage(pageId) {
+    document.getElementById('homePage').style.display = 'none';
+    document.getElementById('restaurantsPage').style.display = 'none';
+
+    document.getElementById(pageId + 'Page').style.display = 'block';
+
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.toLowerCase().includes(pageId) || 
+           (pageId === 'home' && btn.textContent === 'Home')) {
+            btn.classList.add('active');
+        }
+    });
+
+    window.scrollTo(0, 0);
+
+    if (pageId === 'restaurants') {
+        if (event && event.target.classList.contains('browse-all-btn')) {
+            document.getElementById('restaurantSearchInput').value = '';
+            currentSearchTerm = '';
+            currentFilter = 'all';
+            document.querySelector('.filter-btn.active')?.classList.remove('active');
+            document.querySelector('.filter-btn[data-filter="all"]')?.classList.add('active');
+            updateRestaurantDisplay();
+        }
+    }
+}
+
+// Show modal with info
+function showInfoModal(type) {
+    const info = infoContent[type];
+    if (!info) return;
+
+    document.getElementById('infoModalTitle').textContent = info.title;
+    document.getElementById('infoModalContent').innerHTML = info.content;
+    document.getElementById('infoModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeInfoModal() {
+    document.getElementById('infoModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Advanced search
+function handleSearch(event) {
+    const searchInput = event.target;
+    const clearBtn = searchInput.nextElementSibling.nextElementSibling;
+    clearBtn.classList.toggle('visible', searchInput.value.length > 0);
+
+    currentSearchTerm = searchInput.value.toLowerCase();
+    updateRestaurantDisplay();
+
+    const searchTermHome = document.getElementById('homeSearchInput')?.value.toLowerCase() || '';
+    if (searchTermHome && document.getElementById('homePage').style.display !== 'none') {
+        showPage('restaurants');
+        document.getElementById('restaurantSearchInput').value = searchTermHome;
+        currentSearchTerm = searchTermHome;
+        updateRestaurantDisplay();
+    }
+}
+
+function clearSearch(page) {
+    const inputId = page === 'home' ? 'homeSearchInput' : 'restaurantSearchInput';
+    const input = document.getElementById(inputId);
+    input.value = '';
+    input.nextElementSibling.nextElementSibling.classList.remove('visible');
+    currentSearchTerm = '';
+    updateRestaurantDisplay();
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentFilter = this.dataset.filter;
+        updateRestaurantDisplay();
+    });
+});
+
+// Update display of restaurants
+function updateRestaurantDisplay() {
+    const outletCards = document.querySelectorAll('.outlet-card');
+    let visibleCount = 0;
+
+    outletCards.forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        const cuisine = card.dataset.cuisine.toLowerCase();
+        const dishes = card.dataset.dishes?.toLowerCase() || '';
+
+        const matchesSearch = !currentSearchTerm ||
+            name.includes(currentSearchTerm) ||
+            cuisine.includes(currentSearchTerm) ||
+            dishes.includes(currentSearchTerm);
+
+        const matchesFilter = currentFilter === 'all' || cuisine.includes(currentFilter);
+
+        if (matchesSearch && matchesFilter) {
+            card.style.display = 'block';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    const messageElement = document.getElementById('searchResultsMessage');
+    if (currentSearchTerm) {
+        messageElement.style.display = 'block';
+        messageElement.textContent = visibleCount === 0 ?
+            `No restaurants found for "${currentSearchTerm}"` :
+            `Found ${visibleCount} restaurant${visibleCount !== 1 ? 's' : ''} matching "${currentSearchTerm}"`;
+        messageElement.className = `search-results-message show ${visibleCount === 0 ? 'no-results' : 'results-found'}`;
+    } else if (currentFilter !== 'all') {
+        messageElement.style.display = 'block';
+        messageElement.textContent = `Showing ${visibleCount} ${currentFilter} restaurant${visibleCount !== 1 ? 's' : ''}`;
+        messageElement.className = 'search-results-message show results-found';
+    } else {
+        messageElement.style.display = 'none';
+    }
+}
+
+// Add outlet modal
+function showAddForm() {
+    document.getElementById('addOutletModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeAddForm() {
+    document.getElementById('addOutletModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Favorite toggle
+function toggleFavorite(btn) {
+    const icon = btn.querySelector('i');
+    const isFav = icon.classList.contains('fas');
+    icon.classList.toggle('fas', !isFav);
+    icon.classList.toggle('far', isFav);
+    btn.style.color = '#ff4757';
+}
+
+// Restaurant Modal with Swiggy/Zomato link support
+function showRestaurantModal(name, cuisine, rating, location, timings, contact, minOrder, swiggyLink, zomatoLink, takesCallOrders, dishes, menuImages) {
+    document.getElementById('modalRestaurantName').textContent = name;
+    document.getElementById('modalRestaurantCuisine').textContent = cuisine;
+    document.getElementById('modalRestaurantRating').textContent = rating;
+    document.getElementById('modalRestaurantLocation').textContent = location;
+    document.getElementById('modalRestaurantTimings').textContent = timings;
+    document.getElementById('modalRestaurantContact').textContent = contact;
+    document.getElementById('modalRestaurantMinOrder').textContent = minOrder;
+    document.getElementById('modalRestaurantDishes').textContent = dishes;
+
+    const callOrderBadge = document.getElementById('modalRestaurantCallOrder');
+    callOrderBadge.textContent = takesCallOrders ? 'Yes' : 'No';
+    callOrderBadge.className = takesCallOrders ? 'badge yes' : 'badge no';
+
+    // Render separate Swiggy and Zomato links
+    const linkContainer = document.getElementById('modalRestaurantOrderLink');
+    linkContainer.innerHTML = '';
+    if (swiggyLink) {
+        const swiggyBtn = document.createElement('a');
+        swiggyBtn.href = swiggyLink;
+        swiggyBtn.target = '_blank';
+        swiggyBtn.className = 'order-link';
+        swiggyBtn.innerHTML = '<i class="fas fa-external-link-alt"></i> Order on Swiggy';
+        linkContainer.appendChild(swiggyBtn);
+    }
+    if (zomatoLink) {
+        const zomatoBtn = document.createElement('a');
+        zomatoBtn.href = zomatoLink;
+        zomatoBtn.target = '_blank';
+        zomatoBtn.className = 'order-link';
+        zomatoBtn.innerHTML = '<i class="fas fa-external-link-alt"></i> Order on Zomato';
+        linkContainer.appendChild(zomatoBtn);
+    }
+
+    const menuGallery = document.getElementById('menuGallery');
+    menuGallery.innerHTML = '';
+    if (menuImages && menuImages.length > 0) {
+        document.getElementById('menuImagesSection').style.display = 'block';
+        menuImages.forEach(imageUrl => {
+            const imageContainer = document.createElement('div');
+            imageContainer.className = 'menu-image';
+            imageContainer.onclick = () => openImageModal(imageUrl);
+            const img = document.createElement('img');
+            img.src = imageUrl;
+            img.alt = `${name} menu`;
+            imageContainer.appendChild(img);
+            menuGallery.appendChild(imageContainer);
+        });
+    } else {
+        document.getElementById('menuImagesSection').style.display = 'none';
+    }
+
+    document.getElementById('restaurantModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('restaurantModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Image Zoom Modal
+function openImageModal(imageUrl) {
+    document.getElementById('modalImage').src = imageUrl;
+    document.getElementById('imageModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+    document.getElementById('imageModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', function () {
+    showPage('home');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.search-section, .outlet-card').forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        observer.observe(el);
+    });
+
+    document.querySelectorAll('.outlet-card').forEach((card, index) => {
+        const data = restaurantData[index];
+        card.onclick = () => showRestaurantModal(
+            data.name,
+            data.cuisine,
+            data.rating,
+            data.location,
+            data.timings,
+            data.contact,
+            data.minOrder,
+            data.swiggyLink,
+            data.zomatoLink,
+            data.takesCallOrders,
+            data.dishes,
+            data.menuImages
+        );
+    });
+
+    document.getElementById('homeSearchInput').addEventListener('input', handleSearch);
+    document.getElementById('restaurantSearchInput').addEventListener('input', handleSearch);
+});
+
+/*
 
 // Track current search state
 let currentSearchTerm = '';
@@ -897,8 +1151,15 @@ function toggleFavorite(btn) {
 
 // Show add form (placeholder for now)
 function showAddForm() {
-    alert('Add new outlet form would appear here with fields for name, cuisine, location, etc.');
+    document.getElementById('addOutletModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
 }
+
+function closeAddForm() {
+    document.getElementById('addOutletModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
 
 // Restaurant Modal Functions
 function showRestaurantModal(name, cuisine, rating, location, timings, contact, minOrder, orderLink, takesCallOrders, dishes, menuImages) {
@@ -1002,4 +1263,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize search inputs
     document.getElementById('homeSearchInput').addEventListener('input', handleSearch);
     document.getElementById('restaurantSearchInput').addEventListener('input', handleSearch);
-});
+}); 
+*/
+
