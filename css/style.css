@@ -1,4 +1,4 @@
-:root {
+This is style.css :root {
     --primary: #FF6B35; /* Vibrant orange */
     --secondary: #F7931E; /* Warm orange */
     --accent: #FFD23F; /* Sunny yellow */
@@ -9,27 +9,25 @@
     --danger: #EF4444; /* Alert red */
     --off-white: #FFF9F0; /* Creamish off-white */
     --darker-white: #f5f5f5; /* New darker white shade */
-    --card-bg: #FFFFFF;
     
     /* Gradients */
     --gradient-main: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
     --gradient-secondary: linear-gradient(135deg, #FF9A8B 0%, #FF6B6B 100%);
     --gradient-card: linear-gradient(135deg, #FF9A8B 0%, #FF6B6B 100%);
-    --gradient-swiggy: linear-gradient(to right, #fc8019, #f95100);
-    --gradient-zomato: linear-gradient(to right, #e23744, #cc1f2f);
     
-    /* Shadows */
+    /* UI Elements */
+    --card-bg: #FFFFFF;
     --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
     --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
-/* ===== BASE STYLES ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ====== FLEXBOX LAYOUT FIX ====== */
 body {
     display: flex;
     flex-direction: column;
@@ -39,18 +37,6 @@ body {
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--light-bg);
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(rgba(255, 107, 53, 0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
-    z-index: -1;
 }
 
 .container {
@@ -68,7 +54,18 @@ main {
     padding-bottom: 20px;
 }
 
-/* ===== NAVIGATION ===== */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(rgba(255, 107, 53, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    z-index: -1;
+}
+
 .nav {
     display: flex;
     justify-content: flex-end;
@@ -76,6 +73,17 @@ main {
     margin-bottom: 40px;
     padding: 15px 0;
     animation: slideInDown 0.8s ease-out;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .nav-buttons {
@@ -107,12 +115,22 @@ main {
     box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
 }
 
-/* ===== HERO SECTION ===== */
 .title-section {
     text-align: center;
     margin-bottom: 40px;
     padding: 0 20px;
     animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .main-title {
@@ -152,7 +170,6 @@ main {
     margin-top: 20px;
 }
 
-/* ===== SEARCH SECTION ===== */
 .search-section {     
     background: var(--darker-white);
     padding: 40px;
@@ -295,152 +312,172 @@ main {
     box-shadow: 0 10px 25px rgba(108, 99, 255, 0.3);
 }
 
-/* ===== RESTAURANTS GRID ===== */
+/* Restaurants Page */
+.restaurants-page {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 40px 20px;
+    background: var(--darker-white);
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.page-title {
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: -1px;
+    color: var(--primary);
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    color: #6c757d;
+}
+
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 25px;
-    padding: 20px;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
+display: grid;
+grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+gap: 25px;
+padding: 20px;
+width: 100%;
+max-width: 1400px;
+margin: 0 auto;
 }
 
 .outlet-card {
-    background: var(--darker-white);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: var(--shadow-soft);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    cursor: pointer;
-    position: relative;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+background: var(--darker-white);
+border-radius: 20px;
+overflow: hidden;
+box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+cursor: pointer;
+position: relative;
+height: 100%;
+display: flex;
+flex-direction: column;
 }
 
 .outlet-card.hidden {
-    opacity: 0;
-    transform: scale(0.8);
-    pointer-events: none;
+opacity: 0;
+transform: scale(0.8);
+pointer-events: none;
 }
 
 .outlet-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--shadow-medium);
+transform: translateY(-8px) scale(1.02);
+box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 1024px) {
+.grid-container {
+grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media (max-width: 768px) {
+.grid-container {
+grid-template-columns: 1fr; 
+gap: 20px;
+}
 }
 
 .outlet-header {
-    background: var(--gradient-card);
-    color: white;
-    padding: 20px;
-    position: relative;
+background: var(--gradient-card);
+color: white;
+padding: 20px;
+position: relative;
 }
 
 .outlet-name {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 8px;
+font-size: 1.5rem;
+font-weight: 700;
+margin-bottom: 8px;
 }
 
 .outlet-cuisine {
-    opacity: 0.9;
-    font-size: 0.95rem;
-    text-transform: capitalize;
+opacity: 0.9;
+font-size: 0.95rem;
+text-transform: capitalize;
 }
 
 .rating {
-    display: inline-block;
-    background: rgba(255,255,255,0.2);
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    margin-top: 10px;
+display: inline-block;
+background: rgba(255,255,255,0.2);
+padding: 6px 12px;
+border-radius: 20px;
+font-weight: 700;
+font-size: 0.9rem;
+margin-top: 10px;
 }
 
 .phone-order {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 0.85rem;
-    margin-top: 5px;
+display: flex;
+align-items: center;
+gap: 5px;
+font-size: 0.85rem;
+margin-top: 5px;
 }
 
 .phone-order i.fa-phone-alt {
-    color: var(--success);
+color: var(--success);
 }
 
 .phone-order i.fa-times-circle {
-    color: var(--danger);
+color: var(--danger);
 }
 
 .outlet-details {
-    padding: 20px;
-    color: var(--text-dark);
-    flex: 1;
+padding: 20px;
+color: #333;
+flex: 1;
 }
 
 .detail-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 12px;
-    font-size: 0.9rem;
+display: flex;
+justify-content: space-between;
+margin-bottom: 12px;
+font-size: 0.9rem;
 }
 
 .detail-label {
-    font-weight: 600;
-    color: #555;
+font-weight: 600;
+color: #555;
 }
 
 .detail-value {
-    font-weight: 500;
+font-weight: 500;
 }
 
 .status {
-    display: inline-block;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.85rem;
+display: inline-block;
+padding: 6px 12px;
+border-radius: 20px;
+font-weight: 600;
+font-size: 0.85rem;
 }
 
 .status.open {
-    background: #d4edda;
-    color: #155724;
+background: #d4edda;
+color: #155724;
 }
 
 .status.closed {
-    background: #f8d7da;
-    color: #721c24;
+background: #f8d7da;
+color: #721c24;
 }
 
-/* ===== FAVORITE BUTTON ===== */
-.favorite-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(255,255,255,0.9);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ff4757;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: none;
-    z-index: 10;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.favorite-btn:hover {
-    transform: scale(1.1);
-    background: white;
-}
-
-/* ===== SEARCH RESULTS MESSAGE ===== */
 .search-results-message {
     text-align: center;
     color: var(--text-dark);
@@ -480,36 +517,11 @@ main {
     color: var(--primary);
 }
 
-/* ===== RESTAURANTS PAGE ===== */
-.restaurants-page {
-    display: none;
-    animation: fadeIn 0.5s ease-out;
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-.page-header {
-    text-align: center;
-    margin-bottom: 40px;
-    padding: 40px 20px;
-    background: var(--darker-white);
-    border-radius: 24px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
-
-.page-title {
-    font-size: clamp(2rem, 6vw, 2.8rem);
-    font-weight: 700;
-    margin-bottom: 15px;
-    letter-spacing: -1px;
-    color: var(--primary);
-}
-
-.page-header p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-    color: #6c757d;
-}
-
-/* ===== ABOUT & CONTACT SECTIONS ===== */
 .about-section, .contact-section {
     max-width: 800px;
     margin: 40px auto;
@@ -538,7 +550,6 @@ main {
     margin-right: 8px;
 }
 
-/* ===== FOOTER ===== */
 .footer {
     text-align: center;
     padding: 40px 0;
@@ -568,7 +579,6 @@ main {
     text-decoration: underline;
 }
 
-/* ===== FLOATING ACTION BUTTON ===== */
 .fab {
     position: fixed;
     bottom: 30px;
@@ -594,7 +604,6 @@ main {
     box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
 }
 
-/* ===== MODAL STYLES ===== */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -664,7 +673,7 @@ main {
 
 .modal-body {
     padding: 25px;
-    color: var(--text-dark);
+    color: #333;
 }
 
 .modal-section {
@@ -697,14 +706,6 @@ main {
     transition: transform 0.3s ease;
 }
 
-.order-link.swiggy {
-    background: var(--gradient-swiggy);
-}
-
-.order-link.zomato {
-    background: var(--gradient-zomato);
-}
-
 .order-link:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
@@ -729,7 +730,29 @@ main {
     color: #721c24;
 }
 
-/* ===== MENU IMAGES ===== */
+.favorite-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255,255,255,0.9);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff4757;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    z-index: 10;
+}
+
+.favorite-btn:hover {
+    transform: scale(1.1);
+    background: white;
+}
+
 .menu-images {
     margin-top: 15px;
 }
@@ -807,80 +830,6 @@ main {
     cursor: pointer;
 }
 
-/* ===== DARK MODE ===== */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --light-bg: #1e1e1e;
-        --darker-white: #2c2c2c;
-        --card-bg: #2c2c2c;
-        --text-dark: #f0f0f0;
-        --off-white: #2c2c2c;
-    }
-
-    body {
-        background-color: var(--light-bg);
-        color: var(--text-dark);
-    }
-
-    .outlet-card, .search-section, .modal-body, .restaurant-modal {
-        background: var(--card-bg);
-        color: var(--text-dark);
-    }
-
-    .search-box input {
-        background: var(--card-bg);
-        color: var(--text-dark);
-    }
-
-    .detail-label {
-        color: #aaa;
-    }
-
-    .footer {
-        border-top-color: #444;
-    }
-}
-
-/* ===== ANIMATIONS ===== */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* ===== RESPONSIVE STYLES ===== */
-@media (max-width: 1024px) {
-    .grid-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
 @media (max-width: 768px) {
     .container {
         padding: 15px;
@@ -915,11 +864,6 @@ main {
     .menu-image {
         width: 100%;
     }
-
-    .grid-container {
-        grid-template-columns: 1fr; 
-        gap: 20px;
-    }
 }
 
 @media (max-width: 480px) {
@@ -944,4 +888,3 @@ main {
         margin: 20px 15px;
     }
 }
-
