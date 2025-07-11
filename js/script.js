@@ -1,3 +1,4 @@
+// Data and configuration
 const restaurantData = [
     {
         name: "Anup Roll & Shake Fast Food",
@@ -698,7 +699,8 @@ const restaurantData = [
       "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Sona.jpeg"
     ]
   },
-]; 
+];
+
 const infoContent = {
     about: {
         title: "About FoodieSpot",
@@ -740,20 +742,200 @@ const infoContent = {
     }
 };
 
-// Track current search state
+const categories = {
+    'all': 'All',
+    'cafe': 'Cafes',
+    'fast food': 'Fast Food',
+    'multi-cuisine': 'Multi-Cuisine'
+};
+
+// State management
 let currentSearchTerm = '';
 let currentFilter = 'all';
 
-// Function to switch between pages
+// DOM Elements
+const elements = {
+    homePage: document.getElementById('homePage'),
+    restaurantsPage: document.getElementById('restaurantsPage'),
+    homeSearchInput: document.getElementById('homeSearchInput'),
+    restaurantSearchInput: document.getElementById('restaurantSearchInput'),
+    searchResultsMessage: document.getElementById('searchResultsMessage'),
+    gridContainer: document.querySelector('.grid-container'),
+    filterButtons: document.querySelector('.filter-buttons'),
+    modal: {
+        restaurant: document.getElementById('restaurantModal'),
+        image: document.getElementById('imageModal'),
+        info: document.getElementById('infoModal')
+    }
+};
+
+// Initialization
+function init() {
+    // Set up dark mode toggle
+    initDarkMode();
+    
+    // Create filter buttons
+    createFilterButtons();
+    
+    // Set up modals
+    initModals();
+    
+    // Set up event listeners
+    setupEventListeners();
+    
+    // Render initial restaurant cards
+    renderRestaurantCards();
+    
+    // Show home page by default
+    showPage('home');
+}
+
+// Dark Mode
+function initDarkMode() {
+    const darkModeToggle = document.createElement('button');
+    darkModeToggle.id = 'darkModeToggle';
+    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    document.body.appendChild(darkModeToggle);
+
+    darkModeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    });
+
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
+    }
+}
+
+// Filter Buttons
+function createFilterButtons() {
+    elements.filterButtons.innerHTML = '';
+    
+    Object.entries(categories).forEach(([key, label]) => {
+        const btn = document.createElement('button');
+        btn.className = `filter-btn ${key === 'all' ? 'active' : ''}`;
+        btn.dataset.filter = key;
+        btn.textContent = label;
+        btn.addEventListener('click', () => {
+            currentFilter = key;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateRestaurantDisplay();
+        });
+        elements.filterButtons.appendChild(btn);
+    });
+}
+
+// Modals
+function initModals() {
+    // Close modals when clicking outside content
+    document.querySelectorAll('.modal-overlay').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal(modal.id.replace('Modal', ''));
+            }
+        });
+    });
+    
+    // Add outlet modal
+    initAddOutletModal();
+}
+
+function initAddOutletModal() {
+    const modalHTML = `
+        <div id="addOutletModal" class="modal-overlay">
+            <div class="restaurant-modal">
+                <button class="modal-close" onclick="closeModal('addOutlet')">&times;</button>
+                <div class="modal-header">
+                    <h2>Suggest a Restaurant</h2>
+                </div>
+                <div class="modal-body">
+                    <form id="outletSuggestionForm">
+                        <div class="form-group">
+                            <label>Your Email</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Restaurant Details</label>
+                            <textarea name="details" required></textarea>
+                        </div>
+                        <button type="submit" class="order-link">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    document.getElementById('outletSuggestionForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const email = formData.get('email');
+        const details = formData.get('details');
+        window.location.href = `mailto:contact@foodiespot.upes?subject=New Restaurant Suggestion&body=${encodeURIComponent(details)}%0D%0A%0D%0AFrom: ${email}`;
+    });
+}
+
+// Restaurant Cards
+function renderRestaurantCards() {
+    elements.gridContainer.innerHTML = '';
+    
+    restaurantData.forEach((restaurant, index) => {
+        const card = document.createElement('div');
+        card.className = 'outlet-card';
+        card.dataset.name = restaurant.searchName;
+        card.dataset.cuisine = restaurant.cuisine.toLowerCase();
+        card.dataset.dishes = restaurant.dishes.toLowerCase();
+        
+        card.innerHTML = `
+            <div class="outlet-header">
+                <button class="favorite-btn" onclick="toggleFavorite(this, event)">
+                    <i class="far fa-heart"></i>
+                </button>
+                <h3 class="outlet-name">${restaurant.name}</h3>
+                <p class="outlet-cuisine">${restaurant.cuisine}</p>
+                <span class="rating">${restaurant.rating}</span>
+                <p class="phone-order">
+                    <i class="fas fa-${restaurant.takesCallOrders ? 'check-circle' : 'times-circle'}"></i>
+                    ${restaurant.takesCallOrders ? 'Takes phone orders' : 'No phone orders'}
+                </p>
+            </div>
+            <div class="outlet-details">
+                <div class="detail-row">
+                    <span class="detail-label">Location:</span>
+                    <span class="detail-value">${restaurant.location}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Timings:</span>
+                    <span class="detail-value">${restaurant.timings}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Min Order:</span>
+                    <span class="detail-value">${restaurant.minOrder}</span>
+                </div>
+                <div class="order-buttons">
+                    <a href="${restaurant.orderLink}" class="order-link zomato" target="_blank">
+                        Order on Zomato
+                    </a>
+                </div>
+            </div>
+        `;
+        
+        card.addEventListener('click', () => showRestaurantModal(restaurant));
+        elements.gridContainer.appendChild(card);
+    });
+}
+
+// Page Navigation
 function showPage(pageId) {
     // Hide all pages
-    document.getElementById('homePage').style.display = 'none';
-    document.getElementById('restaurantsPage').style.display = 'none';
+    elements.homePage.style.display = 'none';
+    elements.restaurantsPage.style.display = 'none';
     
     // Show selected page
-    document.getElementById(pageId + 'Page').style.display = 'block';
+    document.getElementById(`${pageId}Page`).style.display = 'block';
     
-    // Update active nav button
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('active');
         if (btn.textContent.toLowerCase().includes(pageId) || 
@@ -765,94 +947,58 @@ function showPage(pageId) {
     // Scroll to top
     window.scrollTo(0, 0);
     
-    // Reset search when switching to restaurants page via browse all
-    if (pageId === 'restaurants') {
-        if (event && event.target.classList.contains('browse-all-btn')) {
-            document.getElementById('restaurantSearchInput').value = '';
-            currentSearchTerm = '';
-            currentFilter = 'all';
-            document.querySelector('.filter-btn.active').classList.remove('active');
-            document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
-            updateRestaurantDisplay();
-        }
+    if (pageId === 'restaurants' && event?.target?.classList.contains('browse-all-btn')) {
+        elements.restaurantSearchInput.value = '';
+        currentSearchTerm = '';
+        currentFilter = 'all';
+        document.querySelector('.filter-btn.active')?.classList.remove('active');
+        document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+        updateRestaurantDisplay();
     }
 }
 
-// Show info modal
-function showInfoModal(type) {
-    const info = infoContent[type];
-    if (!info) return;
-    
-    document.getElementById('infoModalTitle').textContent = info.title;
-    document.getElementById('infoModalContent').innerHTML = info.content;
-    document.getElementById('infoModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeInfoModal() {
-    document.getElementById('infoModal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-}
-
-// Improved search functionality
+// Search Functionality
 function handleSearch(event) {
     const searchInput = event.target;
-    const clearBtn = searchInput.nextElementSibling.nextElementSibling;
-    clearBtn.classList.toggle('visible', searchInput.value.length > 0);
+    const clearBtn = searchInput.nextElementSibling?.nextElementSibling;
+    if (clearBtn) {
+        clearBtn.classList.toggle('visible', searchInput.value.length > 0);
+    }
     
     // Update current search term
     currentSearchTerm = searchInput.value.toLowerCase();
     updateRestaurantDisplay();
     
-    // If searching from home page, switch to restaurants page
-    const searchTermHome = document.getElementById('homeSearchInput')?.value.toLowerCase() || '';
-    if (searchTermHome && document.getElementById('homePage').style.display !== 'none') {
+    if (searchInput.id === 'homeSearchInput' && searchInput.value && elements.homePage.style.display !== 'none') {
         showPage('restaurants');
-        document.getElementById('restaurantSearchInput').value = searchTermHome;
-        currentSearchTerm = searchTermHome;
+        elements.restaurantSearchInput.value = searchInput.value;
+        currentSearchTerm = searchInput.value.toLowerCase();
         updateRestaurantDisplay();
     }
 }
 
-// Clear search input
 function clearSearch(page) {
-    const inputId = page === 'home' ? 'homeSearchInput' : 'restaurantSearchInput';
-    const input = document.getElementById(inputId);
+    const input = page === 'home' ? elements.homeSearchInput : elements.restaurantSearchInput;
     input.value = '';
     input.nextElementSibling.nextElementSibling.classList.remove('visible');
     currentSearchTerm = '';
     updateRestaurantDisplay();
 }
 
-// Filter button functionality
-document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        document.querySelectorAll('.filter-btn').forEach(b => {
-            b.classList.remove('active');
-        });
-        this.classList.add('active');
-        currentFilter = this.dataset.filter;
-        updateRestaurantDisplay();
-    });
-});
-
-// Main function to update restaurant display based on current filters
 function updateRestaurantDisplay() {
     const outletCards = document.querySelectorAll('.outlet-card');
     let visibleCount = 0;
     
     outletCards.forEach(card => {
-        const name = card.dataset.name.toLowerCase();
-        const cuisine = card.dataset.cuisine.toLowerCase();
-        const dishes = card.dataset.dishes?.toLowerCase() || '';
+        const name = card.dataset.name;
+        const cuisine = card.dataset.cuisine;
+        const dishes = card.dataset.dishes || '';
         
-        // Check if matches current search term
         const matchesSearch = !currentSearchTerm || 
                              name.includes(currentSearchTerm) || 
                              cuisine.includes(currentSearchTerm) || 
                              dishes.includes(currentSearchTerm);
         
-        // Check if matches current filter
         const matchesFilter = currentFilter === 'all' || 
                              cuisine.includes(currentFilter);
         
@@ -865,109 +1011,129 @@ function updateRestaurantDisplay() {
     });
     
     // Update search results message
-    const messageElement = document.getElementById('searchResultsMessage');
     if (currentSearchTerm) {
-        messageElement.style.display = 'block';
+        elements.searchResultsMessage.style.display = 'block';
         if (visibleCount === 0) {
-            messageElement.textContent = `No restaurants found for "${currentSearchTerm}"`;
-            messageElement.className = 'search-results-message show no-results';
+            elements.searchResultsMessage.textContent = `No restaurants found for "${currentSearchTerm}"`;
+            elements.searchResultsMessage.className = 'search-results-message show no-results';
         } else {
-            messageElement.textContent = `Found ${visibleCount} restaurant${visibleCount !== 1 ? 's' : ''} matching "${currentSearchTerm}"`;
-            messageElement.className = 'search-results-message show results-found';
+            elements.searchResultsMessage.textContent = `Found ${visibleCount} restaurant${visibleCount !== 1 ? 's' : ''} matching "${currentSearchTerm}"`;
+            elements.searchResultsMessage.className = 'search-results-message show results-found';
         }
     } else if (currentFilter !== 'all') {
-        messageElement.style.display = 'block';
-        messageElement.textContent = `Showing ${visibleCount} ${currentFilter} restaurant${visibleCount !== 1 ? 's' : ''}`;
-        messageElement.className = 'search-results-message show results-found';
+        elements.searchResultsMessage.style.display = 'block';
+        elements.searchResultsMessage.textContent = `Showing ${visibleCount} ${currentFilter} restaurant${visibleCount !== 1 ? 's' : ''}`;
+        elements.searchResultsMessage.className = 'search-results-message show results-found';
     } else {
-        messageElement.style.display = 'none';
+        elements.searchResultsMessage.style.display = 'none';
     }
 }
 
-// Toggle favorite button
-function toggleFavorite(btn) {
-    const icon = btn.querySelector('i');
-    if (icon.classList.contains('far')) {
-        icon.classList.remove('far');
-        icon.classList.add('fas');
-        btn.style.color = '#ff4757';
-    } else {
-        icon.classList.remove('fas');
-        icon.classList.add('far');
-        btn.style.color = '#ff4757';
-    }
-}
-
-// Show add form (placeholder for now)
-function showAddForm() {
-    alert('Add new outlet form would appear here with fields for name, cuisine, location, etc.');
-}
-
-// Restaurant Modal Functions
-function showRestaurantModal(name, cuisine, rating, location, timings, contact, minOrder, orderLink, takesCallOrders, dishes, menuImages) {
-    document.getElementById('modalRestaurantName').textContent = name;
-    document.getElementById('modalRestaurantCuisine').textContent = cuisine;
-    document.getElementById('modalRestaurantRating').textContent = rating;
-    document.getElementById('modalRestaurantLocation').textContent = location;
-    document.getElementById('modalRestaurantTimings').textContent = timings;
-    document.getElementById('modalRestaurantContact').textContent = contact;
-    document.getElementById('modalRestaurantMinOrder').textContent = minOrder;
-    document.getElementById('modalRestaurantOrderLink').href = orderLink;
-    document.getElementById('modalRestaurantDishes').textContent = dishes;
+function showRestaurantModal(restaurant) {
+    const modal = elements.modal.restaurant;
     
-    const callOrderBadge = document.getElementById('modalRestaurantCallOrder');
-    callOrderBadge.textContent = takesCallOrders ? 'Yes' : 'No';
-    callOrderBadge.className = takesCallOrders ? 'badge yes' : 'badge no';
+    modal.querySelector('#modalRestaurantName').textContent = restaurant.name;
+    modal.querySelector('#modalRestaurantCuisine').textContent = restaurant.cuisine;
+    modal.querySelector('#modalRestaurantRating').textContent = restaurant.rating;
+    modal.querySelector('#modalRestaurantLocation').textContent = restaurant.location;
+    modal.querySelector('#modalRestaurantTimings').textContent = restaurant.timings;
+    modal.querySelector('#modalRestaurantContact').textContent = restaurant.contact;
+    modal.querySelector('#modalRestaurantMinOrder').textContent = restaurant.minOrder;
+    modal.querySelector('#modalRestaurantOrderLink').href = restaurant.orderLink;
+    modal.querySelector('#modalRestaurantDishes').textContent = restaurant.dishes;
+    
+    const callOrderBadge = modal.querySelector('#modalRestaurantCallOrder');
+    callOrderBadge.textContent = restaurant.takesCallOrders ? 'Yes' : 'No';
+    callOrderBadge.className = restaurant.takesCallOrders ? 'badge yes' : 'badge no';
     
     // Update menu images
-    const menuGallery = document.getElementById('menuGallery');
+    const menuGallery = modal.querySelector('#menuGallery');
     menuGallery.innerHTML = '';
     
-    if (menuImages && menuImages.length > 0) {
-        document.getElementById('menuImagesSection').style.display = 'block';
+    if (restaurant.menuImages?.length > 0) {
+        modal.querySelector('#menuImagesSection').style.display = 'block';
         
-        menuImages.forEach(imageUrl => {
+        restaurant.menuImages.forEach(imageUrl => {
             const imageContainer = document.createElement('div');
             imageContainer.className = 'menu-image';
             imageContainer.onclick = () => openImageModal(imageUrl);
             
             const img = document.createElement('img');
             img.src = imageUrl;
-            img.alt = `${name} menu`;
+            img.alt = `${restaurant.name} menu`;
             
             imageContainer.appendChild(img);
             menuGallery.appendChild(imageContainer);
         });
     } else {
-        document.getElementById('menuImagesSection').style.display = 'none';
+        modal.querySelector('#menuImagesSection').style.display = 'none';
     }
     
-    document.getElementById('restaurantModal').classList.add('active');
+    modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
 
-function closeModal() {
-    document.getElementById('restaurantModal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-}
-
-// Image Modal Functions
 function openImageModal(imageUrl) {
-    document.getElementById('modalImage').src = imageUrl;
-    document.getElementById('imageModal').classList.add('active');
+    const modal = elements.modal.image;
+    modal.querySelector('#modalImage').src = imageUrl;
+    modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
 
-function closeImageModal() {
-    document.getElementById('imageModal').classList.remove('active');
+function showInfoModal(type) {
+    const info = infoContent[type];
+    if (!info) return;
+    
+    const modal = elements.modal.info;
+    modal.querySelector('#infoModalTitle').textContent = info.title;
+    modal.querySelector('#infoModalContent').innerHTML = info.content;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close Modal
+function closeModal(type) {
+    const modalId = type === 'image' ? 'imageModal' : 
+                   type === 'info' ? 'infoModal' : 
+                   type === 'addOutlet' ? 'addOutletModal' : 'restaurantModal';
+    
+    document.getElementById(modalId).classList.remove('active');
     document.body.style.overflow = 'auto';
 }
 
-// Initialize the page
-document.addEventListener('DOMContentLoaded', function() {
-    showPage('home');
+// Favorites
+function toggleFavorite(btn, event) {
+    event.stopPropagation();
+    const icon = btn.querySelector('i');
+    if (icon.classList.contains('far')) {
+        icon.classList.replace('far', 'fas');
+        btn.style.color = '#ff4757';
+    } else {
+        icon.classList.replace('fas', 'far');
+        btn.style.color = '#ff4757';
+    }
+}
+
+function setupEventListeners() {
+    elements.homeSearchInput.addEventListener('input', handleSearch);
+    elements.restaurantSearchInput.addEventListener('input', handleSearch);
     
-    // Add animation to elements when they come into view
+    document.querySelectorAll('.clear-search').forEach(btn => {
+        btn.addEventListener('click', () => clearSearch(btn.dataset.page));
+    });
+    
+    document.querySelector('.browse-all-btn').addEventListener('click', () => {
+        document.getElementById('addOutletModal').classList.add('active');
+    });
+    
+    document.querySelectorAll('.modal-close').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modal = btn.closest('.modal-overlay');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    });
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -983,31 +1149,8 @@ document.addEventListener('DOMContentLoaded', function() {
         el.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
         observer.observe(el);
     });
-
-    // Set up click handlers for all restaurant cards using the data
-    document.querySelectorAll('.outlet-card').forEach((card, index) => {
-        const data = restaurantData[index];
-        card.onclick = () => showRestaurantModal(
-            data.name,
-            data.cuisine,
-            data.rating,
-            data.location,
-            data.timings,
-            data.contact,
-            data.minOrder,
-            data.orderLink,
-            data.takesCallOrders,
-            data.dishes,
-            data.menuImages
-        );
-    });
-
-    // Initialize search inputs
-    document.getElementById('homeSearchInput').addEventListener('input', handleSearch);
-    document.getElementById('restaurantSearchInput').addEventListener('input', handleSearch);
-});
-
-
+}
+document.addEventListener('DOMContentLoaded', init);
 
 
 
