@@ -391,6 +391,20 @@ const restaurantData = [
       "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SnacksAdda1.jpeg"
     ]
   },
+    {
+    name: "Anavrin",
+    searchName: "anavrin",
+    cuisine: "Not specified",
+    rating: "Not rated yet",
+    location: "Not specified",
+    timings: "Not specified",
+    contact: "Not specified",
+    minOrder: "Not specified",
+    orderLink: "",
+    takesCallOrders: false,
+    dishes: "Not specified",
+    menuImages: []
+},
   {
     name: "Sandeep Fast Food",
     searchName: "sandeep fast food",
