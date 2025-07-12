@@ -744,7 +744,7 @@ const infoContent = {
 
 const categories = {
     'all': 'All',
-    'cafe': 'Cafes',
+    'cafe': 'Cafés',
     'fast food': 'Fast Food',
     'multi-cuisine': 'Multi-Cuisine'
 };
@@ -765,7 +765,8 @@ const elements = {
     modal: {
         restaurant: document.getElementById('restaurantModal'),
         image: document.getElementById('imageModal'),
-        info: document.getElementById('infoModal')
+        info: document.getElementById('infoModal'),
+        addOutlet: document.getElementById('addOutletModal')
     }
 };
 
@@ -837,43 +838,14 @@ function initModals() {
         });
     });
     
-    // Add outlet modal
-    initAddOutletModal();
-}
-
-function initAddOutletModal() {
-    const modalHTML = `
-        <div id="addOutletModal" class="modal-overlay">
-            <div class="restaurant-modal">
-                <button class="modal-close" onclick="closeModal('addOutlet')">&times;</button>
-                <div class="modal-header">
-                    <h2>Suggest a Restaurant</h2>
-                </div>
-                <div class="modal-body">
-                    <form id="outletSuggestionForm">
-                        <div class="form-group">
-                            <label>Your Email</label>
-                            <input type="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Restaurant Details</label>
-                            <textarea name="details" required></textarea>
-                        </div>
-                        <button type="submit" class="order-link">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-    
+    // Add outlet form submission
     document.getElementById('outletSuggestionForm').addEventListener('submit', (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const email = formData.get('email');
         const details = formData.get('details');
         window.location.href = `mailto:contact@foodiespot.upes?subject=New Restaurant Suggestion&body=${encodeURIComponent(details)}%0D%0A%0D%0AFrom: ${email}`;
+        closeModal('addOutlet');
     });
 }
 
@@ -881,10 +853,10 @@ function initAddOutletModal() {
 function renderRestaurantCards() {
     elements.gridContainer.innerHTML = '';
     
-    restaurantData.forEach((restaurant, index) => {
+    restaurantData.forEach((restaurant) => {
         const card = document.createElement('div');
         card.className = 'outlet-card';
-        card.dataset.name = restaurant.searchName;
+        card.dataset.name = restaurant.searchName.toLowerCase();
         card.dataset.cuisine = restaurant.cuisine.toLowerCase();
         card.dataset.dishes = restaurant.dishes.toLowerCase();
         
@@ -893,12 +865,12 @@ function renderRestaurantCards() {
                 <button class="favorite-btn" onclick="toggleFavorite(this, event)">
                     <i class="far fa-heart"></i>
                 </button>
-                <h3 class="outlet-name">${restaurant.name}</h3>
+                <h2 class="outlet-name">${restaurant.name}</h2>
                 <p class="outlet-cuisine">${restaurant.cuisine}</p>
                 <span class="rating">${restaurant.rating}</span>
                 <p class="phone-order">
-                    <i class="fas fa-${restaurant.takesCallOrders ? 'check-circle' : 'times-circle'}"></i>
-                    ${restaurant.takesCallOrders ? 'Takes phone orders' : 'No phone orders'}
+                    <i class="fas fa-${restaurant.takesCallOrders ? 'phone-alt' : 'times-circle'}"></i>
+                    ${restaurant.takesCallOrders ? 'Accepts phone orders' : 'No phone orders'}
                 </p>
             </div>
             <div class="outlet-details">
@@ -911,13 +883,12 @@ function renderRestaurantCards() {
                     <span class="detail-value">${restaurant.timings}</span>
                 </div>
                 <div class="detail-row">
-                    <span class="detail-label">Min Order:</span>
+                    <span class="detail-label">Min. Order:</span>
                     <span class="detail-value">${restaurant.minOrder}</span>
                 </div>
-                <div class="order-buttons">
-                    <a href="${restaurant.orderLink}" class="order-link zomato" target="_blank">
-                        Order on Zomato
-                    </a>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="status open">Open • Closes at ${restaurant.timings.split('-')[1].trim()}</span>
                 </div>
             </div>
         `;
@@ -936,6 +907,7 @@ function showPage(pageId) {
     // Show selected page
     document.getElementById(`${pageId}Page`).style.display = 'block';
     
+    // Update active nav button
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('active');
         if (btn.textContent.toLowerCase().includes(pageId) || 
@@ -946,15 +918,6 @@ function showPage(pageId) {
     
     // Scroll to top
     window.scrollTo(0, 0);
-    
-    if (pageId === 'restaurants' && event?.target?.classList.contains('browse-all-btn')) {
-        elements.restaurantSearchInput.value = '';
-        currentSearchTerm = '';
-        currentFilter = 'all';
-        document.querySelector('.filter-btn.active')?.classList.remove('active');
-        document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
-        updateRestaurantDisplay();
-    }
 }
 
 // Search Functionality
@@ -969,6 +932,7 @@ function handleSearch(event) {
     currentSearchTerm = searchInput.value.toLowerCase();
     updateRestaurantDisplay();
     
+    // If searching from home page, switch to restaurants page
     if (searchInput.id === 'homeSearchInput' && searchInput.value && elements.homePage.style.display !== 'none') {
         showPage('restaurants');
         elements.restaurantSearchInput.value = searchInput.value;
@@ -985,6 +949,7 @@ function clearSearch(page) {
     updateRestaurantDisplay();
 }
 
+// Restaurant Display
 function updateRestaurantDisplay() {
     const outletCards = document.querySelectorAll('.outlet-card');
     let visibleCount = 0;
@@ -1022,13 +987,14 @@ function updateRestaurantDisplay() {
         }
     } else if (currentFilter !== 'all') {
         elements.searchResultsMessage.style.display = 'block';
-        elements.searchResultsMessage.textContent = `Showing ${visibleCount} ${currentFilter} restaurant${visibleCount !== 1 ? 's' : ''}`;
+        elements.searchResultsMessage.textContent = `Showing ${visibleCount} ${categories[currentFilter]} restaurant${visibleCount !== 1 ? 's' : ''}`;
         elements.searchResultsMessage.className = 'search-results-message show results-found';
     } else {
         elements.searchResultsMessage.style.display = 'none';
     }
 }
 
+// Restaurant Modal
 function showRestaurantModal(restaurant) {
     const modal = elements.modal.restaurant;
     
@@ -1056,7 +1022,10 @@ function showRestaurantModal(restaurant) {
         restaurant.menuImages.forEach(imageUrl => {
             const imageContainer = document.createElement('div');
             imageContainer.className = 'menu-image';
-            imageContainer.onclick = () => openImageModal(imageUrl);
+            imageContainer.onclick = (e) => {
+                e.stopPropagation();
+                openImageModal(imageUrl);
+            };
             
             const img = document.createElement('img');
             img.src = imageUrl;
@@ -1073,6 +1042,7 @@ function showRestaurantModal(restaurant) {
     document.body.style.overflow = 'hidden';
 }
 
+// Image Modal
 function openImageModal(imageUrl) {
     const modal = elements.modal.image;
     modal.querySelector('#modalImage').src = imageUrl;
@@ -1080,6 +1050,7 @@ function openImageModal(imageUrl) {
     document.body.style.overflow = 'hidden';
 }
 
+// Info Modal
 function showInfoModal(type) {
     const info = infoContent[type];
     if (!info) return;
@@ -1093,12 +1064,11 @@ function showInfoModal(type) {
 
 // Close Modal
 function closeModal(type) {
-    const modalId = type === 'image' ? 'imageModal' : 
-                   type === 'info' ? 'infoModal' : 
-                   type === 'addOutlet' ? 'addOutletModal' : 'restaurantModal';
-    
-    document.getElementById(modalId).classList.remove('active');
-    document.body.style.overflow = 'auto';
+    const modal = elements.modal[type];
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
 }
 
 // Favorites
@@ -1107,33 +1077,39 @@ function toggleFavorite(btn, event) {
     const icon = btn.querySelector('i');
     if (icon.classList.contains('far')) {
         icon.classList.replace('far', 'fas');
-        btn.style.color = '#ff4757';
     } else {
         icon.classList.replace('fas', 'far');
-        btn.style.color = '#ff4757';
     }
 }
 
+// Event Listeners
 function setupEventListeners() {
+    // Search inputs
     elements.homeSearchInput.addEventListener('input', handleSearch);
     elements.restaurantSearchInput.addEventListener('input', handleSearch);
     
+    // Clear search buttons
     document.querySelectorAll('.clear-search').forEach(btn => {
-        btn.addEventListener('click', () => clearSearch(btn.dataset.page));
+        btn.addEventListener('click', () => clearSearch(btn.dataset.page || 'home'));
     });
     
-    document.querySelector('.browse-all-btn').addEventListener('click', () => {
-        document.getElementById('addOutletModal').classList.add('active');
+    // Browse all button
+    document.querySelector('.browse-all-btn').addEventListener('click', (e) => {
+        e.preventDefault();
+        showPage('restaurants');
     });
     
+    // Modal close buttons
     document.querySelectorAll('.modal-close').forEach(btn => {
         btn.addEventListener('click', () => {
             const modal = btn.closest('.modal-overlay');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
+            if (modal) {
+                closeModal(modal.id.replace('Modal', ''));
+            }
         });
     });
     
+    // Intersection Observer for animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -1150,7 +1126,12 @@ function setupEventListeners() {
         observer.observe(el);
     });
 }
+
+// Initialize the application
 document.addEventListener('DOMContentLoaded', init);
+
+
+
 
 
 
