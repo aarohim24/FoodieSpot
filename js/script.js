@@ -17,689 +17,692 @@ const restaurantData = [
         ]
     },
     {
-            name: "Isquare Restaurant And Cafe",
-            searchName: "isquare restaurant and cafe",
-            cuisine: "Multi-Cuisine",
-            rating: "4.2 ★ (150+ reviews)",
-            location: "Post Office Road, Near I Square Girls Hostel, Bidholi",
-            timings: "1PM - 11:30PM",
-            contact: "+918858857775",
-            minOrder: "₹150",
-            orderLink: "https://www.zomato.com/dehradun/isquare-restaurant-and-cafe-bidholi/order",
-            takesCallOrders: true,
-            dishes: "Indian, Chinese, Continental, Beverages",
-            menuImages: [
-        "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare.jpeg",
-        "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare1.jpeg",
-        "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare2.jpeg",
-        "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare3.jpeg"
-    ]
-},
-  {
-    name: "All Rounder Chacha Restaurant & Cafe",
-    searchName: "all rounder chacha restaurant & cafe",
-    cuisine: "North Indian",
-    rating: "4.1 ★ (120+ reviews)",
-    location: "Near Bright Wave School, Bidholi, Dehradun",
-    timings: "24 Hours",
-    contact: "+918818037720",
-    minOrder: "₹120",
-    ZomatoLink: "https://www.zomato.com/dehradun/all-rounder-chacha-restaurant-cafe-bidholi",
-    SwiggyLink: "https://www.swiggy.com/city/dehradun/all-rounder-chacha-restaurant-and-cafe-bidholi-rest995891",
-    takesCallOrders: true,
-    dishes: "Roti, Dal, Sabzi, Curry, Biryani",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/AllRounder.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/AllRounder1.jpeg"
-    ]
-  },
-  {
-    name: "Maal & Chooz",
-    searchName: "maal & chooz",
-    cuisine: "Fast Food, Snacks",
-    rating: "4.0 ★ (90+ reviews)",
-    location: "Vikasnagar, Bidholi, Dehradun",
-    timings: "12PM - 1:45AM, 12PM - 12AM",
-    contact: "+917737178155",
-    minOrder: "₹80",
-    ZomatoLink: "https://www.zomato.com/dehradun/maal-chooz-bidholi",
-    SwiggyLink: "", // Not found on Swiggy
-    takesCallOrders: true,
-    dishes: "Snacks, Fast Food, Sandwiches, Momos",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Maal_&_Chooz.jpeg"
-    ]
-  },
-  {
-    name: "Swadu Cafe",
-    searchName: "swadu cafe",
-    cuisine: "Cafe, Continental",
-    rating: "4.3 ★ (110+ reviews)",
-    location: "Upper Kandoli, UPES Road, Near Girls Hostel, Bidholi",
-    timings: "11AM - 10:45PM",
-    contact: "+919119862486",
-    minOrder: "₹150",
-    ZomatoLink: "https://www.zomato.com/dehradun/swadu-cafe-bidholi",
-    SwiggyLink: "https://www.swiggy.com/city/dehradun/swadu-cafe-prem-nagar-rest814318",
-    takesCallOrders: true,
-    dishes: "Coffee, Sandwiches, Pasta, Desserts",
-    menuImages: []
-  },
-  {
-    name: "Romnik Pizza",
-    searchName: "romnik pizza",
-    cuisine: "Pizza, Fast Food",
-    rating: "4.1 ★ (85+ reviews)",
-    location: "Near UPES, Bidholi, Dehradun",
-    timings: "11AM - 11PM",
-    contact: "+917900688688",
-    minOrder: "₹200",
-    ZomatoLink: "https://www.zomato.com/dehradun/romnik-pizza-bidholi",
-    SwiggyLink: "https://www.swiggy.com/city/dehradun/romnik-pizza-post-office-road-subhash-nagar-rest97829",
-    takesCallOrders: true,
-    dishes: "Pizza, Garlic Bread, Pasta, Wings",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Romnik_Pizza.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Romnik_Pizza1.jpeg"
-    ]
-  },
-  {
-    name: "Having Craving",
-    searchName: "having craving",
-    cuisine: "Fast Food, Snacks",
-    rating: "3.9 ★ (75+ reviews)",
-    location: "Shop 19, Bidholi Complex, Near UPES, Bidholi",
-    timings: "10AM - 11PM",
-    contact: "+918439333330",
-    minOrder: "₹100",
-    ZomatoLink: "https://www.zomato.com/dehradun/having-craving-bidholi",
-    SwiggyLink: "", // Not found on Swiggy
-    takesCallOrders: false,
-    dishes: "Burgers, Fries, Momos, Sandwiches",
-    menuImages: []
-  },
-  {
-    name: "Emotions Confectionery",
-    searchName: "emotions confectionery",
-    cuisine: "Bakery, Desserts",
-    rating: "4.4 ★ (130+ reviews)",
-    location: "Near UPES, Bidholi, Dehradun",
-    timings: "2:30PM - 9:15PM",
-    contact: "+919897776785, +917505615583",
-    minOrder: "₹80",
-    ZomatoLink: "https://www.zomato.com/dehradun/emotions-confectionery-bidholi/order",
-    SwiggyLink: "", // Not available on Swiggy
-    takesCallOrders: true,
-    dishes: "Cakes, Pastries, Cookies, Desserts",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Emotions_Confectionary.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Emotions_Confectionary1.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Emotions_Confectionary2.jpeg"
-    ]
-  },{
-    name: "Mentl Parathe Wale",
-    searchName: "mentl parathe wale",
-    cuisine: "North Indian",
-    rating: "4.2 ★ (95+ reviews)",
-    location: "Shop 20, Bidholi Complex, Vikasnagar, Bidholi",
-    timings: "Mon–Fri, Sun: 11AM–10:15PM | Sat: 10:45AM–10:15PM",
-    contact: "+919151591507",
-    minOrder: "₹120",
-    ZomatoLink: "https://www.zomato.com/dehradun/mentl-parathe-wale-bidholi/order",
-    SwiggyLink: "https://www.swiggy.com/restaurants/mentl-parathe-wale-baguluru-road-bidholi-dehradun-794781",
-    takesCallOrders: true,
-    dishes: "Paratha, Dal, Paneer, Lassi",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mentl.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mentl1.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mentl2.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mentl3.jpeg",
-    ]
-  },
-  {
-    name: "Chai Sutta Bar",
-    searchName: "chai sutta bar",
-    cuisine: "Cafe, Beverages",
-    rating: "4.3 ★ (140+ reviews)",
-    location: "Bidholi Complex, Near Bidholi, Dehradun",
-    timings: "Mon–Sat: 10AM–11PM | Sun: 12PM–11PM",
-    contact: "+917078365600",
-    minOrder: "₹80",
-    ZomatoLink: "https://www.zomato.com/dehradun/chai-sutta-bar-1-bidholi/order",
-    SwiggyLink: "https://www.swiggy.com/restaurants/chai-sutta-bar-balawala-dehradun-342351",
-    takesCallOrders: true,
-    dishes: "Tea, Coffee, Snacks, Shakes",
-    menuImages: [
-      "https://i.imgur.com/bcd890.jpg",
-      "https://i.imgur.com/efg123.jpg"
-    ]
-  },
-  {
-    name: "Mahi",
-    searchName: "mahi",
-    cuisine: "Fast Food",
-    rating: "4.0 ★ (50+ reviews)",
-    location: "Bidholi, Misraspatti, Uttarakhand 248197",
-    timings: "Not specified",
-    contact: "+917895334037",
-    minOrder: "₹200",
-    orderLink: "",
-    SwiggyLink: "", // Not found on Swiggy
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mahi.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mahi1.jpeg"
-    ]
-  },
-  {
-    name: "Mayank",
-    searchName: "mayank",
-    cuisine: "Multi-Cuisine",
-    rating: "4.1 ★ (80+ reviews)",
-    location: "Kharakhet, Bidholi, Uttarakhand 248197",
-    timings: "9AM - 9PM",
-    contact: "+918958973063, +917983437338",
-    minOrder: "Not specified",
-    orderLink: "https://www.swiggy.com/city/dehradun/mayank-restaurant-bidholi-rest971877",
-    SwiggyLink: "https://www.swiggy.com/city/dehradun/mayank-restaurant-bidholi-rest971877",
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mayank.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mayank1.jpeg"
-    ]
-  },
-  {
-    name: "Meenakshi",
-    searchName: "meenakshi",
-    cuisine: "North Indian",
-    rating: "4.0 ★ (60+ reviews)",
-    location: "UPES petroleum, Bidholi, Prem Nagar, Dehradun, Uttarakhand 248007",
-    timings: "11AM - 10PM",
-    contact: "+918394024356",
-    minOrder: "Not specified",
-    orderLink: "",
-    SwiggyLink: "", // Not found
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: []
-  },
-  {
-    name: "Forkful",
-    searchName: "forkful",
-    cuisine: "Fast Food",
-    rating: "4.2 ★ (90+ reviews)",
-    location: "Chowk, opp. Woodstock hostel, Bidholi, Dehradun, Uttarakhand 248001",
-    timings: "Open till 3AM",
-    contact: "+919528276454",
-    minOrder: "Not specified",
-    orderLink: "https://www.zomato.com/dehradun/forkfull-bidholi",
-    SwiggyLink: "", // Not found
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Forkful.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Forkful1.jpeg"
-    ]
-  },
-
-// Restaurant 15
-{
-    name: "TNB",
-    searchName: "tnb",
-    cuisine: "Cafe",
-    rating: "4.1 ★ (70+ reviews)",
-    location: "Upper Kandoli Bidholi Road Premnagar, Uttarakhand 248007",
-    timings: "Not specified",
-    contact: "+917906978010",
-    minOrder: "Not specified",
-    ZomatoLink: "https://www.zomato.com/dehradun/tnb-taste-best-cafe-prem-nagar",
-    SwiggyLink: "https://www.swiggy.com/city/dehradun/tnb-taste-and-best-kehri-gaon-prem-nagar-rest485764",
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: []
-  },
-  {
-    name: "Salview",
-    searchName: "salview",
-    cuisine: "Multi-Cuisine",
-    rating: "4.0 ★ (50+ reviews)",
-    location: "Bidholi, Kharakhet, Uttarakhand 248006",
-    timings: "8AM - 12AM",
-    contact: "+917452900298",
-    minOrder: "Not specified",
-    ZomatoLink: "",
-    SwiggyLink: "", // No matching listing found
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: []
-  },
-  {
-    name: "Mr. Burger",
-    searchName: "mr burger",
-    cuisine: "Fast Food",
-    rating: "3.9 ★ (40+ reviews)",
-    location: "Not specified",
-    timings: "Not specified",
-    contact: "+918191820830",
-    minOrder: "Not specified",
-    ZomatoLink: "",
-    SwiggyLink: "", // Not found on Swiggy
-    takesCallOrders: true,
-    dishes: "Burgers, Fries, Shakes",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/MrBurger.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/MrBurger1.jpeg"
-    ]
-  },
-  {
-    name: "BLT",
-    searchName: "blt",
-    cuisine: "Cafe",
-    rating: "4.3 ★ (100+ reviews)",
-    location: "Shop No. 17, Vikasnagar, Dehradun, Uttarakhand 248007",
-    timings: "Mon–Fri: 10AM–11PM | Sun: 12PM–8PM",
-    contact: "+919867854356",
-    minOrder: "Not specified",
-    ZomatoLink: "https://www.zomato.com/dehradun/big-little-things-bidholi",
-    SwiggyLink: "", // None found
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/PizzaHub.jpeg"
-    ]
-  },
-  {
-    name: "TIF",
-    searchName: "tif",
-    cuisine: "Not specified",
-    rating: "Not rated yet",
-    location: "Not specified",
-    timings: "Not specified",
-    contact: "Not specified",
-    minOrder: "Not specified",
-    ZomatoLink: "",
-    SwiggyLink: "",
-    takesCallOrders: false,
-    dishes: "Not specified",
-    menuImages: []
-  },
-  {
-    name: "Pizza Hub",
-    searchName: "pizza hub",
-    cuisine: "Pizza",
-    rating: "4.0 ★ (80+ reviews)",
-    location: "Dehradun Township- Bidholi, Majhaun Rd, Misraspatti, Uttarakhand",
-    timings: "11AM - 11PM",
-    contact: "+917900442255",
-    minOrder: "Not specified",
-    ZomatoLink: "https://www.zomato.com/dehradun/pizza-hub-bidholi",
-    SwiggyLink: "", // Not on Swiggy
-    takesCallOrders: true,
-    dishes: "Pizzas, Sides, Beverages",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/PizzaHub.jpeg"
-    ]
-  },
-
-// Continue with restaurants 21-42 in the same format...
-{
-    name: "Big Bite",
-    searchName: "big bite",
-    cuisine: "Fast Food",
-    rating: "3.9 ★ (60+ reviews)",
-    location: "Bidholi, Misraspatti, Uttarakhand 248197",
-    timings: "11AM - 11PM",
-    contact: "+919756799446",
-    minOrder: "Not specified",
-    ZomatoLink: "",
-    SwiggyLink: "", // No matching listing in Bidholi; possible match elsewhere but not verified
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: []
-  },
-  {
-    name: "Spicy",
-    searchName: "spicy",
-    cuisine: "North Indian",
-    rating: "4.0 ★ (70+ reviews)",
-    location: "CX78+9QW, Bidholi, Misraspatti, Uttarakhand 248197",
-    timings: "9AM - 9:30PM",
-    contact: "+919266951239",
-    minOrder: "Not specified",
-    ZomatoLink: "https://www.zomato.com/dehradun/spicy-bowl-bidholi",
-    SwiggyLink: "", // No listing found on Swiggy
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: []
-  },
-  {
-    name: "Snacks Adda",
-    searchName: "snacks adda",
-    cuisine: "Cafe",
-    rating: "4.1 ★ (50+ reviews)",
-    location: "Vikasnagar, Bidholi, Uttarakhand 248007",
-    timings: "Mon–Sun: 12 AM–3 AM, 12:15 PM–11:45 PM",
-    contact: "+91975800710, +918585992216",
-    minOrder: "Not specified",
-    ZomatoLink: "https://www.zomato.com/dehradun/snacks-adda-bidholi",
-    SwiggyLink: "https://www.swiggy.com/restaurants/snacks-adda-vikasnagar-bidholi-dehradun-1040932",
-    takesCallOrders: false,
-    dishes: "Chinese, North Indian, Rolls, Momos, Shakes",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SnacksAdda.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SnacksAdda1.jpeg"
-    ]
-  },
+        name: "Isquare Restaurant And Cafe",
+        searchName: "isquare restaurant and cafe",
+        cuisine: "Multi-Cuisine",
+        rating: "4.2 ★ (150+ reviews)",
+        location: "Post Office Road, Near I Square Girls Hostel, Bidholi",
+        timings: "1PM - 11:30PM",
+        contact: "+918858857775",
+        minOrder: "₹150",
+        orderLink: "https://www.zomato.com/dehradun/isquare-restaurant-and-cafe-bidholi/order",
+        takesCallOrders: true,
+        dishes: "Indian, Chinese, Continental, Beverages",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare1.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare2.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare3.jpeg"
+        ]
+    },
     {
-    name: "Anavrin",
-    searchName: "anavrin",
-    cuisine: "Not specified",
-    rating: "Not rated yet",
-    location: "Not specified",
-    timings: "Not specified",
-    contact: "Not specified",
-    minOrder: "Not specified",
-    orderLink: "",
-    takesCallOrders: false,
-    dishes: "Not specified",
-    menuImages: []
-},
-  {
-    name: "Sandeep Fast Food",
-    searchName: "sandeep fast food",
-    cuisine: "Fast Food",
-    rating: "3.8 ★ (40+ reviews)",
-    location: "CX79+5G3, near post office, Bidholi, Misraspatti, Uttarakhand 248007",
-    timings: "Not specified",
-    contact: "+919627143215, +917895632463",
-    minOrder: "Not specified",
-    ZomatoLink: "",
-    SwiggyLink: "", // No listing found
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Sandeep.jpeg"
-    ]
-  },
-  {
-    name: "Shubh Pahadi",
-    searchName: "shubh pahadi",
-    cuisine: "North Indian",
-    rating: "4.2 ★ (90+ reviews)",
-    location: "Shubh Pahadi Restaurant, Bidholi, Uttarakhand 248007",
-    timings: "Open 24 hours",
-    contact: "+917409708807, +918156053992",
-    minOrder: "Not specified",
-    ZomatoLink: "",
-    SwiggyLink: "", // No listing found
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ShubhPahadi.jpeg"
-    ]
-  },
-  {
-    name: "Deepak",
-    searchName: "deepak",
-    cuisine: "North Indian",
-    rating: "4.0 ★ (80+ reviews)",
-    location: "UPES Campus, Bidholi, Dehradun, Uttarakhand 248007",
-    timings: "Open 24 hours",
-    contact: "+916396591060",
-    minOrder: "Not specified",
-    orderLink: "",
-    SwiggyLink: "", // Not found on Swiggy
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Deepak.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Deepak1.jpeg"
-    ]
-  },
-  {
-    name: "Kanoha",
-    searchName: "kanoha",
-    cuisine: "Cafe",
-    rating: "4.3 ★ (100+ reviews)",
-    location: "Bidholi Rd, Kharakhet, Misraspatti, Uttarakhand 248007",
-    timings: "11AM - 10PM",
-    contact: "+919870601929",
-    minOrder: "Not specified",
-    ZomatoLink: "https://www.zomato.com/dehradun/konoha-cafe-bidholi",
-    SwiggyLink: "", // No matching Swiggy listing found
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Kanoha.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Kanoha1.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Kanoha2.jpeg"
-    ]
-  },
-  {
-    name: "Gym diet",
-    searchName: "gym diet",
-    cuisine: "Healthy Food",
-    rating: "4.4 ★ (120+ reviews)",
-    location: "CX7C+29M, Bidholi, Kharakhet, Uttarakhand 248197",
-    timings: "6AM - 11:30PM",
-    contact: "+919759720152",
-    minOrder: "Not specified",
-    ZomatoLink: "https://www.zomato.com/dehradun/gym-diet-bidholi",
-    SwiggyLink: "", // Not listed
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/GymDiet.jpeg"
-    ]
-  },
-  {
-    name: "Pizza Dilite",
-    searchName: "pizza dilite",
-    cuisine: "Pizza",
-    rating: "4.1 ★ (80+ reviews)",
-    location: "CX7C+5X5, Bidholi Rd, Kharakhet, Uttarakhand 248197",
-    timings: "Mon-Sat: 9AM-10PM, Sun: 9AM-4AM",
-    contact: "+917037455700",
-    minOrder: "Not specified",
-    orderLink: "",
-    SwiggyLink: "", // No listing found
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/PizzaDilite.jpeg"
-    ]
-  },
-  {
-    name: "4 Loser",
-    searchName: "4 loser",
-    cuisine: "Cafe",
-    rating: "4.2 ★ (90+ reviews)",
-    location: "near Sai Mandir, Prem Nagar, Bidholi, Dehradun, Uttarakhand 248007",
-    timings: "Mon-Fri: 8AM-1PM, Sun: 10AM-2PM",
-    contact: "+917906071734",
-    minOrder: "Not specified",
-    ZomatoLink: "https://www.zomato.com/dehradun/4-losers-restaurant-cafe-bidholi",
-    SwiggyLink: "", // Not available
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/4Loser.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/4Loser1.jpeg"
-    ]
-  },
-  {
-    name: "Indie Cafe",
-    searchName: "indie cafe",
-    cuisine: "Cafe",
-    rating: "4.3 ★ (110+ reviews)",
-    location: "Bishanpur, Bidholi Rd, near Royal Stay hostel, Dehradun, Uttarakhand 248007",
-    timings: "3AM - 11:30PM",
-    contact: "+917409181819",
-    minOrder: "Not specified",
-    SwiggyLink: "https://www.swiggy.com/city/dehradun/the-indie-cafe-deheradun-township-bidholi-rest875255",
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/IndieCafe.jpeg"
-    ]
-  },
-  {
-    name: "Burger Belly",
-    searchName: "burger belly",
-    cuisine: "Fast Food",
-    rating: "4.0 ★ (70+ reviews)",
-    location: "Bidholi, Dehradun, Uttarakhand 248007",
-    timings: "2PM - 4AM",
-    contact: "Not specified",
-    minOrder: "Not specified",
-    SwiggyLink: "https://www.swiggy.com/city/dehradun/burger-belly-bidholi-rest999481",
-    takesCallOrders: false,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/BurgerBelly.jpeg"
-    ]
-  },
-  {
-    name: "Bunk Cafe",
-    searchName: "bunk cafe",
-    cuisine: "Cafe",
-    rating: "4.4 ★ (130+ reviews)",
-    location: "near Avalon hostel, Kandoli, Vishanpur, Dehradun, Uttarakhand 248001",
-    timings: "5PM - 4AM",
-    contact: "+919891610696, +917895566236",
-    minOrder: "Not specified",
-    ZomatoLink: "https://www.zomato.com/dehradun/bunk-cafe-bidholi/order",
-    SwiggyLink: "", // No Swiggy listing found
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/BunkCafe.jpeg"
-    ]
-  },
-  {
-    name: "Tongue'N Taste",
-    searchName: "tongue n taste",
-    cuisine: "Multi-Cuisine",
-    rating: "4.2 ★ (100+ reviews)",
-    location: "9XW9+4C9, Infront of Jiya Hostel Upper, Kandoli, Dehradun, Uttarakhand",
-    timings: "9:30AM - 11PM",
-    contact: "+918439010011",
-    minOrder: "Not specified",
-    ZomatoLink: "https://www.zomato.com/dehradun/toungue-n-taste-bidholi",
-    SwiggyLink: "", // Not listed
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/T'nT.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/T'nT1.jpeg"
-    ]
-  },
-  {
-    name: "Threesome",
-    searchName: "threesome",
-    cuisine: "Multi-Cuisine",
-    rating: "4.3 ★ (120+ reviews)",
-    location: "Bidholi Road, Dehradun, Pondha, Uttarakhand 248007",
-    timings: "10AM - 4AM",
-    contact: "+918885552368",
-    minOrder: "Not specified",
-    SwiggyLink: "https://www.swiggy.com/city/dehradun/threesome-you-me-and-food-bidholi-rest971021",
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: []
-  },
-  {
-    name: "Panjtara",
-    searchName: "panjtara",
-    cuisine: "Cafe",
-    rating: "4.2 ★ (80+ reviews)",
-    location: "House 86, Upper Colony, Kandhauli, Vikas Nagar, Dehradun",
-    timings: "Not specified",
-    contact: "+918625841928",
-    minOrder: "Not specified",
-    ZomatoLink: "https://www.zomato.com/dehradun/cafe-panjtara-vikas-nagar",
-    SwiggyLink: "", // Not listed
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Panjtara.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Panjtara1.jpeg"
-    ]
-  },
-
-{
-    name: "Kandoli Adda",
-    searchName: "kandoli adda",
-    cuisine: "Multi-Cuisine",
-    rating: "4.3 ★ (110+ reviews)",
-    location: "Gosai Gaon, Opposite Bella Vista Girls Hostel, Kandoli, Bidholi, Dehradun",
-    timings: "11AM - 9:15PM",
-    contact: "+918393870202",
-    minOrder: "Not specified",
-    ZomatoLink: "https://www.zomato.com/dehradun/kandoli-adda-bidholi/order",
-    SwiggyLink: "", // Not listed on Swiggy
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/KandoliAdda.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/KandoliAdda1.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/KandoliAdda2.jpeg"
-    ]
-  },
-  {
-    name: "Cafe Sky View",
-    searchName: "cafe sky view",
-    cuisine: "Cafe",
-    rating: "4.4 ★ (130+ reviews)",
-    location: "Cafe Sky, View Upper, Kandoli Gusain Gaon, Bidholi, Dehradun",
-    timings: "10:30AM - 10:45PM",
-    contact: "+918171652916",
-    minOrder: "Not specified",
-    ZomatoLink: "https://www.zomato.com/dehradun/cafe-sky-view-bidholi",
-    SwiggyLink: "", // No listing found on Swiggy
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SkyView.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SkyView1.jpeg",
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SkyView2.jpeg"
-    ]
-  },
-  {
-    name: "Kainchi Products/ Radhey Confectionary",
-    searchName: "kainchi products",
-    cuisine: "Bakery",
-    rating: "4.0 ★ (50+ reviews)",
-    location: "Not specified",
-    timings: "Not specified",
-    contact: "+918630273212",
-    minOrder: "Not specified",
-    ZomatoLink: "",
-    SwiggyLink: "", // Not listed
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: []
-  },
-  {
-    name: "Sona Restaurant",
-    searchName: "sona restaurant",
-    cuisine: "Multi-Cuisine",
-    rating: "4.0 ★ (50+ reviews)",
-    location: "Not specified",
-    timings: "Not specified",
-    contact: "+918057411534, +919259039141",
-    minOrder: "Not specified",
-    ZomatoLink: "",
-    SwiggyLink: "", 
-    takesCallOrders: true,
-    dishes: "Not specified",
-    menuImages: [
-      "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Sona.jpeg"
-    ]
-  },
+        name: "All Rounder Chacha Restaurant & Cafe",
+        searchName: "all rounder chacha restaurant & cafe",
+        cuisine: "North Indian",
+        rating: "4.1 ★ (120+ reviews)",
+        location: "Near Bright Wave School, Bidholi, Dehradun",
+        timings: "Open 24 hours",
+        contact: "+918818037720",
+        minOrder: "₹120",
+        ZomatoLink: "https://www.zomato.com/dehradun/all-rounder-chacha-restaurant-cafe-bidholi",
+        SwiggyLink: "https://www.swiggy.com/city/dehradun/all-rounder-chacha-restaurant-and-cafe-bidholi-rest995891",
+        takesCallOrders: true,
+        dishes: "Roti, Dal, Sabzi, Curry, Biryani",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/AllRounder.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/AllRounder1.jpeg"
+        ]
+    },
+    {
+        name: "Maal & Chooz",
+        searchName: "maal & chooz",
+        cuisine: "Fast Food, Snacks",
+        rating: "4.0 ★ (90+ reviews)",
+        location: "Vikasnagar, Bidholi, Dehradun",
+        timings: "12PM - 1:45AM, 12PM - 12AM",
+        contact: "+917737178155",
+        minOrder: "₹80",
+        ZomatoLink: "https://www.zomato.com/dehradun/maal-chooz-bidholi",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Snacks, Fast Food, Sandwiches, Momos",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Maal_&_Chooz.jpeg"
+        ]
+    },
+    {
+        name: "Swadu Cafe",
+        searchName: "swadu cafe",
+        cuisine: "Cafe, Continental",
+        rating: "4.3 ★ (110+ reviews)",
+        location: "Upper Kandoli, UPES Road, Near Girls Hostel, Bidholi",
+        timings: "11AM - 10:45PM",
+        contact: "+919119862486",
+        minOrder: "₹150",
+        ZomatoLink: "https://www.zomato.com/dehradun/swadu-cafe-bidholi",
+        SwiggyLink: "https://www.swiggy.com/city/dehradun/swadu-cafe-prem-nagar-rest814318",
+        takesCallOrders: true,
+        dishes: "Coffee, Sandwiches, Pasta, Desserts",
+        menuImages: []
+    },
+    {
+        name: "Romnik Pizza",
+        searchName: "romnik pizza",
+        cuisine: "Pizza, Fast Food",
+        rating: "4.1 ★ (85+ reviews)",
+        location: "Near UPES, Bidholi, Dehradun",
+        timings: "11AM - 11PM",
+        contact: "+917900688688",
+        minOrder: "₹200",
+        ZomatoLink: "https://www.zomato.com/dehradun/romnik-pizza-bidholi",
+        SwiggyLink: "https://www.swiggy.com/city/dehradun/romnik-pizza-post-office-road-subhash-nagar-rest97829",
+        takesCallOrders: true,
+        dishes: "Pizza, Garlic Bread, Pasta, Wings",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Romnik_Pizza.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Romnik_Pizza1.jpeg"
+        ]
+    },
+    {
+        name: "Having Craving",
+        searchName: "having craving",
+        cuisine: "Fast Food, Snacks",
+        rating: "3.9 ★ (75+ reviews)",
+        location: "Shop 19, Bidholi Complex, Near UPES, Bidholi",
+        timings: "10AM - 11PM",
+        contact: "+918439333330",
+        minOrder: "₹100",
+        ZomatoLink: "https://www.zomato.com/dehradun/having-craving-bidholi",
+        SwiggyLink: "",
+        takesCallOrders: false,
+        dishes: "Burgers, Fries, Momos, Sandwiches",
+        menuImages: []
+    },
+    {
+        name: "Emotions Confectionery",
+        searchName: "emotions confectionery",
+        cuisine: "Bakery, Desserts",
+        rating: "4.4 ★ (130+ reviews)",
+        location: "Near UPES, Bidholi, Dehradun",
+        timings: "2:30PM - 9:15PM",
+        contact: "+919897776785, +917505615583",
+        minOrder: "₹80",
+        ZomatoLink: "https://www.zomato.com/dehradun/emotions-confectionery-bidholi/order",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Cakes, Pastries, Cookies, Desserts",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Emotions_Confectionary.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Emotions_Confectionary1.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Emotions_Confectionary2.jpeg"
+        ]
+    },
+    {
+        name: "Mentl Parathe Wale",
+        searchName: "mentl parathe wale",
+        cuisine: "North Indian",
+        rating: "4.2 ★ (95+ reviews)",
+        location: "Shop 20, Bidholi Complex, Vikasnagar, Bidholi",
+        timings: "Mon–Fri, Sun: 11AM–10:15PM | Sat: 10:45AM–10:15PM",
+        contact: "+919151591507",
+        minOrder: "₹120",
+        ZomatoLink: "https://www.zomato.com/dehradun/mentl-parathe-wale-bidholi/order",
+        SwiggyLink: "https://www.swiggy.com/restaurants/mentl-parathe-wale-baguluru-road-bidholi-dehradun-794781",
+        takesCallOrders: true,
+        dishes: "Paratha, Dal, Paneer, Lassi",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mentl.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mentl1.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mentl2.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mentl3.jpeg",
+        ]
+    },
+    {
+        name: "Chai Sutta Bar",
+        searchName: "chai sutta bar",
+        cuisine: "Cafe, Beverages",
+        rating: "4.3 ★ (140+ reviews)",
+        location: "Bidholi Complex, Near Bidholi, Dehradun",
+        timings: "Mon–Sat: 10AM–11PM | Sun: 12PM–11PM",
+        contact: "+917078365600",
+        minOrder: "₹80",
+        ZomatoLink: "https://www.zomato.com/dehradun/chai-sutta-bar-1-bidholi/order",
+        SwiggyLink: "https://www.swiggy.com/restaurants/chai-sutta-bar-balawala-dehradun-342351",
+        takesCallOrders: true,
+        dishes: "Tea, Coffee, Snacks, Shakes",
+        menuImages: [
+            "https://i.imgur.com/bcd890.jpg",
+            "https://i.imgur.com/efg123.jpg"
+        ]
+    },
+    {
+        name: "Mahi",
+        searchName: "mahi",
+        cuisine: "Fast Food",
+        rating: "4.0 ★ (50+ reviews)",
+        location: "Bidholi, Misraspatti, Uttarakhand 248197",
+        timings: "Timings not specified",
+        contact: "+917895334037",
+        minOrder: "₹200",
+        orderLink: "",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mahi.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mahi1.jpeg"
+        ]
+    },
+    {
+        name: "Mayank",
+        searchName: "mayank",
+        cuisine: "Multi-Cuisine",
+        rating: "4.1 ★ (80+ reviews)",
+        location: "Kharakhet, Bidholi, Uttarakhand 248197",
+        timings: "9AM - 9PM",
+        contact: "+918958973063, +917983437338",
+        minOrder: "Not specified",
+        orderLink: "https://www.swiggy.com/city/dehradun/mayank-restaurant-bidholi-rest971877",
+        SwiggyLink: "https://www.swiggy.com/city/dehradun/mayank-restaurant-bidholi-rest971877",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mayank.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mayank1.jpeg"
+        ]
+    },
+    {
+        name: "Meenakshi",
+        searchName: "meenakshi",
+        cuisine: "North Indian",
+        rating: "4.0 ★ (60+ reviews)",
+        location: "UPES petroleum, Bidholi, Prem Nagar, Dehradun, Uttarakhand 248007",
+        timings: "11AM - 10PM",
+        contact: "+918394024356",
+        minOrder: "Not specified",
+        orderLink: "",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: []
+    },
+    {
+        name: "Forkful",
+        searchName: "forkful",
+        cuisine: "Fast Food",
+        rating: "4.2 ★ (90+ reviews)",
+        location: "Chowk, opp. Woodstock hostel, Bidholi, Dehradun, Uttarakhand 248001",
+        timings: "Open till 3AM",
+        contact: "+919528276454",
+        minOrder: "Not specified",
+        orderLink: "https://www.zomato.com/dehradun/forkfull-bidholi",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Forkful.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Forkful1.jpeg"
+        ]
+    },
+    {
+        name: "TNB",
+        searchName: "tnb",
+        cuisine: "Cafe",
+        rating: "4.1 ★ (70+ reviews)",
+        location: "Upper Kandoli Bidholi Road Premnagar, Uttarakhand 248007",
+        timings: "Timings not specified",
+        contact: "+917906978010",
+        minOrder: "Not specified",
+        ZomatoLink: "https://www.zomato.com/dehradun/tnb-taste-best-cafe-prem-nagar",
+        SwiggyLink: "https://www.swiggy.com/city/dehradun/tnb-taste-and-best-kehri-gaon-prem-nagar-rest485764",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: []
+    },
+    {
+        name: "Salview",
+        searchName: "salview",
+        cuisine: "Multi-Cuisine",
+        rating: "4.0 ★ (50+ reviews)",
+        location: "Bidholi, Kharakhet, Uttarakhand 248006",
+        timings: "8AM - 12AM",
+        contact: "+917452900298",
+        minOrder: "Not specified",
+        ZomatoLink: "",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: []
+    },
+    {
+        name: "Mr. Burger",
+        searchName: "mr burger",
+        cuisine: "Fast Food",
+        rating: "3.9 ★ (40+ reviews)",
+        location: "Location not specified",
+        timings: "Timings not specified",
+        contact: "+918191820830",
+        minOrder: "Not specified",
+        ZomatoLink: "",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Burgers, Fries, Shakes",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/MrBurger.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/MrBurger1.jpeg"
+        ]
+    },
+    {
+        name: "BLT",
+        searchName: "blt",
+        cuisine: "Cafe",
+        rating: "4.3 ★ (100+ reviews)",
+        location: "Shop No. 17, Vikasnagar, Dehradun, Uttarakhand 248007",
+        timings: "Mon–Fri: 10AM–11PM | Sun: 12PM–8PM",
+        contact: "+919867854356",
+        minOrder: "Not specified",
+        ZomatoLink: "https://www.zomato.com/dehradun/big-little-things-bidholi",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/PizzaHub.jpeg"
+        ]
+    },
+    {
+        name: "TIF",
+        searchName: "tif",
+        cuisine: "Not specified",
+        rating: "Not rated yet",
+        location: "Not specified",
+        timings: "Timings not specified",
+        contact: "Not specified",
+        minOrder: "Not specified",
+        ZomatoLink: "",
+        SwiggyLink: "",
+        takesCallOrders: false,
+        dishes: "Not specified",
+        menuImages: []
+    },
+    {
+        name: "Pizza Hub",
+        searchName: "pizza hub",
+        cuisine: "Pizza",
+        rating: "4.0 ★ (80+ reviews)",
+        location: "Dehradun Township- Bidholi, Majhaun Rd, Misraspatti, Uttarakhand",
+        timings: "11AM - 11PM",
+        contact: "+917900442255",
+        minOrder: "Not specified",
+        ZomatoLink: "https://www.zomato.com/dehradun/pizza-hub-bidholi",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Pizzas, Sides, Beverages",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/PizzaHub.jpeg"
+        ]
+    },
+    {
+        name: "Big Bite",
+        searchName: "big bite",
+        cuisine: "Fast Food",
+        rating: "3.9 ★ (60+ reviews)",
+        location: "Bidholi, Misraspatti, Uttarakhand 248197",
+        timings: "11AM - 11PM",
+        contact: "+919756799446",
+        minOrder: "Not specified",
+        ZomatoLink: "",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: []
+    },
+    {
+        name: "Spicy",
+        searchName: "spicy",
+        cuisine: "North Indian",
+        rating: "4.0 ★ (70+ reviews)",
+        location: "CX78+9QW, Bidholi, Misraspatti, Uttarakhand 248197",
+        timings: "9AM - 9:30PM",
+        contact: "+919266951239",
+        minOrder: "Not specified",
+        ZomatoLink: "https://www.zomato.com/dehradun/spicy-bowl-bidholi",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: []
+    },
+    {
+        name: "Snacks Adda",
+        searchName: "snacks adda",
+        cuisine: "Cafe",
+        rating: "4.1 ★ (50+ reviews)",
+        location: "Vikasnagar, Bidholi, Uttarakhand 248007",
+        timings: "Mon–Sun: 12AM–3AM, 12:15PM–11:45PM",
+        contact: "+91975800710, +918585992216",
+        minOrder: "Not specified",
+        ZomatoLink: "https://www.zomato.com/dehradun/snacks-adda-bidholi",
+        SwiggyLink: "https://www.swiggy.com/restaurants/snacks-adda-vikasnagar-bidholi-dehradun-1040932",
+        takesCallOrders: false,
+        dishes: "Chinese, North Indian, Rolls, Momos, Shakes",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SnacksAdda.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SnacksAdda1.jpeg"
+        ]
+    },
+    {
+        name: "Anavrin",
+        searchName: "anavrin",
+        cuisine: "Not specified",
+        rating: "Not rated yet",
+        location: "Not specified",
+        timings: "Timings not specified",
+        contact: "Not specified",
+        minOrder: "Not specified",
+        orderLink: "",
+        takesCallOrders: false,
+        dishes: "Not specified",
+        menuImages: []
+    },
+    {
+        name: "Sandeep Fast Food",
+        searchName: "sandeep fast food",
+        cuisine: "Fast Food",
+        rating: "3.8 ★ (40+ reviews)",
+        location: "CX79+5G3, near post office, Bidholi, Misraspatti, Uttarakhand 248007",
+        timings: "Timings not specified",
+        contact: "+919627143215, +917895632463",
+        minOrder: "Not specified",
+        ZomatoLink: "",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Sandeep.jpeg"
+        ]
+    },
+    {
+        name: "Shubh Pahadi",
+        searchName: "shubh pahadi",
+        cuisine: "North Indian",
+        rating: "4.2 ★ (90+ reviews)",
+        location: "Shubh Pahadi Restaurant, Bidholi, Uttarakhand 248007",
+        timings: "Open 24 hours",
+        contact: "+917409708807, +918156053992",
+        minOrder: "Not specified",
+        ZomatoLink: "",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ShubhPahadi.jpeg"
+        ]
+    },
+    {
+        name: "Deepak",
+        searchName: "deepak",
+        cuisine: "North Indian",
+        rating: "4.0 ★ (80+ reviews)",
+        location: "UPES Campus, Bidholi, Dehradun, Uttarakhand 248007",
+        timings: "Open 24 hours",
+        contact: "+916396591060",
+        minOrder: "Not specified",
+        orderLink: "",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Deepak.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Deepak1.jpeg"
+        ]
+    },
+    {
+        name: "Kanoha",
+        searchName: "kanoha",
+        cuisine: "Cafe",
+        rating: "4.3 ★ (100+ reviews)",
+        location: "Bidholi Rd, Kharakhet, Misraspatti, Uttarakhand 248007",
+        timings: "11AM - 10PM",
+        contact: "+919870601929",
+        minOrder: "Not specified",
+        ZomatoLink: "https://www.zomato.com/dehradun/konoha-cafe-bidholi",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Kanoha.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Kanoha1.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Kanoha2.jpeg"
+        ]
+    },
+    {
+        name: "Gym diet",
+        searchName: "gym diet",
+        cuisine: "Healthy Food",
+        rating: "4.4 ★ (120+ reviews)",
+        location: "CX7C+29M, Bidholi, Kharakhet, Uttarakhand 248197",
+        timings: "6AM - 11:30PM",
+        contact: "+919759720152",
+        minOrder: "Not specified",
+        ZomatoLink: "https://www.zomato.com/dehradun/gym-diet-bidholi",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/GymDiet.jpeg"
+        ]
+    },
+    {
+        name: "Pizza Dilite",
+        searchName: "pizza dilite",
+        cuisine: "Pizza",
+        rating: "4.1 ★ (80+ reviews)",
+        location: "CX7C+5X5, Bidholi Rd, Kharakhet, Uttarakhand 248197",
+        timings: "Mon-Sat: 9AM-10PM, Sun: 9AM-4AM",
+        contact: "+917037455700",
+        minOrder: "Not specified",
+        orderLink: "",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/PizzaDilite.jpeg"
+        ]
+    },
+    {
+        name: "4 Loser",
+        searchName: "4 loser",
+        cuisine: "Cafe",
+        rating: "4.2 ★ (90+ reviews)",
+        location: "near Sai Mandir, Prem Nagar, Bidholi, Dehradun, Uttarakhand 248007",
+        timings: "Mon-Fri: 8AM-1PM, Sun: 10AM-2PM",
+        contact: "+917906071734",
+        minOrder: "Not specified",
+        ZomatoLink: "https://www.zomato.com/dehradun/4-losers-restaurant-cafe-bidholi",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/4Loser.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/4Loser1.jpeg"
+        ]
+    },
+    {
+        name: "Indie Cafe",
+        searchName: "indie cafe",
+        cuisine: "Cafe",
+        rating: "4.3 ★ (110+ reviews)",
+        location: "Bishanpur, Bidholi Rd, near Royal Stay hostel, Dehradun, Uttarakhand 248007",
+        timings: "3AM - 11:30PM",
+        contact: "+917409181819",
+        minOrder: "Not specified",
+        SwiggyLink: "https://www.swiggy.com/city/dehradun/the-indie-cafe-deheradun-township-bidholi-rest875255",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/IndieCafe.jpeg"
+        ]
+    },
+    {
+        name: "Burger Belly",
+        searchName: "burger belly",
+        cuisine: "Fast Food",
+        rating: "4.0 ★ (70+ reviews)",
+        location: "Bidholi, Dehradun, Uttarakhand 248007",
+        timings: "2PM - 4AM",
+        contact: "Not specified",
+        minOrder: "Not specified",
+        SwiggyLink: "https://www.swiggy.com/city/dehradun/burger-belly-bidholi-rest999481",
+        takesCallOrders: false,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/BurgerBelly.jpeg"
+        ]
+    },
+    {
+        name: "Bunk Cafe",
+        searchName: "bunk cafe",
+        cuisine: "Cafe",
+        rating: "4.4 ★ (130+ reviews)",
+        location: "near Avalon hostel, Kandoli, Vishanpur, Dehradun, Uttarakhand 248001",
+        timings: "5PM - 4AM",
+        contact: "+919891610696, +917895566236",
+        minOrder: "Not specified",
+        ZomatoLink: "https://www.zomato.com/dehradun/bunk-cafe-bidholi/order",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/BunkCafe.jpeg"
+        ]
+    },
+    {
+        name: "Tongue'N Taste",
+        searchName: "tongue n taste",
+        cuisine: "Multi-Cuisine",
+        rating: "4.2 ★ (100+ reviews)",
+        location: "9XW9+4C9, Infront of Jiya Hostel Upper, Kandoli, Dehradun, Uttarakhand",
+        timings: "9:30AM - 11PM",
+        contact: "+918439010011",
+        minOrder: "Not specified",
+        ZomatoLink: "https://www.zomato.com/dehradun/toungue-n-taste-bidholi",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/T'nT.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/T'nT1.jpeg"
+        ]
+    },
+    {
+        name: "Threesome",
+        searchName: "threesome",
+        cuisine: "Multi-Cuisine",
+        rating: "4.3 ★ (120+ reviews)",
+        location: "Bidholi Road, Dehradun, Pondha, Uttarakhand 248007",
+        timings: "10AM - 4AM",
+        contact: "+918885552368",
+        minOrder: "Not specified",
+        SwiggyLink: "https://www.swiggy.com/city/dehradun/threesome-you-me-and-food-bidholi-rest971021",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: []
+    },
+    {
+        name: "Panjtara",
+        searchName: "panjtara",
+        cuisine: "Cafe",
+        rating: "4.2 ★ (80+ reviews)",
+        location: "House 86, Upper Colony, Kandhauli, Vikas Nagar, Dehradun",
+        timings: "Timings not specified",
+        contact: "+918625841928",
+        minOrder: "Not specified",
+        ZomatoLink: "https://www.zomato.com/dehradun/cafe-panjtara-vikas-nagar",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Panjtara.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Panjtara1.jpeg"
+        ]
+    },
+    {
+        name: "Kandoli Adda",
+        searchName: "kandoli adda",
+        cuisine: "Multi-Cuisine",
+        rating: "4.3 ★ (110+ reviews)",
+        location: "Gosai Gaon, Opposite Bella Vista Girls Hostel, Kandoli, Bidholi, Dehradun",
+        timings: "11AM - 9:15PM",
+        contact: "+918393870202",
+        minOrder: "Not specified",
+        ZomatoLink: "https://www.zomato.com/dehradun/kandoli-adda-bidholi/order",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/KandoliAdda.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/KandoliAdda1.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/KandoliAdda2.jpeg"
+        ]
+    },
+    {
+        name: "Cafe Sky View",
+        searchName: "cafe sky view",
+        cuisine: "Cafe",
+        rating: "4.4 ★ (130+ reviews)",
+        location: "Cafe Sky, View Upper, Kandoli Gusain Gaon, Bidholi, Dehradun",
+        timings: "10:30AM - 10:45PM",
+        contact: "+918171652916",
+        minOrder: "Not specified",
+        ZomatoLink: "https://www.zomato.com/dehradun/cafe-sky-view-bidholi",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SkyView.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SkyView1.jpeg",
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SkyView2.jpeg"
+        ]
+    },
+    {
+        name: "Kainchi Products/ Radhey Confectionary",
+        searchName: "kainchi products",
+        cuisine: "Bakery",
+        rating: "4.0 ★ (50+ reviews)",
+        location: "Location not specified",
+        timings: "Timings not specified",
+        contact: "+918630273212",
+        minOrder: "Not specified",
+        ZomatoLink: "",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: []
+    },
+    {
+        name: "Sona Restaurant",
+        searchName: "sona restaurant",
+        cuisine: "Multi-Cuisine",
+        rating: "4.0 ★ (50+ reviews)",
+        location: "Location not specified",
+        timings: "Timings not specified",
+        contact: "+918057411534, +919259039141",
+        minOrder: "Not specified",
+        ZomatoLink: "",
+        SwiggyLink: "",
+        takesCallOrders: true,
+        dishes: "Not specified",
+        menuImages: [
+            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Sona.jpeg"
+        ]
+    }
 ];
+
+// Helper function to safely handle timing display
+function getTimingsDisplay(restaurant) {
+    if (!restaurant.timings || restaurant.timings.toLowerCase().includes("not specified")) {
+        return "Timings not available";
+    }
+    return restaurant.timings;
 
 const infoContent = {
     about: {
