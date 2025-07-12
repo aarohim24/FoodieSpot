@@ -1,3 +1,6 @@
+/* ===== FONT IMPORT ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
 /* ===== ROOT VARIABLES ===== */
 :root {
     /* Colors */
@@ -27,6 +30,13 @@
     /* Shadows */
     --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
     --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+    
+    /* Z-index Scale */
+    --z-fab: 10;
+    --z-dark-toggle: 15;
+    --z-favorite: 20;
+    --z-modal: 1000;
+    --z-image-modal: 1100;
 }
 
 /* ===== DARK MODE ===== */
@@ -40,7 +50,7 @@
 .dark-mode .modal-body,
 .dark-mode .modal-section p,
 .dark-mode .modal-section h3 {
-    color: var(--text-light) !important;
+    color: var(--text-light);
 }
 
 .dark-mode .status.open {
@@ -188,6 +198,7 @@ main {
     background: var(--gradient-main);
     -webkit-background-clip: text;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
     color: transparent;
 }
 
@@ -218,7 +229,7 @@ main {
     background: var(--darker-white);
     padding: 40px;
     border-radius: 24px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    box-shadow: var(--shadow-medium);
     max-width: 800px;
     margin: 0 auto 30px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -262,7 +273,7 @@ main {
     font-size: 1rem;
     outline: none;
     background: var(--off-white);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-soft);
     transition: all 0.3s ease;
     font-family: 'Poppins', sans-serif;
 }
@@ -330,7 +341,7 @@ main {
     color: white;
     transform: translateY(-3px);
     border-color: var(--primary);
-    box-shadow: 0 10px 25px rgba(108, 99, 255, 0.2);
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.2);
 }
 
 .browse-all-btn {
@@ -354,7 +365,7 @@ main {
 .browse-all-btn:hover {
     background: var(--secondary);
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(108, 99, 255, 0.3);
+    box-shadow: 0 10px 25px rgba(247, 147, 30, 0.3);
 }
 
 /* ===== RESTAURANTS PAGE ===== */
@@ -374,7 +385,7 @@ main {
     padding: 40px 20px;
     background: var(--darker-white);
     border-radius: 24px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    box-shadow: var(--shadow-medium);
 }
 
 .page-title {
@@ -406,7 +417,7 @@ main {
     background: var(--card-bg);
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    box-shadow: var(--shadow-medium);
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
     position: relative;
@@ -519,7 +530,7 @@ main {
     padding: 20px;
     background: var(--darker-white);
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    box-shadow: var(--shadow-soft);
     display: none;
 }
 
@@ -566,10 +577,11 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: var(--z-modal);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
 }
 
@@ -707,7 +719,7 @@ main {
     cursor: pointer;
     transition: all 0.3s ease;
     border: none;
-    z-index: 10;
+    z-index: var(--z-favorite);
 }
 
 .favorite-btn:hover {
@@ -761,7 +773,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2000;
+    z-index: var(--z-image-modal);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
@@ -838,7 +850,7 @@ main {
     font-size: 1.5rem;
     box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
     cursor: pointer;
-    z-index: 100;
+    z-index: var(--z-fab);
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: none;
 }
@@ -853,7 +865,7 @@ main {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    z-index: 100;
+    z-index: var(--z-dark-toggle);
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -862,6 +874,12 @@ main {
     border: none;
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+#darkModeToggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
 /* ===== FORM STYLES ===== */
@@ -884,6 +902,13 @@ main {
     border-radius: 5px;
     background: var(--off-white);
     color: var(--text-dark);
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -934,7 +959,7 @@ main {
     }
     
     .outlet-card {
-        width: 100% !important;
+        width: 100%;
         margin-bottom: 20px;
     }
     
@@ -972,5 +997,13 @@ main {
     .about-section, .contact-section {
         padding: 20px 15px;
         margin: 20px 15px;
+    }
+    
+    .fab {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
     }
 }
