@@ -398,6 +398,14 @@ body::before {
     color: var(--primary);
 }
 
+.page-subtitle { /* New style for sub-title */
+    font-size: 1.1rem;
+    opacity: 0.9;
+    color: var(--text-dark);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
 .page-header p {
     font-size: 1.1rem;
     opacity: 0.9;
@@ -504,11 +512,15 @@ body::before {
     padding: 20px;
     color: var(--text-dark);
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; /* Distribute space */
 }
 
 .detail-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Push label to left, value to right */
+    align-items: center; /* Vertically align items */
     margin-bottom: 12px;
     font-size: 0.9rem;
 }
@@ -517,12 +529,18 @@ body::before {
     font-weight: 600;
     color: var(--text-dark);
     opacity: 0.8;
+    flex-shrink: 0; /* Prevent label from shrinking */
+    margin-right: 10px; /* Space between label and value */
 }
 
 .detail-value {
     font-weight: 500;
     color: var(--text-dark);
+    text-align: right; /* Right-align the value text */
+    flex-grow: 1; /* Allow value to take up remaining space */
+    word-break: break-word; /* Break long words if necessary */
 }
+
 
 .status {
     display: inline-block;
@@ -673,7 +691,7 @@ body::before {
     cursor: pointer;
     z-index: 100;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: none;
+    display: none; /* Hidden on desktop, shown by media query for mobile */
 }
 
 .fab:hover {
@@ -771,22 +789,54 @@ body::before {
     margin-bottom: 8px;
 }
 
+/* Specific styling for online order buttons */
+.online-order-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap */
+    gap: 10px; /* Space between buttons */
+    margin-top: 10px;
+    margin-left: 28px; /* Align with other modal section paragraphs */
+}
+
 .order-link {
-    display: inline-block;
+    display: inline-flex; /* Use inline-flex to center content */
+    align-items: center; /* Center icon and text vertically */
+    justify-content: center; /* Center icon and text horizontally */
     padding: 10px 20px;
     background: var(--gradient-main);
     color: white;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
-    margin-top: 10px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 150px; /* Ensure minimum width for buttons */
+}
+
+.order-link.swiggy {
+    background: linear-gradient(135deg, #FC8019 0%, #E65A00 100%); /* Swiggy color */
+}
+
+.order-link.zomato {
+    background: linear-gradient(135deg, #CB202D 0%, #A01923 100%); /* Zomato color */
+}
+
+.order-link i {
+    margin-right: 8px;
 }
 
 .order-link:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
 }
+
+.order-link.swiggy:hover {
+    box-shadow: 0 5px 15px rgba(252, 128, 25, 0.4);
+}
+
+.order-link.zomato:hover {
+    box-shadow: 0 5px 15px rgba(203, 32, 45, 0.4);
+}
+
 
 .badge {
     display: inline-block;
@@ -917,6 +967,101 @@ body::before {
     cursor: pointer;
 }
 
+/* Add Outlet Page Styles */
+.add-outlet-page {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.add-outlet-form-section {
+    background: var(--darker-white);
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: var(--shadow-medium);
+    max-width: 600px;
+    margin: 30px auto;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.add-outlet-form p {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    opacity: 0.9;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 0.95rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: var(--text-dark);
+    background-color: var(--off-white);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(247, 147, 30, 0.2);
+    outline: none;
+}
+
+.submit-outlet-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: var(--gradient-main);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-top: 30px;
+}
+
+.submit-outlet-btn:hover {
+    background: var(--secondary);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+}
+
+.form-message {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.form-message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.form-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+
 @media (max-width: 768px) {
     .container {
         padding: 15px;
@@ -940,10 +1085,10 @@ body::before {
     }
 
     .fab {
-        display: flex;
+        display: flex; /* Show FAB on mobile */
     }
 
-    .about-section, .contact-section {
+    .about-section, .contact-section, .add-outlet-form-section {
         padding: 25px;
         margin: 30px auto;
     }
@@ -967,6 +1112,14 @@ body::before {
         order: 1; /* Move theme toggle to left */
         align-self: center; /* Center it within the flex container */
     }
+    .online-order-buttons {
+        margin-left: 0; /* Remove left margin for better mobile layout */
+        justify-content: center; /* Center buttons */
+    }
+    .order-link {
+        width: 100%; /* Make buttons full width on small screens */
+        max-width: 250px; /* Max width for single button */
+    }
 }
 
 @media (max-width: 480px) {
@@ -986,7 +1139,7 @@ body::before {
         padding: 30px 15px;
     }
 
-    .about-section, .contact-section {
+    .about-section, .contact-section, .add-outlet-form-section {
         padding: 20px 15px;
         margin: 20px 15px;
     }
