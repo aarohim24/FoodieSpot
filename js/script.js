@@ -899,6 +899,31 @@ function updateRestaurantDisplay() {
         messageElement.style.display = 'none';
     }
 }
+// ====== THEME TOGGLE FUNCTIONALITY ======
+
+const themeToggle = document.querySelector('.theme-toggle');
+const moonIcon = '<i class="fas fa-moon"></i>'; // Make sure you have Font Awesome linked
+const sunIcon = '<i class="fas fa-sun"></i>';
+
+// Function to apply the saved theme on page load
+function applyInitialTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeToggle.innerHTML = savedTheme === 'dark' ? sunIcon : moonIcon;
+}
+
+// Event listener for the theme toggle button
+themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    themeToggle.innerHTML = newTheme === 'dark' ? sunIcon : moonIcon;
+});
+
+// Apply the theme when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', applyInitialTheme);
 
 // Toggle favorite button
 function toggleFavorite(btn) {
