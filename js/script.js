@@ -714,7 +714,8 @@ const restaurantData = [
     "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Sona.jpeg",
     ]
 },
-];    // Info content for modals
+];
+// Info content for modals
 const infoContent = {
     about: {
         title: "About FoodieSpot",
@@ -782,13 +783,25 @@ function showPage(pageId) {
     window.scrollTo(0, 0);
     
     // Reset search when switching to restaurants page via browse all
+    // Check if the call came from the browse-all-btn
+    const isBrowseAll = event && event.target.classList.contains('browse-all-btn');
+
     if (pageId === 'restaurants') {
-        if (event && event.target.classList.contains('browse-all-btn')) {
+        if (isBrowseAll) {
             document.getElementById('restaurantSearchInput').value = '';
             currentSearchTerm = '';
             currentFilter = 'all';
-            document.querySelector('.filter-btn.active').classList.remove('active');
+            // Ensure the "All" filter button is active
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+            updateRestaurantDisplay();
+        } else {
+            // If navigating to restaurants page by other means (e.g., direct nav button),
+            // ensure the search input for restaurants page is synced with home page search if any,
+            // or clear if no home search.
+            const homeSearchVal = document.getElementById('homeSearchInput').value;
+            document.getElementById('restaurantSearchInput').value = homeSearchVal;
+            currentSearchTerm = homeSearchVal.toLowerCase();
             updateRestaurantDisplay();
         }
     }
@@ -813,21 +826,21 @@ function closeInfoModal() {
 // Improved search functionality
 function handleSearch(event) {
     const searchInput = event.target;
-    const clearBtn = searchInput.nextElementSibling.nextElementSibling;
-    clearBtn.classList.toggle('visible', searchInput.value.length > 0);
+    // Find the clear button relative to the input
+    const clearBtn = searchInput.nextElementSibling && searchInput.nextElementSibling.nextElementSibling;
+    if (clearBtn) {
+        clearBtn.classList.toggle('visible', searchInput.value.length > 0);
+    }
     
     // Update current search term
     currentSearchTerm = searchInput.value.toLowerCase();
-    updateRestaurantDisplay();
     
-    // If searching from home page, switch to restaurants page
-    const searchTermHome = document.getElementById('homeSearchInput')?.value.toLowerCase() || '';
-    if (searchTermHome && document.getElementById('homePage').style.display !== 'none') {
+    // If searching from home page, update restaurantSearchInput and switch to restaurants page
+    if (searchInput.id === 'homeSearchInput' && currentSearchTerm.length > 0) {
+        document.getElementById('restaurantSearchInput').value = searchInput.value;
         showPage('restaurants');
-        document.getElementById('restaurantSearchInput').value = searchTermHome;
-        currentSearchTerm = searchTermHome;
-        updateRestaurantDisplay();
     }
+    updateRestaurantDisplay();
 }
 
 // Clear search input
@@ -835,26 +848,102 @@ function clearSearch(page) {
     const inputId = page === 'home' ? 'homeSearchInput' : 'restaurantSearchInput';
     const input = document.getElementById(inputId);
     input.value = '';
-    input.nextElementSibling.nextElementSibling.classList.remove('visible');
+    // Safely access the clear button
+    const clearBtn = input.nextElementSibling && input.nextElementSibling.nextElementSibling;
+    if (clearBtn) {
+        clearBtn.classList.remove('visible');
+    }
     currentSearchTerm = '';
     updateRestaurantDisplay();
 }
 
 // Filter button functionality
-document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        document.querySelectorAll('.filter-btn').forEach(b => {
-            b.classList.remove('active');
-        });
-        this.classList.add('active');
-        currentFilter = this.dataset.filter;
-        updateRestaurantDisplay();
+document.querySelectorAll('.filter-buttons').forEach(filterContainer => {
+    filterContainer.addEventListener('click', function(event) {
+        if (event.target.classList.contains('filter-btn')) {
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            currentFilter = event.target.dataset.filter;
+            updateRestaurantDisplay();
+        }
     });
 });
 
+// Function to generate and append a single restaurant card
+function createRestaurantCard(data) {
+    const card = document.createElement('div');
+    card.className = 'outlet-card';
+    card.setAttribute('data-name', data.searchName);
+    card.setAttribute('data-cuisine', data.cuisine.toLowerCase());
+    card.setAttribute('data-dishes', data.dishes ? data.dishes.toLowerCase() : '');
+
+    const phoneOrderIcon = data.takesCallOrders ? '<i class="fas fa-phone-alt" style="color: var(--success);"></i>' : '<i class="fas fa-times-circle" style="color: var(--danger);"></i>';
+    const phoneOrderStatus = data.takesCallOrders ? 'Accepts phone orders' : 'No phone orders';
+    const statusClass = data.timings.includes("Closed") ? "closed" : "open"; // Basic status check
+    const statusText = data.timings.includes("Closed") ? "Closed" : `Open • Closes at ${data.timings.split(',')[0].split('-')[1] || 'N/A'}`; // More robust check needed for real status
+
+    card.innerHTML = `
+        <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+            <i class="far fa-heart"></i>
+        </button>
+        <div class="outlet-header">
+            <h2 class="outlet-name">${data.name}</h2>
+            <p class="outlet-cuisine">${data.cuisine}</p>
+            <span class="rating">${data.rating}</span>
+            <div class="phone-order">
+                ${phoneOrderIcon} ${phoneOrderStatus}
+            </div>
+        </div>
+        <div class="outlet-details">
+            <div class="detail-row">
+                <span class="detail-label">Min. Order:</span>
+                <span class="detail-value">${data.minOrder}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Location:</span>
+                <span class="detail-value">${data.location}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Status:</span>
+                <span class="status ${statusClass}">${statusText}</span>
+            </div>
+        </div>
+    `;
+
+    card.addEventListener('click', () => showRestaurantModal(
+        data.name,
+        data.cuisine,
+        data.rating,
+        data.location,
+        data.timings,
+        data.contact,
+        data.minOrder,
+        data.orderLink,
+        data.takesCallOrders,
+        data.dishes,
+        data.menuImages
+    ));
+
+    return card;
+}
+
+
+// Main function to populate the restaurant grid
+function populateRestaurantGrid() {
+    const gridContainer = document.getElementById('restaurantsGrid');
+    gridContainer.innerHTML = ''; // Clear existing cards
+
+    restaurantData.forEach(data => {
+        const card = createRestaurantCard(data);
+        gridContainer.appendChild(card);
+    });
+}
+
 // Main function to update restaurant display based on current filters
 function updateRestaurantDisplay() {
-    const outletCards = document.querySelectorAll('.outlet-card');
+    const outletCards = document.querySelectorAll('#restaurantsGrid .outlet-card');
     let visibleCount = 0;
     
     outletCards.forEach(card => {
@@ -864,16 +953,16 @@ function updateRestaurantDisplay() {
         
         // Check if matches current search term
         const matchesSearch = !currentSearchTerm || 
-                             name.includes(currentSearchTerm) || 
-                             cuisine.includes(currentSearchTerm) || 
-                             dishes.includes(currentSearchTerm);
+                               name.includes(currentSearchTerm) || 
+                               cuisine.includes(currentSearchTerm) || 
+                               dishes.includes(currentSearchTerm);
         
         // Check if matches current filter
         const matchesFilter = currentFilter === 'all' || 
-                             cuisine.includes(currentFilter);
+                               cuisine.includes(currentFilter);
         
         if (matchesSearch && matchesFilter) {
-            card.style.display = 'block';
+            card.style.display = 'flex'; // Use flex for proper layout
             visibleCount++;
         } else {
             card.style.display = 'none';
@@ -953,7 +1042,15 @@ function showRestaurantModal(name, cuisine, rating, location, timings, contact, 
     document.getElementById('modalRestaurantTimings').textContent = timings;
     document.getElementById('modalRestaurantContact').textContent = contact;
     document.getElementById('modalRestaurantMinOrder').textContent = minOrder;
-    document.getElementById('modalRestaurantOrderLink').href = orderLink;
+    
+    const orderLinkElement = document.getElementById('modalRestaurantOrderLink');
+    if (orderLink && orderLink !== "N/A") {
+        orderLinkElement.href = orderLink;
+        orderLinkElement.style.display = 'inline-block'; // Show the button
+    } else {
+        orderLinkElement.style.display = 'none'; // Hide if no link
+    }
+
     document.getElementById('modalRestaurantDishes').textContent = dishes;
     
     const callOrderBadge = document.getElementById('modalRestaurantCallOrder');
@@ -1006,7 +1103,10 @@ function closeImageModal() {
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', function() {
-    showPage('home');
+    // Populate the restaurant grid first
+    populateRestaurantGrid(); 
+    
+    showPage('home'); // Show home page initially
     
     // Add animation to elements when they come into view
     const observer = new IntersectionObserver((entries) => {
@@ -1025,25 +1125,10 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // Set up click handlers for all restaurant cards using the data
-    document.querySelectorAll('.outlet-card').forEach((card, index) => {
-        const data = restaurantData[index];
-        card.onclick = () => showRestaurantModal(
-            data.name,
-            data.cuisine,
-            data.rating,
-            data.location,
-            data.timings,
-            data.contact,
-            data.minOrder,
-            data.orderLink,
-            data.takesCallOrders,
-            data.dishes,
-            data.menuImages
-        );
-    });
-
     // Initialize search inputs
     document.getElementById('homeSearchInput').addEventListener('input', handleSearch);
     document.getElementById('restaurantSearchInput').addEventListener('input', handleSearch);
+
+    // Initial display update for restaurants to show all by default
+    updateRestaurantDisplay();
 });
