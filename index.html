@@ -1,198 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodieSpot - UPES/Bidholi Restaurants</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <title>FoodieSpot - Discover Restaurants Near UPES</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <nav class="nav">
-            <button class="theme-toggle" title="Toggle dark/light mode">
-                <i class="fas fa-moon"></i>
-            </button>
-            <div class="nav-buttons">
-                <button class="nav-btn" onclick="showPage('home')">Home</button>
-                <button class="nav-btn add-btn" onclick="showPage('addOutlet')">Add an outlet</button>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="https://via.placeholder.com/50x50?text=FS" alt="FoodieSpot Logo"> <h1>FoodieSpot</h1>
             </div>
-        </nav>
+            <nav>
+                <button class="nav-btn active" onclick="showPage('home')">Home</button>
+                <button class="nav-btn" onclick="showPage('restaurants')">Restaurants</button>
+                <button class="nav-btn" onclick="showPage('addOutlet')">Add Outlet</button>
+                <button class="nav-btn theme-toggle">
+                    <i class="fas fa-moon"></i> </button>
+            </nav>
+        </div>
+    </header>
 
-        <div class="home-page" id="homePage">
-            <section class="title-section">
-                <h1 class="main-title">FOODIESPOT</h1>
-                <p class="headline">Discover the best food options around UPES campus</p>
-            </section>
+    <main class="container">
+        <section id="homePage" class="page">
+            <div class="hero-section">
+                <div class="hero-text">
+                    <h2>Discover the Best Eats Around UPES</h2>
+                    <p>Your guide to local flavors, hidden gems, and favorite spots.</p>
+                    <div class="search-bar home-search-bar">
+                        <input type="text" id="homeSearchInput" placeholder="Search by name, cuisine, or dish...">
+                        <span class="clear-search-btn" onclick="clearSearch('home')">&times;</span>
+                    </div>
+                </div>
+            </div>
 
-            <section class="search-section">
-                <div class="search-header">
-                    <h2 class="search-title">Find Your Perfect Meal</h2>
-                    <p class="search-subtitle">Search by restaurant name, cuisine type, or your favorite dish</p>
-                </div>
-                <div class="search-box">
-                    <input type="text" id="homeSearchInput" placeholder="Search for restaurants, cuisines, or dishes..." oninput="handleSearch(event)">
-                    <i class="fas fa-search"></i>
-                    <button class="clear-search" onclick="clearSearch('home')" title="Clear search">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="filter-buttons" id="homeFilterButtons"> <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="cafe">Cafés</button>
+            <div class="filter-section home-filter-section">
+                <h3>Quick Filters</h3>
+                <div id="homeFilterButtons" class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
                     <button class="filter-btn" data-filter="fast food">Fast Food</button>
-                    <button class="filter-btn" data-filter="restaurant">Restaurants</button>
-                    <button class="filter-btn" data-filter="pizza">Pizza</button>
+                    <button class="filter-btn" data-filter="cafe">Cafe</button>
                     <button class="filter-btn" data-filter="north indian">North Indian</button>
+                    <button class="filter-btn" data-filter="pizza">Pizza</button>
+                    <button class="filter-btn" data-filter="bakery">Bakery</button>
+                    </div>
+            </div>
+
+            <button id="browseAllRestaurantsBtn" class="browse-all-btn" onclick="showPage('restaurants')">Browse All Restaurants <i class="fas fa-arrow-right"></i></button>
+
+            <div class="info-links">
+                <a href="#" onclick="showInfoModal('about')">About Us</a>
+                <a href="#" onclick="showInfoModal('contact')">Contact</a>
+                <a href="#" onclick="showInfoModal('privacy')">Privacy Policy</a>
+                <a href="#" onclick="showInfoModal('terms')">Terms of Service</a>
+            </div>
+        </section>
+
+        <section id="restaurantsPage" class="page" style="display: none;">
+            <h2 class="page-title">All Restaurants Near UPES</h2>
+            <div class="search-bar restaurant-search-bar">
+                <input type="text" id="restaurantSearchInput" placeholder="Search restaurants...">
+                <span class="clear-search-btn" onclick="clearSearch('restaurants')">&times;</span>
+            </div>
+
+            <div class="filter-section restaurant-filter-section">
+                <h3>Filter by Cuisine</h3>
+                <div id="restaurantFilterButtons" class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="fast food">Fast Food</button>
+                    <button class="filter-btn" data-filter="cafe">Cafe</button>
+                    <button class="filter-btn" data-filter="north indian">North Indian</button>
+                    <button class="filter-btn" data-filter="pizza">Pizza</button>
+                    <button class="filter-btn" data-filter="bakery">Bakery</button>
+                    <button class="filter-btn" data-filter="multi-cuisine">Multi-Cuisine</button>
+                    <button class="filter-btn" data-filter="healthy food">Healthy Food</button>
+                    <button class="filter-btn" data-filter="snacks">Snacks</button>
+                    <button class="filter-btn" data-filter="continental">Continental</button>
+                    <button class="filter-btn" data-filter="bakery">Bakery</button>
+                    <button class="filter-btn" data-filter="beverages">Beverages</button>
+                    </div>
+            </div>
+
+            <p id="searchResultsMessage" class="search-results-message"></p>
+
+            <div id="restaurantsGrid" class="outlet-grid">
                 </div>
-                <a href="#" class="browse-all-btn" onclick="showPage('restaurants'); return false;">
-                    Browse All Restaurants <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
-                </a>
-            </section>
-        </div>
+        </section>
 
-        <div class="restaurants-page" id="restaurantsPage" style="display: none;">
-            <div class="page-header">
-                <h1 class="page-title">Find all food options near UPES</h1>
-            </div>
-
-            <div class="search-box" style="max-width: 600px; margin: 0 auto 30px;">
-                <input type="text" id="restaurantSearchInput" placeholder="Search restaurants by name, cuisine, or dish..." oninput="handleSearch(event)">
-                <i class="fas fa-search"></i>
-                <button class="clear-search" onclick="clearSearch('restaurant')" title="Clear search">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <div class="search-results-message" id="searchResultsMessage"></div>
-
-            <div class="grid-container" id="restaurantsGrid">
+        <section id="addOutletPage" class="page" style="display: none;">
+            <h2 class="page-title">Suggest a New Outlet</h2>
+            <p class="section-description">Help us grow our list! If you know a great food spot near UPES that's not on FoodieSpot, let us know.</p>
+            <form id="addOutletForm" class="add-outlet-form-section">
+                <div class="form-group">
+                    <label for="outletName">Outlet Name <span class="required">*</span></label>
+                    <input type="text" id="outletName" placeholder="e.g., Delicious Rolls" required>
                 </div>
+                <div class="form-group">
+                    <label for="outletCuisine">Cuisine Type <span class="required">*</span></label>
+                    <input type="text" id="outletCuisine" placeholder="e.g., Fast Food, Indian, Cafe" required>
+                </div>
+                <div class="form-group">
+                    <label for="outletLocation">Location/Address <span class="required">*</span></label>
+                    <input type="text" id="outletLocation" placeholder="e.g., Near UPES Gate 1, Bidholi" required>
+                </div>
+                <div class="form-group">
+                    <label for="yourEmail">Your Email (Optional, for follow-up)</label>
+                    <input type="email" id="yourEmail" placeholder="your.email@example.com">
+                </div>
+                <button type="submit" class="submit-btn">Submit Suggestion</button>
+                <p id="formMessage" class="form-message"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2025 FoodieSpot. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
         </div>
+    </footer>
 
-        <div class="add-outlet-page" id="addOutletPage" style="display: none;">
-            <div class="page-header">
-                <h1 class="page-title">Suggest a New Outlet!</h1>
-                <p class="page-subtitle">Help us expand our list of amazing food spots. We'll send you a confirmation once it's added!</p>
-            </div>
-
-            <section class="add-outlet-form-section">
-                <form id="addOutletForm" class="add-outlet-form">
-                    <div class="form-group">
-                        <label for="outletName">Outlet Name:</label>
-                        <input type="text" id="outletName" placeholder="e.g., The Campus Cafe" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="outletCuisine">Cuisine Type:</label>
-                        <input type="text" id="outletCuisine" placeholder="e.g., Cafe, North Indian, Fast Food" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="outletLocation">Location/Address:</label>
-                        <input type="text" id="outletLocation" placeholder="e.g., Near UPES Gate 2, Bidholi" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="yourEmail">Your Email:</label>
-                        <input type="email" id="yourEmail" placeholder="your.email@example.com" required>
-                    </div>
-                    <button type="submit" class="submit-outlet-btn">Submit Suggestion</button>
-                    <p id="formMessage" class="form-message" style="display: none;"></p>
-                </form>
-            </section>
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeInfoModal()">&times;</span>
+            <h2 id="infoModalTitle"></h2>
+            <div id="infoModalContent"></div>
         </div>
-
-
-        <footer class="footer">
-            <div class="footer-links">
-                <a href="#" class="footer-link" onclick="showInfoModal('about')">About</a>
-                <a href="#" class="footer-link" onclick="showInfoModal('contact')">Contact</a>
-                <a href="#" class="footer-link" onclick="showInfoModal('terms')">Terms Of Service</a>
-                <a href="#" class="footer-link" onclick="showInfoModal('privacy')">Privacy Policy</a>
-            </div>
-            <div class="footer-copyright">
-                &copy; 2023 FoodieSpot. All rights reserved.
-            </div>
-        </footer>
     </div>
 
-    <div class="fab" onclick="showPage('addOutlet')">
-        <i class="fas fa-plus"></i>
-    </div>
+    <div id="restaurantModal" class="modal">
+        <div class="modal-content restaurant-detail-modal">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2 id="modalRestaurantName"></h2>
+            <p class="modal-cuisine"><span id="modalRestaurantCuisine"></span></p>
+            <p class="modal-rating"><span id="modalRestaurantRating"></span></p>
+            <p class="modal-location"><i class="fas fa-map-marker-alt"></i> <span id="modalRestaurantLocation"></span></p>
+            <p class="modal-timings"><i class="fas fa-clock"></i> <span id="modalRestaurantTimings"></span></p>
+            <p class="modal-contact"><i class="fas fa-phone"></i> <span id="modalRestaurantContact"></span></p>
+            <p class="modal-min-order">Min. Order: <span id="modalRestaurantMinOrder"></span></p>
+            <p class="modal-dishes">Specialties: <span id="modalRestaurantDishes"></span></p>
+            <p class="modal-call-order">Accepts Call Orders: <span id="modalRestaurantCallOrder" class="badge"></span></p>
 
-    <div class="modal-overlay" id="restaurantModal">
-        <div class="restaurant-modal">
-            <div class="modal-header">
-                <button class="modal-close" onclick="closeModal()">&times;</button>
-                <h2 id="modalRestaurantName">Restaurant Name</h2>
-                <p id="modalRestaurantCuisine">Cuisine Type</p>
-                <span class="rating" id="modalRestaurantRating">4.0 ★ (100+ reviews)</span>
-            </div>
-            <div class="modal-body">
-                <div class="modal-section">
-                    <h3><i class="fas fa-map-marker-alt"></i> Location</h3>
-                    <p id="modalRestaurantLocation">Address will appear here</p>
+            <div id="onlineOrderButtons" class="online-order-buttons">
                 </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-clock"></i> Timings</h3>
-                    <p id="modalRestaurantTimings">Opening hours will appear here</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-phone"></i> Contact</h3>
-                    <p id="modalRestaurantContact">Phone number will appear here</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-rupee-sign"></i> Minimum Order</h3>
-                    <p id="modalRestaurantMinOrder">Minimum order price will appear here</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-utensils"></i> Order Options</h3>
-                    <p>
-                        Takes orders via call: 
-                        <span class="badge" id="modalRestaurantCallOrder">Yes/No</span>
-                    </p>
-                    <div id="onlineOrderButtons" class="online-order-buttons">
-                        </div>
-                </div>
-                
-                <div class="modal-section">
-                    <h3><i class="fas fa-utensils"></i> Popular Dishes</h3>
-                    <p id="modalRestaurantDishes">Popular dishes will appear here</p>
-                </div>
-                
-                <div class="modal-section" id="menuImagesSection">
-                    <h3><i class="fas fa-images"></i> Menu</h3>
-                    <div class="menu-images">
-                        <div class="menu-gallery" id="menuGallery">
-                            </div>
+
+            <div id="menuImagesSection" class="menu-images-section">
+                <h3>Menu Images</h3>
+                <div id="menuGallery" class="menu-gallery">
                     </div>
-                </div>
+                <p class="no-menu-images-message">No menu images available for this restaurant.</p>
             </div>
         </div>
     </div>
 
-    <div class="modal-overlay" id="infoModal">
-        <div class="restaurant-modal">
-            <div class="modal-header">
-                <button class="modal-close" onclick="closeInfoModal()">&times;</button>
-                <h2 id="infoModalTitle">Info Title</h2>
-            </div>
-            <div class="modal-body">
-                <div class="modal-section" id="infoModalContent">
-                    </div>
-            </div>
+    <div id="imageModal" class="modal">
+        <div class="modal-content image-modal-content">
+            <span class="close-button" onclick="closeImageModal()">&times;</span>
+            <img id="modalImage" src="" alt="Menu Image">
         </div>
     </div>
 
-    <div class="image-modal" id="imageModal">
-        <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
-        <div class="image-modal-content">
-            <img id="modalImage" src="" alt="">
-        </div>
-    </div>
-
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
