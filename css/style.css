@@ -1,32 +1,8 @@
 :root {
-    --primary: #FF6B35; /* Vibrant orange */
-    --secondary: #F7931E; /* Warm orange */
-    --accent: #FFD23F; /* Sunny yellow */
-    --light-bg: #FFF5E6; /* Slightly darker cream */
-    --text-dark: #333333;
-    --text-light: #FFFFFF;
-    --success: #4CAF50; /* Fresh green */
-    --danger: #EF4444; /* Alert red */
-    --off-white: #FFF9F0; /* Creamish off-white */
-    --darker-white: #f5f5f5; /* New darker white shade */
-    --darker-card: #2d2d2d; /* Dark mode card background */
-    --border-color: #e9ecef; /* Light mode border */
-    --subtitle-color: #6c757d; /* Subtitle text color */
-    --detail-label-color: #555; /* Detail label color */
-    
-    /* Gradients */
-    --gradient-main: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
-    --gradient-secondary: linear-gradient(135deg, #FF9A8B 0%, #FF6B6B 100%);
-    --gradient-card: linear-gradient(135deg, #FF9A8B 0%, #FF6B6B 100%);
-    
-    /* UI Elements */
-    --card-bg: #FFFFFF;
-    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
-    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
-}
-
-/* Enhanced Dark mode variables */
-.dark-mode {
+    /* Dark mode as default */
+    --primary: #FF6B35;
+    --secondary: #F7931E;
+    --accent: #FFD23F;
     --text-dark: #FFFFFF;
     --text-light: #333333;
     --card-bg: #2d2d2d;
@@ -38,9 +14,31 @@
     --detail-label-color: #cccccc;
     --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.3);
     --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.4);
+    --success: #4CAF50;
+    --danger: #EF4444;
+    --darker-card: #2d2d2d;
+    
+    /* Gradients */
+    --gradient-main: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+    --gradient-secondary: linear-gradient(135deg, #FF9A8B 0%, #FF6B6B 100%);
+    --gradient-card: linear-gradient(135deg, #FF9A8B 0%, #FF6B6B 100%);
 }
 
-/* Dark mode toggle button */
+/* Light mode variables (now the alternative) */
+.light-mode {
+    --text-dark: #333333;
+    --text-light: #FFFFFF;
+    --card-bg: #FFFFFF;
+    --darker-white: #f5f5f5;
+    --light-bg: #FFF5E6;
+    --off-white: #FFF9F0;
+    --border-color: #e9ecef;
+    --subtitle-color: #6c757d;
+    --detail-label-color: #555;
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
 .dark-mode-toggle {
     position: fixed;
     top: 20px;
@@ -66,11 +64,12 @@
     transition: all 0.3s ease;
 }
 
-.dark-mode .dark-mode-toggle i.fa-sun {
+/* Update icon colors for the new default */
+.dark-mode-toggle i.fa-sun {
     color: #FFD23F;
 }
 
-.dark-mode-toggle i.fa-moon {
+.light-mode .dark-mode-toggle i.fa-moon {
     color: #4A90E2;
 }
 
@@ -527,21 +526,23 @@ body::before {
     font-weight: 500;
     color: var(--text-dark);
 }
-
-.status {
-    display: inline-block;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.85rem;
+.status.open {
+    background: #155724;
+    color: #d4edda;
 }
 
-.status.open {
+.status.closed {
+    background: #721c24;
+    color: #f8d7da;
+}
+
+/* Light mode status colors */
+.light-mode .status.open {
     background: #d4edda;
     color: #155724;
 }
 
-.status.closed {
+.light-mode .status.closed {
     background: #f8d7da;
     color: #721c24;
 }
@@ -815,25 +816,26 @@ body::before {
 }
 
 .badge.yes {
-    background: #d4edda;
-    color: #155724;
-}
-
-.badge.no {
-    background: #f8d7da;
-    color: #721c24;
-}
-
-/* Dark mode badge colors */
-.dark-mode .badge.yes {
     background: #155724;
     color: #d4edda;
 }
 
-.dark-mode .badge.no {
+.badge.no {
     background: #721c24;
     color: #f8d7da;
 }
+
+/* Light mode badge colors */
+.light-mode .badge.yes {
+    background: #d4edda;
+    color: #155724;
+}
+
+.light-mode .badge.no {
+    background: #f8d7da;
+    color: #721c24;
+}
+
 
 .favorite-btn {
     position: absolute;
@@ -1003,5 +1005,235 @@ body::before {
         top: 10px;
         right: 10px;
         padding: 8px 10px;
+    }
+}
+/* Enhanced mobile navigation */
+@media (max-width: 768px) {
+    .nav {
+        margin-bottom: 20px;
+        padding: 10px 0;
+    }
+    
+    .nav-buttons {
+        gap: 10px;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .nav-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        flex: 1;
+        max-width: 140px;
+    }
+    
+    .add-btn {
+        white-space: nowrap;
+    }
+}
+
+/* Improved mobile search section */
+@media (max-width: 768px) {
+    .search-section {
+        padding: 25px 20px;
+        margin: 0 10px 20px;
+    }
+    
+    .search-box input {
+        padding: 16px 20px 16px 45px;
+        font-size: 0.95rem;
+    }
+    
+    .search-box i {
+        left: 16px;
+        font-size: 1rem;
+    }
+    
+    .clear-search {
+        right: 16px;
+    }
+}
+
+/* Better mobile grid layout */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 10px;
+    }
+    
+    .outlet-card {
+        margin: 0 5px;
+    }
+    
+    .outlet-header {
+        padding: 18px;
+    }
+    
+    .outlet-name {
+        font-size: 1.3rem;
+    }
+    
+    .outlet-details {
+        padding: 18px;
+    }
+}
+
+/* Enhanced mobile modal */
+@media (max-width: 768px) {
+    .restaurant-modal {
+        width: 95%;
+        max-height: 85vh;
+        margin: 0 10px;
+    }
+    
+    .modal-header {
+        padding: 20px;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+    
+    .modal-section {
+        margin-bottom: 18px;
+    }
+    
+    .modal-section h3 {
+        font-size: 1rem;
+    }
+    
+    .modal-section p {
+        margin-left: 24px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Improved mobile footer */
+@media (max-width: 768px) {
+    .footer {
+        padding: 30px 20px;
+        margin-top: 40px;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .footer-link {
+        padding: 8px 0;
+    }
+}
+
+/* Enhanced mobile title section */
+@media (max-width: 768px) {
+    .title-section {
+        margin-bottom: 25px;
+        padding: 0 15px;
+    }
+    
+    .main-title {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+    
+    .headline {
+        font-size: 1.1rem;
+        margin-top: 15px;
+    }
+}
+
+/* Better mobile page header */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 25px 20px;
+        margin: 0 10px 20px;
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+    }
+}
+
+/* Improved mobile filter buttons */
+@media (max-width: 768px) {
+    .filter-buttons {
+        gap: 6px;
+        justify-content: center;
+    }
+    
+    .filter-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        min-width: auto;
+    }
+}
+
+/* Enhanced mobile dark mode toggle */
+@media (max-width: 768px) {
+    .dark-mode-toggle {
+        top: 10px;
+        right: 10px;
+        padding: 8px 10px;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .dark-mode-toggle i {
+        font-size: 1.1rem;
+    }
+}/* Better touch targets */
+@media (max-width: 768px) {
+    .outlet-card {
+        min-height: 200px;
+    }
+    
+    .favorite-btn {
+        width: 40px;
+        height: 40px;
+        top: 12px;
+        right: 12px;
+    }
+    
+    .browse-all-btn {
+        padding: 18px;
+        font-size: 1.1rem;
+        margin-top: 10px;
+    }
+    
+    .order-link {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+    }
+}@media (max-width: 480px) {
+    .filter-buttons {
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 5px;
+        gap: 8px;
+    }
+    
+    .filter-btn {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+    
+    /* Hide scrollbar but keep functionality */
+    .filter-buttons::-webkit-scrollbar {
+        height: 2px;
+    }
+    
+    .filter-buttons::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    .filter-buttons::-webkit-scrollbar-thumb {
+        background: var(--primary);
+        border-radius: 2px;
     }
 }
