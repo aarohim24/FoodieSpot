@@ -1,1252 +1,184 @@
-const restaurantData = [
-    {
-        name: "Anup Roll & Shake Fast Food",
-        searchName: "anup roll & shake fast food",
-        cuisine: "Fast Food",
-        rating: "4.0 ★ (100+ reviews)",
-        location: "71, Vikas Nagar, Bidholi, Dehradun",
-        timings: "12PM - 4AM", // Simplified for status check
-        contact: "+917088677105",
-        minOrder: "₹100",
-        swiggyLink: null, // No Swiggy link
-        zomatoLink: "https://www.zomato.com/dehradun/anup-roll-shake-fast-food-bidholi",
-        takesCallOrders: true,
-        dishes: "Rolls, Shakes, Burgers, Wraps",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Anup_Roll.jpeg"
-        ]
-    },
-    {
-        name: "Isquare Restaurant And Cafe",
-        searchName: "isquare restaurant and cafe",
-        cuisine: "Multi-Cuisine",
-        rating: "4.2 ★ (150+ reviews)",
-        location: "Post Office Road, Near I Square Girls Hostel, Bidholi",
-        timings: "1PM - 11:30PM",
-        contact: "+918858857775",
-        minOrder: "₹150",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/isquare-restaurant-and-cafe-bidholi/order",
-        takesCallOrders: true,
-        dishes: "Indian, Chinese, Continental, Beverages",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare1.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare2.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare3.jpeg"
-        ]
-    },
-    {
-        name: "All Rounder Chacha Restaurant & Cafe",
-        searchName: "all rounder chacha restaurant & cafe",
-        cuisine: "North Indian",
-        rating: "4.1 ★ (120+ reviews)",
-        location: "Near Bright Wave School, Bidholi, Dehradun",
-        timings: "24 Hours",
-        contact: "+918818037720",
-        minOrder: "₹120",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/all-rounder-chacha-restaurant-cafe-bidholi",
-        takesCallOrders: true,
-        dishes: "Roti, Dal, Sabzi, Curry, Biryani",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/AllRounder.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/AllRounder1.jpeg",
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodieSpot - Your Local Food Guide</title>
 
-        ]
-    },
-    {
-        name: "Maal & Chooz",
-        searchName: "maal & chooz",
-        cuisine: "Fast Food, Snacks",
-        rating: "4.0 ★ (90+ reviews)",
-        location: "Vikasnagar, Bidholi, Dehradun",
-        timings: "12PM - 1:45AM",
-        contact: "+917737178155",
-        minOrder: "₹80",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/maal-chooz-bidholi",
-        takesCallOrders: true,
-        dishes: "Snacks, Fast Food, Sandwiches, Momos",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Maal_&_Chooz.jpeg"
-        ]
-    },
-    {
-        name: "Swadu Cafe",
-        searchName: "swadu cafe",
-        cuisine: "Cafe, Continental",
-        rating: "4.3 ★ (110+ reviews)",
-        location: "Upper Kandoli, UPES Road, Near Girls Hostel, Bidholi",
-        timings: "11AM - 10:45PM",
-        contact: "+919119862486",
-        minOrder: "₹150",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/swadu-cafe-bidholi",
-        takesCallOrders: true,
-        dishes: "Coffee, Sandwiches, Pasta, Desserts",
-        menuImages: []
-    },
-    {
-        name: "Romnik Pizza",
-        searchName: "romnik pizza",
-        cuisine: "Pizza, Fast Food",
-        rating: "4.1 ★ (85+ reviews)",
-        location: "Near UPES, Bidholi, Dehradun",
-        timings: "11AM - 11PM",
-        contact: "+917900688688",
-        minOrder: "₹200",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/romnik-pizza-bidholi",
-        takesCallOrders: true,
-        dishes: "Pizza, Garlic Bread, Pasta, Wings",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Romnik_Pizza.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Romnik_Pizza1.jpeg"
-        ]
-    },
-    {
-        name: "Having Craving",
-        searchName: "having craving",
-        cuisine: "Fast Food, Snacks",
-        rating: "3.9 ★ (75+ reviews)",
-        location: "Shop 19, Bidholi Complex, Near UPES, Bidholi",
-        timings: "10AM - 11PM",
-        contact: "+918439333330",
-        minOrder: "₹100",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/having-craving-bidholi",
-        takesCallOrders: false,
-        dishes: "Burgers, Fries, Momos, Sandwiches",
-        menuImages: []
-    },
-    {
-        name: "Emotions Confectionery",
-        searchName: "emotions confectionery",
-        cuisine: "Bakery, Desserts",
-        rating: "4.4 ★ (130+ reviews)",
-        location: "Near UPES, Bidholi, Dehradun",
-        timings: "2:30PM - 9:15PM",
-        contact: "+919897776785, +917505615583",
-        minOrder: "₹80",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/emotions-confectionery-bidholi/order",
-        takesCallOrders: true,
-        dishes: "Cakes, Pastries, Cookies, Desserts",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Emotions_Confectionary.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Emotions_Confectionary1.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Emotions_Confectionary2.jpeg"
-        ]
-    },
-    {
-        name: "Mentl Parathe Wale",
-        searchName: "mentl parathe wale",
-        cuisine: "North Indian",
-        rating: "4.2 ★ (95+ reviews)",
-        location: "Shop 20, Bidholi Complex, Vikasnagar, Bidholi",
-        timings: "Mon-Fri, Sun: 11AM-10:15PM | Sat: 10:45AM-10:15PM",
-        contact: "+919151591507",
-        minOrder: "₹120",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/mentl-parathe-wale-bidholi/order",
-        takesCallOrders: true,
-        dishes: "Paratha, Dal, Paneer, Lassi",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mentl.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mentl1.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mentl2.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mentl3.jpeg",
-        ]
-    },
-    {
-        name: "Chai Sutta Bar",
-        searchName: "chai sutta bar",
-        cuisine: "Cafe, Beverages",
-        rating: "4.3 ★ (140+ reviews)",
-        location: "Bidholi Complex, Near Bidholi, Dehradun",
-        timings: "Mon-Sat: 10AM-11PM | Sun: 12PM-11PM",
-        contact: "+917078365600",
-        minOrder: "₹80",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/chai-sutta-bar-1-bidholi/order",
-        takesCallOrders: true,
-        dishes: "Tea, Coffee, Snacks, Shakes",
-        menuImages: [
-            // These images were provided as imgur links previously.
-            // If you have them on GitHub, please update. Using placeholders for now.
-            "https://via.placeholder.com/150/A1A1A1/FFFFFF?text=Chai+Sutta+Menu+1",
-            "https://via.placeholder.com/150/A1A1A1/FFFFFF?text=Chai+Sutta+Menu+2"
-        ]
-    },
-    {
-        name: "Mahi",
-        searchName: "mahi",
-        cuisine: "Fast Food",
-        rating: "4.0 ★ (50+ reviews)",
-        location: "Bidholi, Misraspatti, Uttarakhand 248197",
-        timings: "Not specified",
-        contact: "+917895334037",
-        minOrder: "₹200",
-        swiggyLink: null,
-        zomatoLink: null,
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mahi.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mahi1.jpeg",
-        ]
-    },
-    {
-        name: "Mayank",
-        searchName: "mayank",
-        cuisine: "Multi-Cuisine",
-        rating: "4.1 ★ (80+ reviews)",
-        location: "Kharakhet, Bidholi, Uttarakhand 248197",
-        timings: "9AM - 9PM",
-        contact: "+918958973063, +917983437338",
-        minOrder: "Not specified",
-        swiggyLink: "https://www.swiggy.com/city/dehradun/mayank-restaurant-bidholi-rest971877",
-        zomatoLink: null,
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mayank.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Mayank1.jpeg",
-        ]
-    },
-    {
-        name: "Meenakshi",
-        searchName: "meenakshi",
-        cuisine: "North Indian",
-        rating: "4.0 ★ (60+ reviews)",
-        location: "UPES petroleum, bidholi, Prem Nagar, Dehradun, Uttarakhand 248007",
-        timings: "11AM - 10PM",
-        contact: "+918394024356",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: null,
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: []
-    },
-    {
-        name: "Forkful",
-        searchName: "forkful",
-        cuisine: "Fast Food",
-        rating: "4.2 ★ (90+ reviews)",
-        location: "Chowk, opp. Woodstock hostel, Bidholi, Dehradun, Uttarakhand 248001",
-        timings: "Open till 3AM",
-        contact: "+919528276454",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/forkfull-bidholi",
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Forkful.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Forkful1.jpeg",
-        ]
-    },
-    {
-        name: "TNB",
-        searchName: "tnb",
-        cuisine: "Cafe",
-        rating: "4.1 ★ (70+ reviews)",
-        location: "Upper Kandoli Bidholi Road Premnagar, Uttarakhand 248007",
-        timings: "Not specified",
-        contact: "+917906978010",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/tnb-taste-best-cafe-prem-nagar",
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: []
-    },
-    {
-        name: "Salview",
-        searchName: "salview",
-        cuisine: "Multi-Cuisine",
-        rating: "4.0 ★ (50+ reviews)",
-        location: "Bidholi, Kharakhet, Uttarakhand 248006",
-        timings: "8AM - 12AM",
-        contact: "+917452900298",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: null,
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: []
-    },
-    {
-        name: "Mr. Burger",
-        searchName: "mr burger",
-        cuisine: "Fast Food",
-        rating: "3.9 ★ (40+ reviews)",
-        location: "Not specified",
-        timings: "Not specified",
-        contact: "+918191820830",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: null,
-        takesCallOrders: true,
-        dishes: "Burgers, Fries, Shakes",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/MrBurger.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/MrBurger1.jpeg",
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-        ]
-    },
-    {
-        name: "BLT",
-        searchName: "blt",
-        cuisine: "Cafe",
-        rating: "4.3 ★ (100+ reviews)",
-        location: "Shop No. 17, Comprising in abadi land bearing Khasra Nos, 518 Ka, Vikasnagar, Dehradun, Uttarakhand 248007",
-        timings: "Mon-Fri: 10AM-11PM, Sun: 12PM-8PM",
-        contact: "+919867854356",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/big-little-things-bidholi",
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/PizzaHub.jpeg", // This seems like a placeholder, consider changing if specific BLT images are available
-        ]
-    },
-    {
-        name: "TIF",
-        searchName: "tif",
-        cuisine: "Not specified",
-        rating: "Not rated yet",
-        location: "Not specified",
-        timings: "Not specified",
-        contact: "Not specified",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: null,
-        takesCallOrders: false,
-        dishes: "Not specified",
-        menuImages: []
-    },
-    {
-        name: "Pizza Hub",
-        searchName: "pizza hub",
-        cuisine: "Pizza",
-        rating: "4.0 ★ (80+ reviews)",
-        location: "Dehradun Township- Bidholi, Majhaun Rd, Misraspatti, Uttarakhand",
-        timings: "11AM - 11PM",
-        contact: "+917900442255",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/pizza-hub-bidholi",
-        takesCallOrders: true,
-        dishes: "Pizzas, Sides, Beverages",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/PizzaHub.jpeg",
-        ]
-    },
-    {
-        name: "Big Bite",
-        searchName: "big bite",
-        cuisine: "Fast Food",
-        rating: "3.9 ★ (60+ reviews)",
-        location: "Bidholi, Misraspatti, Uttarakhand 248197",
-        timings: "11AM - 11PM",
-        contact: "+919756799446",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: null,
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: []
-    },
-    {
-        name: "Spicy",
-        searchName: "spicy",
-        cuisine: "North Indian",
-        rating: "4.0 ★ (70+ reviews)",
-        location: "CX78+9QW, Bidholi, Misraspatti, Uttarakhand 248197",
-        timings: "9AM - 9:30PM",
-        contact: "+919266951239",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/spicy-bowl-bidholi",
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: []
-    },
-    {
-        name: "Snacks Adda",
-        searchName: "snacks adda",
-        cuisine: "Cafe",
-        rating: "4.1 ★ (50+ reviews)",
-        location: "Vikasnagar, Bidholi, Uttarakhand 248007",
-        timings: "Mon - Sun (12 Midnight - 3AM, 12:15PM - 11:45PM)",
-        contact: "+91975800710 +918585992216",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/snacks-adda-bidholi",
-        takesCallOrders: false,
-        dishes: "Chinese, North Indian, Rolls, Momos, Shake",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SnacksAdda.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SnacksAdda1.jpeg",
-        ]
-    },
-    {
-        name: "Anavrin",
-        searchName: "anavrin",
-        cuisine: "Not specified",
-        rating: "Not rated yet",
-        location: "Not specified",
-        timings: "Not specified",
-        contact: "Not specified",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: null,
-        takesCallOrders: false,
-        dishes: "Not specified",
-        menuImages: []
-    },
-    {
-        name: "Sandeep Fast Food",
-        searchName: "sandeep fast food",
-        cuisine: "Fast Food",
-        rating: "3.8 ★ (40+ reviews)",
-        location: "CX79+5G3, nearby post office, Bidholi, Misraspatti, Uttarakhand 248007",
-        timings: "Not specified",
-        contact: "+919627143215, +917895632463",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: null,
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Sandeep.jpeg",
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-        ]
-    },
-    {
-        name: "Shubh Pahadi",
-        searchName: "shubh pahadi",
-        cuisine: "North Indian",
-        rating: "4.2 ★ (90+ reviews)",
-        location: "Shubh pahadi restaurant, Bidholi, Uttarakhand 248007",
-        timings: "Open 24 hours",
-        contact: "+917409708807, +918156053992",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: null,
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ShubhPahadi.jpeg",
-        ]
-    },
-    {
-        name: "Deepak",
-        searchName: "deepak",
-        cuisine: "North Indian",
-        rating: "4.0 ★ (80+ reviews)",
-        location: "UPES Campus, Bidholi, Dehradun, Uttarakhand 248007",
-        timings: "Open 24 hours",
-        contact: "+916396591060",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: null,
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Deepak.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Deepak1.jpeg",
-        ]
-    },
-    {
-        name: "Kanoha",
-        searchName: "kanoha",
-        cuisine: "Cafe",
-        rating: "4.3 ★ (100+ reviews)",
-        location: "Bidholi Rd, Kharakhet, Misraspatti, Uttarakhand 248007",
-        timings: "11AM - 10PM",
-        contact: "+919870601929",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/konoha-cafe-bidholi",
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Kanoha.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Kanoha1.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Kanoha2.jpeg",
-        ]
-    },
-    {
-        name: "Gym diet",
-        searchName: "gym diet",
-        cuisine: "Healthy Food",
-        rating: "4.4 ★ (120+ reviews)",
-        location: "CX7C+29M, Bidholi, Kharakhet, Uttarakhand 248197",
-        timings: "6AM - 11:30PM",
-        contact: "+919759720152",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/gym-diet-bidholi",
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/GymDiet.jpeg",
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/logo.png" alt="FoodieSpot Logo">
+                <h1>FoodieSpot</h1>
+            </div>
+            <nav>
+                <button class="nav-btn active" onclick="showPage('home', event)">Home</button>
+                <button class="nav-btn" onclick="showPage('restaurants', event)">Restaurants</button>
+                <button class="nav-btn" onclick="showPage('addOutlet', event)">Add Outlet</button>
+                <button class="nav-btn theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
 
-        ]
-    },
-    {
-        name: "Pizza Dilite",
-        searchName: "pizza dilite",
-        cuisine: "Pizza",
-        rating: "4.1 ★ (80+ reviews)",
-        location: "CX7C+5X5, Bidholi Rd, Kharakhet, Uttarakhand 248197",
-        timings: "Mon-Sat: 9AM-10PM, Sun: 9AM-4AM",
-        contact: "+917037455700",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: null,
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/PizzaDilite.jpeg",
+    <main class="container">
 
-        ]
-    },
-    {
-        name: "4 Loser",
-        searchName: "4 loser",
-        cuisine: "Cafe",
-        rating: "4.2 ★ (90+ reviews)",
-        location: "near, via, near Sai Mandir, Prem Nagar, Bidholi, Dehradun, Uttarakhand 248007",
-        timings: "Mon-Fri: 8AM-1PM, Sun: 10AM-2PM",
-        contact: "+917906071734",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/4-losers-restaurant-cafe-bidholi",
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/4Loser.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/4Loser1.jpeg",
-        ]
-    },
-    {
-        name: "Indie Cafe",
-        searchName: "indie cafe",
-        cuisine: "Cafe",
-        rating: "4.3 ★ (110+ reviews)",
-        location: "Bishanpur, Bidholi Rd, near Royal Stay hostel, Dehradun, Uttarakhand 248007",
-        timings: "3AM - 11:30PM",
-        contact: "+917409181819",
-        minOrder: "Not specified",
-        swiggyLink: "https://www.swiggy.com/city/dehradun/the-indie-cafe-deheradun-township-bidholi-rest875255",
-        zomatoLink: null,
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/IndieCafe.jpeg",
-        ]
-    },
-    {
-        name: "Burger Belly",
-        searchName: "burger belly",
-        cuisine: "Fast Food",
-        rating: "4.0 ★ (70+ reviews)",
-        location: "Bidholi, Dehradun, Uttarakhand 248007",
-        timings: "2PM - 4AM",
-        contact: "Not specified",
-        minOrder: "Not specified",
-        swiggyLink: "https://www.swiggy.com/city/dehradun/burger-belly-bidholi-rest999481",
-        zomatoLink: null,
-        takesCallOrders: false,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/BurgerBelly.jpeg",
-        ]
-    },
-    {
-        name: "Bunk Cafe",
-        searchName: "bunk cafe",
-        cuisine: "Cafe",
-        rating: "4.4 ★ (130+ reviews)",
-        location: "near Avalon hostel, kandoli, vishanpur, Dehradun, Kharakhet, Uttarakhand 248001",
-        timings: "5PM - 4AM",
-        contact: "+919891610696, +917895566236",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/bunk-cafe-bidholi/order",
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/BunkCafe.jpeg",
-        ]
-    },
-    {
-        name: "Tongue'N Taste",
-        searchName: "tongue n taste",
-        cuisine: "Multi-Cuisine",
-        rating: "4.2 ★ (100+ reviews)",
-        location: "9XW9+4C9, Infront of Jiya Hostel Upper, Kandoli, Tibet colony, Saundhon wali, Dehradun, Uttarakhand",
-        timings: "9:30AM - 11PM",
-        contact: "+918439010011",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/toungue-n-taste-bidholi",
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/T'nT.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/T'nT1.jpeg",
-        ]
-    },
-    {
-        name: "Threesome",
-        searchName: "threesome",
-        cuisine: "Multi-Cuisine",
-        rating: "4.3 ★ (120+ reviews)",
-        location: "Bidholi Road, Dehradun, Pondha, Uttarakhand 248007",
-        timings: "10AM - 4AM",
-        contact: "+918885552368",
-        minOrder: "Not specified",
-        swiggyLink: "https://www.swiggy.com/city/dehradun/threesome-you-me-and-food-bidholi-rest971021",
-        zomatoLink: null,
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: []
-    },
-    {
-        name: "Panjtara",
-        searchName: "panjtara",
-        cuisine: "Cafe",
-        rating: "4.2 ★ (80+ reviews)",
-        location: "House 86, Upper Colony, Kandhauli, Vikas Nagar, Dehradun",
-        timings: "Not specified",
-        contact: "+918625841928",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/cafe-panjtara-vikas-nagar",
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Panjtara.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Panjtara1.jpeg",
-        ]
-    },
-    {
-        name: "Kandoli Adda",
-        searchName: "kandoli adda",
-        cuisine: "Multi-Cuisine",
-        rating: "4.3 ★ (110+ reviews)",
-        location: "Gosai Gaon, Opposite Bella Vista Girls Hostel, Kandoli, Bidholi, Dehradun",
-        timings: "11AM - 9:15PM",
-        contact: "+918393870202",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/kandoli-adda-bidholi/order",
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/KandoliAdda.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/KandoliAdda1.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/KandoliAdda2.jpeg",
-        ]
-    },
-    {
-        name: "Cafe Sky View",
-        searchName: "cafe sky view",
-        cuisine: "Cafe",
-        rating: "4.4 ★ (130+ reviews)",
-        location: "Cafe Sky, View Upper, Kandoli Gusain Gaon, Bidholi, Dehradun",
-        timings: "10:30AM - 10:45PM",
-        contact: "+918171652916",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: "https://www.zomato.com/dehradun/cafe-sky-view-bidholi/order",
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SkyView.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SkyView1.jpeg",
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/SkyView2.jpeg"
-        ]
-    },
-    {
-        name: "Kainchi Products/ Radhey Confectionary",
-        searchName: "kainchi products",
-        cuisine: "Bakery",
-        rating: "4.0 ★ (50+ reviews)",
-        location: "Not specified",
-        timings: "Not specified",
-        contact: "+918630273212",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: null,
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: []
-    },
-    {
-        name: "Sona Restaurant",
-        searchName: "sona restaurant",
-        cuisine: "Multi-Cuisine",
-        rating: "4.0 ★ (50+ reviews)",
-        location: "Not specified",
-        timings: "Not specified",
-        contact: "+918057411534 +919259039141",
-        minOrder: "Not specified",
-        swiggyLink: null,
-        zomatoLink: null,
-        takesCallOrders: true,
-        dishes: "Not specified",
-        menuImages: [
-            "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Sona.jpeg",
-        ]
-    },
-];
-
-// Info content for modals
-const infoContent = {
-    about: {
-        title: "About FoodieSpot",
-        content: `
-            <p>FoodieSpot is your ultimate guide to discovering the best food options around UPES campus, Dehradun.</p>
-            <p>Our mission is to help students and faculty find great places to eat, with detailed information about each outlet including menus, prices, and ordering options.</p>
-            <p>This platform was created by UPES students for UPES students, with love for good food!</p>
-        `
-    },
-    contact: {
-        title: "Contact Us",
-        content: `
-            <p><i class="fas fa-envelope"></i> Email: contact@foodiespot.upes</p>
-            <p><i class="fas fa-map-marker-alt"></i> Address: UPES Bidholi Campus, Dehradun</p>
-            <p>We'd love to hear your feedback and suggestions for improving FoodieSpot!</p>
-        `
-    },
-    privacy: {
-        title: "Privacy Policy",
-        content: `
-            <p>FoodieSpot respects your privacy. This policy explains how we collect, use, and protect your information.</p>
-            <h4>Information We Collect</h4>
-            <p>We may collect basic usage data to improve our service, but we don't store personal information without your consent.</p>
-            <h4>How We Use Information</h4>
-            <p>Any data collected is used solely to enhance your experience on FoodieSpot and improve our services.</p>
-        `
-    },
-    terms: {
-        title: "Terms of Service",
-        content: `
-            <p>By using FoodieSpot, you agree to these terms:</p>
-            <h4>Content Accuracy</h4>
-            <p>We strive to provide accurate information but cannot guarantee all details are current or correct.</p>
-            <h4>User Responsibilities</h4>
-            <p>Users are responsible for verifying restaurant details before visiting or ordering.</p>
-            <h4>Service Modifications</h4>
-            <p>We reserve the right to modify or discontinue the service at any time.</p>
-        `
-    }
-};
-
-// Track current search state
-let currentSearchTerm = '';
-let currentFilter = 'all';
-
-// Function to switch between pages
-function showPage(pageId) {
-    // Hide all pages
-    document.getElementById('homePage').style.display = 'none';
-    document.getElementById('restaurantsPage').style.display = 'none';
-    document.getElementById('addOutletPage').style.display = 'none';
-    
-    // Show selected page
-    document.getElementById(pageId + 'Page').style.display = 'block';
-    
-    // Update active nav button
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('active');
-        // More robust check for active button
-        const btnText = btn.textContent.toLowerCase();
-        if ((pageId === 'home' && btnText.includes('home')) ||
-            (pageId === 'restaurants' && btnText.includes('restaurants')) ||
-            (pageId === 'addOutlet' && btnText.includes('outlet'))) {
-            btn.classList.add('active');
-        }
-    });
-    
-    // Scroll to top
-    window.scrollTo(0, 0);
-    
-    // Logic for search/filters when navigating
-    if (pageId === 'restaurants') {
-        // We need to determine if navigation came from a home search/filter or direct nav button
-        // This is a bit tricky with `event`, so let's rely on global state or explicit calls
-        const homeSearchInput = document.getElementById('homeSearchInput');
-        const restaurantSearchInput = document.getElementById('restaurantSearchInput');
-
-        // If a home filter or browse all was clicked, currentFilter would be set.
-        // If a home search had content, currentSearchTerm would be set.
-        // If coming directly from 'Restaurants' nav button, we want to reset.
-        if (event && event.target && event.target.id === 'browseAllRestaurantsBtn' ||
-            (event && event.target && event.target.classList.contains('filter-btn') && event.target.closest('#homeFilterButtons'))) {
-            // Navigation from home page buttons
-            restaurantSearchInput.value = homeSearchInput.value; // Transfer search term
-            currentSearchTerm = homeSearchInput.value.toLowerCase();
-            // currentFilter is already set by the filter button handler
-        } else if (homeSearchInput.value.length === 0 && restaurantSearchInput.value.length === 0 && currentFilter === 'all') {
-            // If navigating to restaurants page directly from nav button, and nothing was searched/filtered
-            restaurantSearchInput.value = '';
-            currentSearchTerm = '';
-            currentFilter = 'all';
-            // Deactivate all filter buttons and activate 'All' on the restaurants page
-            document.querySelectorAll('#restaurantsPage .filter-btn').forEach(b => b.classList.remove('active'));
-            const allFilterBtn = document.querySelector('#restaurantsPage .filter-btn[data-filter="all"]');
-            if (allFilterBtn) allFilterBtn.classList.add('active');
-        }
-
-        updateRestaurantDisplay();
-    }
-}
-
-// Show info modal
-function showInfoModal(type) {
-    const info = infoContent[type];
-    if (!info) return;
-    
-    document.getElementById('infoModalTitle').textContent = info.title;
-    document.getElementById('infoModalContent').innerHTML = info.content;
-    document.getElementById('infoModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeInfoModal() {
-    document.getElementById('infoModal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-}
-
-// Improved search functionality
-function handleSearch(event) {
-    const searchInput = event.target;
-    const clearBtn = searchInput.nextElementSibling; // Assuming clear button is the next sibling
-    if (clearBtn && clearBtn.classList.contains('clear-search-btn')) { // Ensure it's the correct button
-        clearBtn.classList.toggle('visible', searchInput.value.length > 0);
-    }
-    
-    currentSearchTerm = searchInput.value.toLowerCase();
-    
-    // If searching from home page input, and not a filter button click, sync with restaurant search
-    if (searchInput.id === 'homeSearchInput') {
-        // If the home search input has text, and we are not on the restaurants page, navigate
-        // If we are already on the restaurants page, just update the search input there
-        if (currentSearchTerm.length > 0) {
-            document.getElementById('restaurantSearchInput').value = searchInput.value;
-            if (document.getElementById('restaurantsPage').style.display === 'none') {
-                showPage('restaurants'); // This will trigger updateRestaurantDisplay
-            } else {
-                updateRestaurantDisplay(); // Already on restaurants page, just update
-            }
-        } else {
-            // If home search is cleared, and we are on restaurants page, clear restaurant search
-            if (document.getElementById('restaurantsPage').style.display === 'block') {
-                document.getElementById('restaurantSearchInput').value = '';
-                currentSearchTerm = ''; // Reset currentSearchTerm
-                updateRestaurantDisplay(); // Update display
-            }
-        }
-    } else if (searchInput.id === 'restaurantSearchInput') {
-        updateRestaurantDisplay();
-    }
-}
-
-// Clear search input
-function clearSearch(page) {
-    const inputId = page === 'home' ? 'homeSearchInput' : 'restaurantSearchInput';
-    const input = document.getElementById(inputId);
-    input.value = '';
-    const clearBtn = input.nextElementSibling;
-    if (clearBtn && clearBtn.classList.contains('clear-search-btn')) {
-        clearBtn.classList.remove('visible');
-    }
-    currentSearchTerm = '';
-    updateRestaurantDisplay();
-    // If clearing home search, and on restaurants page, clear that too
-    if (page === 'home' && document.getElementById('restaurantsPage').style.display === 'block') {
-        document.getElementById('restaurantSearchInput').value = '';
-    }
-}
-
-// Filter button functionality (for both home and restaurants page)
-document.querySelectorAll('.filter-buttons').forEach(filterContainer => {
-    filterContainer.addEventListener('click', function(event) {
-        if (event.target.classList.contains('filter-btn')) {
-            const clickedFilter = event.target.dataset.filter;
+        <div id="homePage" class="page">
+            <section class="hero-section">
+                <div class="hero-text">
+                    <h2>Discover Your Next Favorite Meal</h2>
+                    <p>Find the best restaurants, cafes, and eateries near UPES, Dehradun.</p>
+                </div>
+            </section>
             
-            // Remove active class from all filter buttons in this container
-            filterContainer.querySelectorAll('.filter-btn').forEach(b => {
-                b.classList.remove('active');
-            });
-            // Add active class to the clicked button
-            event.target.classList.add('active');
+            <section class="search-section">
+                <div class="search-bar">
+                    <input type="text" id="homeSearchInput" placeholder="Search for restaurants, cuisine, or dishes...">
+                    <span class="clear-search-btn" onclick="clearSearch('home')">&times;</span>
+                </div>
+            </section>
             
-            currentFilter = clickedFilter;
+            <section class="filter-section">
+                <h3>Or Filter by Cuisine</h3>
+                <div id="homeFilterButtons" class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="fast food">Fast Food</button>
+                    <button class="filter-btn" data-filter="north indian">North Indian</button>
+                    <button class="filter-btn" data-filter="cafe">Cafe</button>
+                    <button class="filter-btn" data-filter="pizza">Pizza</button>
+                    <button class="filter-btn" data-filter="bakery">Bakery</button>
+                </div>
+            </section>
 
-            // If a filter button on the home page is clicked, navigate to restaurants page
-            if (filterContainer.id === 'homeFilterButtons') {
-                // Ensure the corresponding filter button on the restaurants page is activated
-                document.querySelectorAll('#restaurantsPage .filter-btn').forEach(b => {
-                    b.classList.remove('active');
-                    if (b.dataset.filter === clickedFilter) {
-                        b.classList.add('active');
-                    }
-                });
-                showPage('restaurants'); // This will call updateRestaurantDisplay
-            } else {
-                updateRestaurantDisplay(); // If on restaurants page, just update display
-            }
-        }
-    });
-});
+            <button class="browse-all-btn" onclick="showPage('restaurants', event)">
+                Browse All Restaurants <i class="fas fa-arrow-right"></i>
+            </button>
 
-
-// Function to generate and append a single restaurant card
-function createRestaurantCard(data) {
-    const card = document.createElement('div');
-    card.className = 'outlet-card';
-    card.setAttribute('data-name', data.searchName);
-    card.setAttribute('data-cuisine', data.cuisine.toLowerCase());
-    card.setAttribute('data-dishes', data.dishes ? data.dishes.toLowerCase() : '');
-
-    const phoneOrderIcon = data.takesCallOrders ? '<i class="fas fa-phone-alt"></i>' : '<i class="fas fa-times-circle"></i>';
-    const phoneOrderStatus = data.takesCallOrders ? 'Accepts phone orders' : 'No phone orders';
-    
-    // Basic status check (you might want a more robust one based on current time)
-    // To implement a real-time status:
-    // 1. Parse data.timings into start and end times (e.g., using Date objects).
-    // 2. Get current time.
-    // 3. Compare current time with start and end times.
-    const statusClass = (data.timings.includes("Closed") || data.timings.includes("Not specified")) ? "closed" : "open";
-    const statusText = (data.timings.includes("Closed") || data.timings.includes("Not specified")) ? "Closed" : `Open • Closes at ${data.timings.split(',')[0].split('-')[1] || 'N/A'}`;
-    
-    card.innerHTML = `
-        <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
-            <i class="far fa-heart"></i>
-        </button>
-        <div class="outlet-header">
-            <h2 class="outlet-name">${data.name}</h2>
-            <p class="outlet-cuisine">${data.cuisine}</p>
-            <span class="rating">${data.rating}</span>
-            <div class="phone-order">
-                ${phoneOrderIcon} ${phoneOrderStatus}
+            <div class="info-links">
+                <a href="#" onclick="showInfoModal('about')">About Us</a>
+                <a href="#" onclick="showInfoModal('contact')">Contact</a>
+                <a href="#" onclick="showInfoModal('privacy')">Privacy Policy</a>
+                <a href="#" onclick="showInfoModal('terms')">Terms of Service</a>
             </div>
         </div>
-        <div class="outlet-details">
-            <div class="detail-row">
-                <span class="detail-label">Min. Order:</span>
-                <span class="detail-value">${data.minOrder}</span>
+
+        <div id="restaurantsPage" class="page" style="display: none;">
+            <h2 class="page-title">All Restaurants</h2>
+            <p class="section-description">
+                Explore a wide variety of dining options available. Use the search and filters to find exactly what you're looking for.
+            </p>
+            <div class="search-bar">
+                <input type="text" id="restaurantSearchInput" placeholder="Search on this page...">
+                 <span class="clear-search-btn" onclick="clearSearch('restaurants')">&times;</span>
             </div>
-            <div class="detail-row">
-                <span class="detail-label">Location:</span>
-                <span class="detail-value">${data.location}</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">Status:</span>
-                <span class="status ${statusClass}">${statusText}</span>
+
+            <div id="searchResultsMessage" class="search-results-message"></div>
+            
+            <section class="filter-section">
+                <div class="filter-buttons">
+                     <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="fast food">Fast Food</button>
+                    <button class="filter-btn" data-filter="north indian">North Indian</button>
+                    <button class="filter-btn" data-filter="cafe">Cafe</button>
+                    <button class="filter-btn" data-filter="pizza">Pizza</button>
+                    <button class="filter-btn" data-filter="bakery">Bakery</button>
+                </div>
+            </section>
+            
+            <div id="restaurantsGrid" class="outlet-grid">
+                </div>
+        </div>
+
+        <div id="addOutletPage" class="page" style="display: none;">
+            <h2 class="page-title">Suggest a New Outlet</h2>
+            <p class="section-description">
+                Know a great place that's not on our list? Let us know! Fill out the form below and we'll look into adding it.
+            </p>
+            <section class="add-outlet-form-section">
+                <form id="addOutletForm" novalidate>
+                    <div class="form-group">
+                        <label for="outletName">Outlet Name <span class="required">*</span></label>
+                        <input type="text" id="outletName" name="outletName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="outletCuisine">Cuisine Type (e.g., Fast Food, North Indian) <span class="required">*</span></label>
+                        <input type="text" id="outletCuisine" name="outletCuisine" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="outletLocation">Location / Address <span class="required">*</span></label>
+                        <input type="text" id="outletLocation" name="outletLocation" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="yourEmail">Your Email (for verification) <span class="required">*</span></label>
+                        <input type="email" id="yourEmail" name="yourEmail" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Suggestion</button>
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+            </section>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2024 FoodieSpot. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
-    `;
+    </footer>
 
-    card.addEventListener('click', () => showRestaurantModal(data));
-
-    return card;
-}
-
-
-// Main function to populate the restaurant grid
-function populateRestaurantGrid() {
-    const gridContainer = document.getElementById('restaurantsGrid');
-    gridContainer.innerHTML = ''; // Clear existing cards
-
-    restaurantData.forEach(data => {
-        const card = createRestaurantCard(data);
-        gridContainer.appendChild(card);
-    });
-}
-
-// Main function to update restaurant display based on current filters
-function updateRestaurantDisplay() {
-    const outletCards = document.querySelectorAll('#restaurantsGrid .outlet-card');
-    let visibleCount = 0;
-    
-    outletCards.forEach(card => {
-        const name = card.dataset.name.toLowerCase();
-        const cuisine = card.dataset.cuisine.toLowerCase();
-        const dishes = card.dataset.dishes?.toLowerCase() || '';
-        
-        // Check if matches current search term
-        const matchesSearch = !currentSearchTerm ||
-                               name.includes(currentSearchTerm) ||
-                               cuisine.includes(currentSearchTerm) ||
-                               dishes.includes(currentSearchTerm);
-        
-        // Check if matches current filter
-        const matchesFilter = currentFilter === 'all' ||
-                               cuisine.includes(currentFilter); // Check if cuisine includes the filter term
-        
-        if (matchesSearch && matchesFilter) {
-            card.style.display = 'flex'; // Use flex for proper layout
-            visibleCount++;
-        } else {
-            card.style.display = 'none';
-        }
-    });
-    
-    // Update search results message
-    const messageElement = document.getElementById('searchResultsMessage');
-    if (currentSearchTerm || currentFilter !== 'all') { // Show message if any search or filter is active
-        messageElement.style.display = 'block';
-        let messageText = '';
-        if (currentSearchTerm && currentFilter !== 'all') {
-            messageText = `Found ${visibleCount} ${currentFilter} restaurant${visibleCount !== 1 ? 's' : ''} matching "${currentSearchTerm}"`;
-        } else if (currentSearchTerm) {
-            messageText = `Found ${visibleCount} restaurant${visibleCount !== 1 ? 's' : ''} matching "${currentSearchTerm}"`;
-        } else if (currentFilter !== 'all') {
-            messageText = `Showing ${visibleCount} ${currentFilter} restaurant${visibleCount !== 1 ? 's' : ''}`;
-        }
-
-        if (visibleCount === 0) {
-            messageElement.textContent = `No results found for your search/filter.`;
-            messageElement.className = 'search-results-message show no-results';
-        } else {
-            messageElement.textContent = messageText;
-            messageElement.className = 'search-results-message show results-found';
-        }
-    } else {
-        messageElement.style.display = 'none';
-    }
-}
-
-// ====== THEME TOGGLE FUNCTIONALITY ======
-
-const themeToggle = document.querySelector('.theme-toggle');
-const moonIcon = '<i class="fas fa-moon"></i>'; // Make sure you have Font Awesome linked
-const sunIcon = '<i class="fas fa-sun"></i>';
-
-// Function to apply the saved theme on page load
-function applyInitialTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    themeToggle.innerHTML = savedTheme === 'dark' ? sunIcon : moonIcon;
-
-    // Set CSS variables for RGB of primary color for use in rgba
-    const style = getComputedStyle(document.body);
-    const primaryColor = style.getPropertyValue('--primary-color');
-    // Convert hex to rgb for rgba usage if primaryColor is hex
-    if (primaryColor.startsWith('#')) {
-        let hex = primaryColor.slice(1);
-        if (hex.length === 3) hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-        const r = parseInt(hex.substring(0, 2), 16);
-        const g = parseInt(hex.substring(2, 4), 16);
-        const b = parseInt(hex.substring(4, 6), 16);
-        document.documentElement.style.setProperty('--primary-color-rgb', `${r}, ${g}, ${b}`);
-    } else if (primaryColor.startsWith('rgb')) {
-        const rgbMatch = primaryColor.match(/\d+/g);
-        if (rgbMatch) {
-            document.documentElement.style.setProperty('--primary-color-rgb', `${rgbMatch[0]}, ${rgbMatch[1]}, ${rgbMatch[2]}`);
-        }
-    }
-}
-
-// Event listener for the theme toggle button
-themeToggle.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    themeToggle.innerHTML = newTheme === 'dark' ? sunIcon : moonIcon;
-    applyInitialTheme(); // Re-apply to update RGB variable if needed
-});
-
-// Apply the theme when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', applyInitialTheme);
-
-// Toggle favorite button
-function toggleFavorite(btn) {
-    const icon = btn.querySelector('i');
-    if (icon.classList.contains('far')) { // Currently empty heart
-        icon.classList.remove('far');
-        icon.classList.add('fas'); // Fill heart
-        btn.style.color = '#ff4757'; // Keep explicit color for filled heart for visibility
-    } else { // Currently filled heart
-        icon.classList.remove('fas');
-        icon.classList.add('far'); // Empty heart
-        btn.style.color = 'var(--primary-color)'; // Revert to primary color from CSS variable
-    }
-}
-
-// Restaurant Modal Functions
-function showRestaurantModal(data) { // Pass the whole data object
-    document.getElementById('modalRestaurantName').textContent = data.name;
-    document.getElementById('modalRestaurantCuisine').textContent = data.cuisine;
-    document.getElementById('modalRestaurantRating').textContent = data.rating;
-    document.getElementById('modalRestaurantLocation').textContent = data.location;
-    document.getElementById('modalRestaurantTimings').textContent = data.timings;
-    document.getElementById('modalRestaurantContact').textContent = data.contact;
-    document.getElementById('modalRestaurantMinOrder').textContent = data.minOrder;
-    
-    const onlineOrderButtonsDiv = document.getElementById('onlineOrderButtons');
-    onlineOrderButtonsDiv.innerHTML = ''; // Clear previous buttons
-
-    if (data.swiggyLink) {
-        const swiggyBtn = document.createElement('a');
-        swiggyBtn.href = data.swiggyLink;
-        swiggyBtn.target = '_blank';
-        swiggyBtn.className = 'order-link swiggy';
-        swiggyBtn.innerHTML = '<i class="fas fa-shopping-bag"></i> Order on Swiggy';
-        onlineOrderButtonsDiv.appendChild(swiggyBtn);
-    }
-    
-    if (data.zomatoLink) {
-        const zomatoBtn = document.createElement('a');
-        zomatoBtn.href = data.zomatoLink;
-        zomatoBtn.target = '_blank';
-        zomatoBtn.className = 'order-link zomato';
-        zomatoBtn.innerHTML = '<i class="fas fa-pizza-slice"></i> Order on Zomato';
-        onlineOrderButtonsDiv.appendChild(zomatoBtn);
-    }
-
-    // Hide the container if no links are present
-    if (!data.swiggyLink && !data.zomatoLink) {
-        onlineOrderButtonsDiv.style.display = 'none';
-    } else {
-        onlineOrderButtonsDiv.style.display = 'flex'; // Show if at least one link
-    }
-
-
-    document.getElementById('modalRestaurantDishes').textContent = data.dishes;
-    
-    const callOrderBadge = document.getElementById('modalRestaurantCallOrder');
-    callOrderBadge.textContent = data.takesCallOrders ? 'Yes' : 'No';
-    callOrderBadge.className = data.takesCallOrders ? 'badge yes' : 'badge no';
-    
-    // Update menu images
-    const menuGallery = document.getElementById('menuGallery');
-    const menuImagesSection = document.getElementById('menuImagesSection');
-    const noMenuImagesMessage = menuImagesSection.querySelector('.no-menu-images-message');
-    menuGallery.innerHTML = ''; // Clear existing images
-    
-    if (data.menuImages && data.menuImages.length > 0) {
-        menuImagesSection.style.display = 'block';
-        noMenuImagesMessage.style.display = 'none'; // Hide the "no images" message
-        
-        data.menuImages.forEach(imageUrl => {
-            const imageContainer = document.createElement('div');
-            imageContainer.className = 'menu-image';
-            imageContainer.onclick = (event) => {
-                event.stopPropagation(); // Prevent modal from closing when clicking image in gallery
-                openImageModal(imageUrl);
-            };
+    <div id="restaurantModal" class="modal">
+        <div class="modal-content restaurant-detail-modal">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2 id="modalRestaurantName">Restaurant Name</h2>
+            <p><i class="fas fa-utensils"></i><strong class="modal-cuisine">Cuisine: <span id="modalRestaurantCuisine"></span></strong></p>
+            <p><i class="fas fa-star"></i><strong class="modal-rating">Rating: <span id="modalRestaurantRating"></span></strong></p>
+            <p><i class="fas fa-map-marker-alt"></i><strong class="modal-location">Location: <span id="modalRestaurantLocation"></span></strong></p>
+            <p><i class="fas fa-clock"></i><strong class="modal-timings">Timings: <span id="modalRestaurantTimings"></span></strong></p>
+            <p><i class="fas fa-phone"></i><strong class="modal-contact">Contact: <span id="modalRestaurantContact"></span></strong></p>
+            <p><i class="fas fa-rupee-sign"></i><strong class="modal-min-order">Min. Order: ₹<span id="modalRestaurantMinOrder"></span></strong></p>
+            <p><i class="fas fa-concierge-bell"></i><strong class="modal-dishes">Popular Dishes: <span id="modalRestaurantDishes"></span></strong></p>
+            <p><i class="fas fa-mobile-alt"></i><strong class="modal-call-order">Accepts Call Orders? <span id="modalRestaurantCallOrder" class="badge"></span></strong></p>
             
-            const img = document.createElement('img');
-            img.src = imageUrl;
-            img.alt = `${data.name} menu`;
-            
-            imageContainer.appendChild(img);
-            menuGallery.appendChild(imageContainer);
-        });
-    } else {
-        menuImagesSection.style.display = 'block'; // Keep section visible but show message
-        noMenuImagesMessage.style.display = 'block'; // Show the "no images" message
-    }
-    
-    document.getElementById('restaurantModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
+            <div id="onlineOrderButtons" class="online-order-buttons">
+                </div>
 
-function closeModal() {
-    document.getElementById('restaurantModal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-}
+            <div id="menuImagesSection" class="menu-images-section">
+                <h3>Menu / Gallery</h3>
+                <div id="menuGallery" class="menu-gallery">
+                    </div>
+            </div>
+        </div>
+    </div>
 
-// Image Modal Functions
-function openImageModal(imageUrl) {
-    document.getElementById('modalImage').src = imageUrl;
-    document.getElementById('imageModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeInfoModal()">&times;</span>
+            <h2 id="infoModalTitle"></h2>
+            <div id="infoModalContent"></div>
+        </div>
+    </div>
 
-function closeImageModal() {
-    document.getElementById('imageModal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-}
+    <div id="imageModal" class="modal" onclick="closeImageModal()">
+        <span class="close-button" onclick="closeImageModal()">&times;</span>
+        <div class="image-modal-content">
+            <img id="modalImage" src="" alt="Full size menu image">
+        </div>
+    </div>
 
-// Add Outlet Form Handler
-document.addEventListener('DOMContentLoaded', function() {
-    const addOutletForm = document.getElementById('addOutletForm');
-    if (addOutletForm) {
-        addOutletForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
 
-            const formMessage = document.getElementById('formMessage');
-            formMessage.style.display = 'block';
+    <script src="script.js"></script>
 
-            const outletName = document.getElementById('outletName').value;
-            const outletCuisine = document.getElementById('outletCuisine').value;
-            const outletLocation = document.getElementById('outletLocation').value;
-            const yourEmail = document.getElementById('yourEmail').value;
-
-            if (outletName && outletCuisine && outletLocation) { // Email is optional, so only check required fields
-                // Simulate sending data (in a real app, you'd send this to a backend)
-                console.log('New Outlet Suggestion:', {
-                    name: outletName,
-                    cuisine: outletCuisine,
-                    location: outletLocation,
-                    email: yourEmail // Email can be empty string
-                });
-
-                formMessage.textContent = 'Thank you for your suggestion! We will review it shortly.';
-                formMessage.className = 'form-message success';
-                addOutletForm.reset(); // Clear the form
-            } else {
-                formMessage.textContent = 'Please fill in all required fields (Outlet Name, Cuisine, Location).';
-                formMessage.className = 'form-message error';
-            }
-        });
-    }
-
-    // Initialize the page
-    populateRestaurantGrid();
-    
-    showPage('home'); // Show home page initially
-    
-    // Add animation to elements when they come into view
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = 'translateY(0)';
-            } else {
-                // Optional: reset for re-animation if element scrolls out of view
-                // entry.target.style.opacity = 0;
-                // entry.target.style.transform = 'translateY(20px)';
-            }
-        });
-    }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
-
-    document.querySelectorAll('.search-section, .outlet-card, .add-outlet-form-section, .filter-section, .browse-all-btn, .info-links, .hero-section').forEach(el => {
-        el.style.opacity = 0;
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-        observer.observe(el);
-    });
-
-    // Initialize search inputs
-    document.getElementById('homeSearchInput').addEventListener('input', handleSearch);
-    document.getElementById('restaurantSearchInput').addEventListener('input', handleSearch);
-
-    // Initial display update for restaurants to show all by default
-    updateRestaurantDisplay();
-});
+</body>
+</html>
