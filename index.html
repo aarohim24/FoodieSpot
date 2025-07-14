@@ -1,184 +1,1365 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodieSpot - Your Local Food Guide</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <link rel="stylesheet" href="style.css">
+    <title>FoodieSpot - UPES/Bidholi Restaurants</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-    <header>
-        <div class="container header-content">
-            <div class="logo">
-                <img src="https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/logo.png" alt="FoodieSpot Logo">
-                <h1>FoodieSpot</h1>
+    <div class="container">
+        <nav class="nav">
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="showPage('home')">Home</button>
+                <button class="nav-btn add-btn" onclick="showAddForm()">Add an outlet</button>
             </div>
-            <nav>
-                <button class="nav-btn active" onclick="showPage('home', event)">Home</button>
-                <button class="nav-btn" onclick="showPage('restaurants', event)">Restaurants</button>
-                <button class="nav-btn" onclick="showPage('addOutlet', event)">Add Outlet</button>
-                <button class="nav-btn theme-toggle" aria-label="Toggle theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </nav>
-        </div>
-    </header>
+        </nav>
 
-    <main class="container">
-
-        <div id="homePage" class="page">
-            <section class="hero-section">
-                <div class="hero-text">
-                    <h2>Discover Your Next Favorite Meal</h2>
-                    <p>Find the best restaurants, cafes, and eateries near UPES, Dehradun.</p>
-                </div>
+        <div class="home-page" id="homePage">
+            <section class="title-section">
+                <h1 class="main-title">FOODIESPOT</h1>
+                <p class="headline">Discover the best food options around UPES campus</p>
             </section>
-            
+
             <section class="search-section">
-                <div class="search-bar">
-                    <input type="text" id="homeSearchInput" placeholder="Search for restaurants, cuisine, or dishes...">
-                    <span class="clear-search-btn" onclick="clearSearch('home')">&times;</span>
+                <div class="search-header">
+                    <h2 class="search-title">Find Your Perfect Meal</h2>
+                    <p class="search-subtitle">Search by restaurant name, cuisine type, or your favorite dish</p>
                 </div>
-            </section>
-            
-            <section class="filter-section">
-                <h3>Or Filter by Cuisine</h3>
-                <div id="homeFilterButtons" class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="fast food">Fast Food</button>
-                    <button class="filter-btn" data-filter="north indian">North Indian</button>
-                    <button class="filter-btn" data-filter="cafe">Cafe</button>
-                    <button class="filter-btn" data-filter="pizza">Pizza</button>
-                    <button class="filter-btn" data-filter="bakery">Bakery</button>
+                <div class="search-box">
+                    <input type="text" id="homeSearchInput" placeholder="Search for restaurants, cuisines, or dishes..." oninput="handleSearch(event)">
+                    <i class="fas fa-search"></i>
+                    <button class="clear-search" onclick="clearSearch('home')" title="Clear search">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
-            </section>
-
-            <button class="browse-all-btn" onclick="showPage('restaurants', event)">
-                Browse All Restaurants <i class="fas fa-arrow-right"></i>
-            </button>
-
-            <div class="info-links">
-                <a href="#" onclick="showInfoModal('about')">About Us</a>
-                <a href="#" onclick="showInfoModal('contact')">Contact</a>
-                <a href="#" onclick="showInfoModal('privacy')">Privacy Policy</a>
-                <a href="#" onclick="showInfoModal('terms')">Terms of Service</a>
-            </div>
-        </div>
-
-        <div id="restaurantsPage" class="page" style="display: none;">
-            <h2 class="page-title">All Restaurants</h2>
-            <p class="section-description">
-                Explore a wide variety of dining options available. Use the search and filters to find exactly what you're looking for.
-            </p>
-            <div class="search-bar">
-                <input type="text" id="restaurantSearchInput" placeholder="Search on this page...">
-                 <span class="clear-search-btn" onclick="clearSearch('restaurants')">&times;</span>
-            </div>
-
-            <div id="searchResultsMessage" class="search-results-message"></div>
-            
-            <section class="filter-section">
                 <div class="filter-buttons">
-                     <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="cafe">Cafés</button>
                     <button class="filter-btn" data-filter="fast food">Fast Food</button>
-                    <button class="filter-btn" data-filter="north indian">North Indian</button>
-                    <button class="filter-btn" data-filter="cafe">Cafe</button>
+                    <button class="filter-btn" data-filter="restaurant">Restaurants</button>
                     <button class="filter-btn" data-filter="pizza">Pizza</button>
-                    <button class="filter-btn" data-filter="bakery">Bakery</button>
+                    <button class="filter-btn" data-filter="north indian">North Indian</button>
                 </div>
-            </section>
-            
-            <div id="restaurantsGrid" class="outlet-grid">
-                </div>
-        </div>
-
-        <div id="addOutletPage" class="page" style="display: none;">
-            <h2 class="page-title">Suggest a New Outlet</h2>
-            <p class="section-description">
-                Know a great place that's not on our list? Let us know! Fill out the form below and we'll look into adding it.
-            </p>
-            <section class="add-outlet-form-section">
-                <form id="addOutletForm" novalidate>
-                    <div class="form-group">
-                        <label for="outletName">Outlet Name <span class="required">*</span></label>
-                        <input type="text" id="outletName" name="outletName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="outletCuisine">Cuisine Type (e.g., Fast Food, North Indian) <span class="required">*</span></label>
-                        <input type="text" id="outletCuisine" name="outletCuisine" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="outletLocation">Location / Address <span class="required">*</span></label>
-                        <input type="text" id="outletLocation" name="outletLocation" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="yourEmail">Your Email (for verification) <span class="required">*</span></label>
-                        <input type="email" id="yourEmail" name="yourEmail" required>
-                    </div>
-                    <button type="submit" class="submit-btn">Submit Suggestion</button>
-                    <div id="formMessage" class="form-message"></div>
-                </form>
+                <a href="#" class="browse-all-btn" onclick="showPage('restaurants'); return false;">
+                    Browse All Restaurants <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                </a>
             </section>
         </div>
 
-    </main>
+        <!-- Restaurants Page -->
+        <div class="restaurants-page" id="restaurantsPage" style="display: none;">
+            <div class="page-header">
+                <h1 class="page-title">Find all food options near UPES</h1>
+            </div>
 
-    <footer>
-        <div class="container footer-content">
-            <p>&copy; 2024 FoodieSpot. All Rights Reserved.</p>
-            <div class="social-links">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <div class="search-box" style="max-width: 600px; margin: 0 auto 30px;">
+                <input type="text" id="restaurantSearchInput" placeholder="Search restaurants by name, cuisine, or dish..." oninput="handleSearch(event)">
+                <i class="fas fa-search"></i>
+                <button class="clear-search" onclick="clearSearch('restaurant')" title="Clear search">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="search-results-message" id="searchResultsMessage"></div>
+
+            <div class="grid-container" id="restaurantsGrid">
+                <!-- Restaurant cards will be inserted by JavaScript -->
+                <!-- Restaurant 1 -->
+                <div class="outlet-card" data-name="anup roll & shake fast food" data-cuisine="fast food" data-dishes="rolls, shakes, burgers, wraps">
+                    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <div class="outlet-header">
+                        <h2 class="outlet-name">Anup Roll & Shake Fast Food</h2>
+                        <p class="outlet-cuisine">Fast Food</p>
+                        <span class="rating">4.0 ★ (100+ reviews)</span>
+                        <div class="phone-order">
+                            <i class="fas fa-phone-alt"></i> Accepts phone orders
+                        </div>
+                    </div>
+                    <div class="outlet-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Min. Order:</span>
+                            <span class="detail-value">₹100</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Distance:</span>
+                            <span class="detail-value">0.5 km (8 min walk)</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Status:</span>
+                            <span class="status open">Open • Closes at 4AM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurant 2 -->
+                <div class="outlet-card" data-name="isquare restaurant and cafe" data-cuisine="multi-cuisine" data-dishes="indian, chinese, continental, beverages">
+                    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <div class="outlet-header">
+                        <h2 class="outlet-name">Isquare Restaurant And Cafe</h2>
+                        <p class="outlet-cuisine">Multi-Cuisine</p>
+                        <span class="rating">4.2 ★ (150+ reviews)</span>
+                        <div class="phone-order">
+                            <i class="fas fa-phone-alt"></i> Accepts phone orders
+                        </div>
+                    </div>
+                    <div class="outlet-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Min. Order:</span>
+                            <span class="detail-value">₹150</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Distance:</span>
+                            <span class="detail-value">0.3 km (5 min walk)</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Status:</span>
+                            <span class="status open">Open • Closes at 11:30PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurant 3 -->
+                <div class="outlet-card" data-name="all rounder chacha restaurant & cafe" data-cuisine="north indian" data-dishes="roti, dal, sabzi, curry, biryani">
+                    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <div class="outlet-header">
+                        <h2 class="outlet-name">All Rounder Chacha Restaurant & Cafe</h2>
+                        <p class="outlet-cuisine">North Indian</p>
+                        <span class="rating">4.1 ★ (120+ reviews)</span>
+                        <div class="phone-order">
+                            <i class="fas fa-phone-alt"></i> Accepts phone orders
+                        </div>
+                    </div>
+                    <div class="outlet-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Min. Order:</span>
+                            <span class="detail-value">₹120</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Distance:</span>
+                            <span class="detail-value">0.7 km (10 min walk)</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Status:</span>
+                            <span class="status open">Open • 24 Hours</span>
+                        </div>
+                    </div>
+                </div>
+
+        <!-- Restaurant 4 -->
+<div class="outlet-card" data-name="maal & chooz" data-cuisine="fast food, snacks" data-dishes="snacks, fast food, sandwiches, momos">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Maal & Chooz</h2>
+        <p class="outlet-cuisine">Fast Food, Snacks</p>
+        <span class="rating">4.0 ★ (90+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹80</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.6 km (9 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 1:45AM</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 5 -->
+<div class="outlet-card" data-name="swadu cafe" data-cuisine="cafe, continental" data-dishes="coffee, sandwiches, pasta, desserts">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Swadu Cafe</h2>
+        <p class="outlet-cuisine">Cafe, Continental</p>
+        <span class="rating">4.3 ★ (110+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹150</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.4 km (6 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 10:45PM</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 6 -->
+<div class="outlet-card" data-name="romnik pizza" data-cuisine="pizza, fast food" data-dishes="pizza, garlic bread, pasta, wings">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Romnik Pizza</h2>
+        <p class="outlet-cuisine">Pizza, Fast Food</p>
+        <span class="rating">4.1 ★ (85+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹200</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.3 km (5 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 11PM</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 7 -->
+<div class="outlet-card" data-name="having craving" data-cuisine="fast food, snacks" data-dishes="burgers, fries, momos, sandwiches">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Having Craving</h2>
+        <p class="outlet-cuisine">Fast Food, Snacks</p>
+        <span class="rating">3.9 ★ (75+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-times-circle"></i> No phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹100</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.2 km (3 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 11PM</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 8 -->
+<div class="outlet-card" data-name="emotions confectionery" data-cuisine="bakery, desserts" data-dishes="cakes, pastries, cookies, desserts">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Emotions Confectionery</h2>
+        <p class="outlet-cuisine">Bakery, Desserts</p>
+        <span class="rating">4.4 ★ (130+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹80</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.4 km (6 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 9:15PM</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 9 -->
+<div class="outlet-card" data-name="mentl parathe wale" data-cuisine="north indian" data-dishes="paratha, dal, paneer, lassi">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Mentl Parathe Wale</h2>
+        <p class="outlet-cuisine">North Indian</p>
+        <span class="rating">4.2 ★ (95+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹120</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.3 km (5 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 10:15PM</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 10 -->
+<div class="outlet-card" data-name="chai sutta bar" data-cuisine="cafe, beverages" data-dishes="tea, coffee, snacks, shakes">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Chai Sutta Bar</h2>
+        <p class="outlet-cuisine">Cafe, Beverages</p>
+        <span class="rating">4.3 ★ (140+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹80</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.2 km (3 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 11PM</span>
+        </div>
+    </div>
+</div>
+
+
+        <!-- Restaurant 11 -->
+        <div class="outlet-card" data-name="mahi" data-cuisine="multi-cuisine" data-dishes="indian, chinese, fast food">
+            <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                <i class="far fa-heart"></i>
+            </button>
+            <div class="outlet-header">
+                <h2 class="outlet-name">Mahi</h2>
+                <p class="outlet-cuisine">Multi-Cuisine</p>
+                <span class="rating">4.0 ★ (80+ reviews)</span>
+                <div class="phone-order">
+                    <i class="fas fa-phone-alt"></i> Accepts phone orders
+                </div>
+            </div>
+            <div class="outlet-details">
+                <div class="detail-row">
+                    <span class="detail-label">Min. Order:</span>
+                    <span class="detail-value">₹200</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Distance:</span>
+                    <span class="detail-value">0.4 km (6 min walk)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="status open">Open • Closes at 10PM</span>
+                </div>
             </div>
         </div>
-    </footer>
 
-    <div id="restaurantModal" class="modal">
-        <div class="modal-content restaurant-detail-modal">
-            <span class="close-button" onclick="closeModal()">&times;</span>
-            <h2 id="modalRestaurantName">Restaurant Name</h2>
-            <p><i class="fas fa-utensils"></i><strong class="modal-cuisine">Cuisine: <span id="modalRestaurantCuisine"></span></strong></p>
-            <p><i class="fas fa-star"></i><strong class="modal-rating">Rating: <span id="modalRestaurantRating"></span></strong></p>
-            <p><i class="fas fa-map-marker-alt"></i><strong class="modal-location">Location: <span id="modalRestaurantLocation"></span></strong></p>
-            <p><i class="fas fa-clock"></i><strong class="modal-timings">Timings: <span id="modalRestaurantTimings"></span></strong></p>
-            <p><i class="fas fa-phone"></i><strong class="modal-contact">Contact: <span id="modalRestaurantContact"></span></strong></p>
-            <p><i class="fas fa-rupee-sign"></i><strong class="modal-min-order">Min. Order: ₹<span id="modalRestaurantMinOrder"></span></strong></p>
-            <p><i class="fas fa-concierge-bell"></i><strong class="modal-dishes">Popular Dishes: <span id="modalRestaurantDishes"></span></strong></p>
-            <p><i class="fas fa-mobile-alt"></i><strong class="modal-call-order">Accepts Call Orders? <span id="modalRestaurantCallOrder" class="badge"></span></strong></p>
-            
-            <div id="onlineOrderButtons" class="online-order-buttons">
+        <!-- Restaurant 12 -->
+        <div class="outlet-card" data-name="mayank" data-cuisine="multi-cuisine" data-dishes="indian, chinese, fast food">
+            <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                <i class="far fa-heart"></i>
+            </button>
+            <div class="outlet-header">
+                <h2 class="outlet-name">Mayank</h2>
+                <p class="outlet-cuisine">Multi-Cuisine</p>
+                <span class="rating">4.1 ★ (90+ reviews)</span>
+                <div class="phone-order">
+                    <i class="fas fa-phone-alt"></i> Accepts phone orders
+                </div>
+            </div>
+            <div class="outlet-details">
+                <div class="detail-row">
+                    <span class="detail-label">Min. Order:</span>
+                    <span class="detail-value">₹150</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Distance:</span>
+                    <span class="detail-value">0.5 km (8 min walk)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="status open">Open • 9AM - 9PM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restaurant 13 -->
+        <div class="outlet-card" data-name="meenakshi" data-cuisine="north indian" data-dishes="thali, curry, rice, roti">
+            <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                <i class="far fa-heart"></i>
+            </button>
+            <div class="outlet-header">
+                <h2 class="outlet-name">Meenakshi</h2>
+                <p class="outlet-cuisine">North Indian</p>
+                <span class="rating">4.0 ★ (85+ reviews)</span>
+                <div class="phone-order">
+                    <i class="fas fa-phone-alt"></i> Accepts phone orders
+                </div>
+            </div>
+            <div class="outlet-details">
+                <div class="detail-row">
+                    <span class="detail-label">Min. Order:</span>
+                    <span class="detail-value">₹120</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Distance:</span>
+                    <span class="detail-value">0.3 km (5 min walk)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="status open">Open • 11AM - 10PM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restaurant 14 -->
+        <div class="outlet-card" data-name="forkful" data-cuisine="fast food, cafe" data-dishes="burgers, sandwiches, shakes">
+            <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                <i class="far fa-heart"></i>
+            </button>
+            <div class="outlet-header">
+                <h2 class="outlet-name">Forkful</h2>
+                <p class="outlet-cuisine">Fast Food, Cafe</p>
+                <span class="rating">4.2 ★ (100+ reviews)</span>
+                <div class="phone-order">
+                    <i class="fas fa-phone-alt"></i> Accepts phone orders
+                </div>
+            </div>
+            <div class="outlet-details">
+                <div class="detail-row">
+                    <span class="detail-label">Min. Order:</span>
+                    <span class="detail-value">₹150</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Distance:</span>
+                    <span class="detail-value">0.2 km (3 min walk)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="status open">Open • Till 3AM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restaurant 15 -->
+        <div class="outlet-card" data-name="tnb taste best cafe" data-cuisine="cafe, multi-cuisine" data-dishes="coffee, sandwiches, pasta">
+            <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                <i class="far fa-heart"></i>
+            </button>
+            <div class="outlet-header">
+                <h2 class="outlet-name">TNB Taste Best Cafe</h2>
+                <p class="outlet-cuisine">Cafe, Multi-Cuisine</p>
+                <span class="rating">4.1 ★ (95+ reviews)</span>
+                <div class="phone-order">
+                    <i class="fas fa-phone-alt"></i> Accepts phone orders
+                </div>
+            </div>
+            <div class="outlet-details">
+                <div class="detail-row">
+                    <span class="detail-label">Min. Order:</span>
+                    <span class="detail-value">₹120</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Distance:</span>
+                    <span class="detail-value">0.4 km (6 min walk)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="status open">Open • 10AM - 10PM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restaurant 16 -->
+        <div class="outlet-card" data-name="salview" data-cuisine="multi-cuisine" data-dishes="indian, chinese, fast food">
+            <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                <i class="far fa-heart"></i>
+            </button>
+            <div class="outlet-header">
+                <h2 class="outlet-name">Salview</h2>
+                <p class="outlet-cuisine">Multi-Cuisine</p>
+                <span class="rating">4.0 ★ (80+ reviews)</span>
+                <div class="phone-order">
+                    <i class="fas fa-phone-alt"></i> Accepts phone orders
+                </div>
+            </div>
+            <div class="outlet-details">
+                <div class="detail-row">
+                    <span class="detail-label">Min. Order:</span>
+                    <span class="detail-value">₹150</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Distance:</span>
+                    <span class="detail-value">0.5 km (8 min walk)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="status open">Open • 8AM - 12AM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restaurant 17 -->
+        <div class="outlet-card" data-name="mr burger" data-cuisine="fast food" data-dishes="burgers, fries, shakes">
+            <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                <i class="far fa-heart"></i>
+            </button>
+            <div class="outlet-header">
+                <h2 class="outlet-name">Mr Burger</h2>
+                <p class="outlet-cuisine">Fast Food</p>
+                <span class="rating">4.0 ★ (75+ reviews)</span>
+                <div class="phone-order">
+                    <i class="fas fa-phone-alt"></i> Accepts phone orders
+                </div>
+            </div>
+            <div class="outlet-details">
+                <div class="detail-row">
+                    <span class="detail-label">Min. Order:</span>
+                    <span class="detail-value">₹100</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Distance:</span>
+                    <span class="detail-value">0.3 km (5 min walk)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="status open">Open • 10AM - 10PM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restaurant 18 -->
+        <div class="outlet-card" data-name="big little things" data-cuisine="cafe, continental" data-dishes="coffee, sandwiches, pasta">
+            <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                <i class="far fa-heart"></i>
+            </button>
+            <div class="outlet-header">
+                <h2 class="outlet-name">Big Little Things</h2>
+                <p class="outlet-cuisine">Cafe, Continental</p>
+                <span class="rating">4.3 ★ (110+ reviews)</span>
+                <div class="phone-order">
+                    <i class="fas fa-phone-alt"></i> Accepts phone orders
+                </div>
+            </div>
+            <div class="outlet-details">
+                <div class="detail-row">
+                    <span class="detail-label">Min. Order:</span>
+                    <span class="detail-value">₹150</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Distance:</span>
+                    <span class="detail-value">0.4 km (6 min walk)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="status open">Open • Mon-Fri: 10AM-11PM, Sun: 12-8PM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restaurant 19 -->
+        <div class="outlet-card" data-name="tif" data-cuisine="multi-cuisine" data-dishes="indian, chinese, fast food">
+            <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                <i class="far fa-heart"></i>
+            </button>
+            <div class="outlet-header">
+                <h2 class="outlet-name">TIF</h2>
+                <p class="outlet-cuisine">Multi-Cuisine</p>
+                <span class="rating">4.0 ★ (80+ reviews)</span>
+                <div class="phone-order">
+                    <i class="fas fa-phone-alt"></i> Accepts phone orders
+                </div>
+            </div>
+            <div class="outlet-details">
+                <div class="detail-row">
+                    <span class="detail-label">Min. Order:</span>
+                    <span class="detail-value">₹120</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Distance:</span>
+                    <span class="detail-value">0.3 km (5 min walk)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="status open">Open • 10AM - 10PM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restaurant 20 -->
+        <div class="outlet-card" data-name="pizza hub" data-cuisine="pizza, fast food" data-dishes="pizza, garlic bread, pasta">
+            <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                <i class="far fa-heart"></i>
+            </button>
+            <div class="outlet-header">
+                <h2 class="outlet-name">Pizza Hub</h2>
+                <p class="outlet-cuisine">Pizza, Fast Food</p>
+                <span class="rating">4.1 ★ (90+ reviews)</span>
+                <div class="phone-order">
+                    <i class="fas fa-phone-alt"></i> Accepts phone orders
+                </div>
+            </div>
+            <div class="outlet-details">
+                <div class="detail-row">
+                    <span class="detail-label">Min. Order:</span>
+                    <span class="detail-value">₹200</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Distance:</span>
+                    <span class="detail-value">0.5 km (8 min walk)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="status open">Open • 11AM - 11PM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restaurant 21 -->
+        <div class="outlet-card" data-name="big bite" data-cuisine="fast food" data-dishes="burgers, fries, sandwiches">
+            <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                <i class="far fa-heart"></i>
+            </button>
+            <div class="outlet-header">
+                <h2 class="outlet-name">Big Bite</h2>
+                <p class="outlet-cuisine">Fast Food</p>
+                <span class="rating">4.0 ★ (85+ reviews)</span>
+                <div class="phone-order">
+                    <i class="fas fa-phone-alt"></i> Accepts phone orders
+                </div>
+            </div>
+            <div class="outlet-details">
+                <div class="detail-row">
+                    <span class="detail-label">Min. Order:</span>
+                    <span class="detail-value">₹100</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Distance:</span>
+                    <span class="detail-value">0.3 km (5 min walk)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="status open">Open • 11AM - 11PM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restaurant 22 -->
+        <div class="outlet-card" data-name="spicy bowl" data-cuisine="indian, chinese" data-dishes="curry, rice, noodles">
+            <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                <i class="far fa-heart"></i>
+            </button>
+            <div class="outlet-header">
+                <h2 class="outlet-name">Spicy Bowl</h2>
+                <p class="outlet-cuisine">Indian, Chinese</p>
+                <span class="rating">4.0 ★ (80+ reviews)</span>
+                <div class="phone-order">
+                    <i class="fas fa-phone-alt"></i> Accepts phone orders
+                </div>
+            </div>
+            <div class="outlet-details">
+                <div class="detail-row">
+                    <span class="detail-label">Min. Order:</span>
+                    <span class="detail-value">₹120</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Distance:</span>
+                    <span class="detail-value">0.4 km (6 min walk)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="status open">Open • 9AM - 9:30PM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restaurant 23 -->
+        <div class="outlet-card" data-name="snacks Adda" data-cuisine="multi-cuisine" data-dishes="Chinese, North Indian, Rolls, Momos, Shake">
+            <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                <i class="far fa-heart"></i>
+            </button>
+            <div class="outlet-header">
+                <h2 class="outlet-name">Snacks Adda</h2>
+                <p class="outlet-cuisine">Multi-Cuisine</p>
+                <span class="rating">4.0 ★ (75+ reviews)</span>
+                <div class="phone-order">
+                    <i class="fas fa-phone-alt"></i> Accepts phone orders
+                </div>
+            </div>
+            <div class="outlet-details">
+                <div class="detail-row">
+                    <span class="detail-label">Min. Order:</span>
+                    <span class="detail-value">₹150</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Distance:</span>
+                    <span class="detail-value">0.3 km (5 min walk)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="status open">Open • 11AM - 11PM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restaurant 24 -->
+        <div class="outlet-card" data-name="anavrin" data-cuisine="cafe, continental" data-dishes="coffee, sandwiches, pasta">
+            <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                <i class="far fa-heart"></i>
+            </button>
+            <div class="outlet-header">
+                <h2 class="outlet-name">Anavrin</h2>
+                <p class="outlet-cuisine">Cafe, Continental</p>
+                <span class="rating">4.2 ★ (90+ reviews)</span>
+                <div class="phone-order">
+                    <i class="fas fa-phone-alt"></i> Accepts phone orders
+                </div>
+            </div>
+            <div class="outlet-details">
+                <div class="detail-row">
+                    <span class="detail-label">Min. Order:</span>
+                    <span class="detail-value">₹150</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Distance:</span>
+                    <span class="detail-value">0.4 km (6 min walk)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="status open">Open • 10AM - 10PM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Restaurant 25 -->
+<div class="outlet-card" data-name="sandeep fast food" data-cuisine="fast food" data-dishes="snacks, fast food">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Sandeep Fast Food</h2>
+        <p class="outlet-cuisine">Fast Food</p>
+        <span class="rating">3.9 ★ (80+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹80</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.3 km (5 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 11PM</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 26 -->
+<div class="outlet-card" data-name="shubh pahadi" data-cuisine="north indian" data-dishes="pahadi food, thali">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Shubh Pahadi</h2>
+        <p class="outlet-cuisine">North Indian</p>
+        <span class="rating">4.1 ★ (95+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹120</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.7 km (10 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • 24 Hours</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 27 -->
+<div class="outlet-card" data-name="deepak restaurant" data-cuisine="north indian" data-dishes="thali, snacks">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Deepak Restaurant</h2>
+        <p class="outlet-cuisine">North Indian</p>
+        <span class="rating">4.0 ★ (85+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹100</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.5 km (8 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • 24 Hours</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 28 -->
+<div class="outlet-card" data-name="kanoha cafe" data-cuisine="cafe, continental" data-dishes="coffee, sandwiches, pasta">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Kanoha Cafe</h2>
+        <p class="outlet-cuisine">Cafe, Continental</p>
+        <span class="rating">4.2 ★ (110+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹150</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.6 km (9 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 10PM</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 29 -->
+<div class="outlet-card" data-name="gym diet" data-cuisine="healthy food" data-dishes="protein shakes, salads, healthy meals">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Gym Diet</h2>
+        <p class="outlet-cuisine">Healthy Food</p>
+        <span class="rating">4.3 ★ (120+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹150</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.4 km (6 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 11:30PM</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 30 -->
+<div class="outlet-card" data-name="pizza dilite" data-cuisine="pizza, fast food" data-dishes="pizza, garlic bread, pasta">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Pizza Dilite</h2>
+        <p class="outlet-cuisine">Pizza, Fast Food</p>
+        <span class="rating">4.1 ★ (90+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹200</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.5 km (7 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 10PM (4AM on Sun)</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 31 -->
+<div class="outlet-card" data-name="4 loser restaurant and cafe" data-cuisine="multi-cuisine" data-dishes="indian, chinese, continental">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">4 Loser Restaurant And Cafe</h2>
+        <p class="outlet-cuisine">Multi-Cuisine</p>
+        <span class="rating">4.0 ★ (85+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹150</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.3 km (5 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 1PM (2PM on Sun)</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 32 -->
+<div class="outlet-card" data-name="indie cafe" data-cuisine="cafe, continental" data-dishes="coffee, sandwiches, pasta">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Indie Cafe</h2>
+        <p class="outlet-cuisine">Cafe, Continental</p>
+        <span class="rating">4.2 ★ (100+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹150</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.7 km (10 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 11:30PM</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 33 -->
+<div class="outlet-card" data-name="burger belly" data-cuisine="fast food" data-dishes="burgers, fries, shakes">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Burger Belly</h2>
+        <p class="outlet-cuisine">Fast Food</p>
+        <span class="rating">4.1 ★ (95+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-times-circle"></i> No phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹120</span>
+        </div>
+        <div class="detail-row">
+            <spa<script>
+                n class="detail-label">Distance:</span>
+            <span class="detail-value">0.4 km (6 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 4AM</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 34 -->
+<div class="outlet-card" data-name="bunk cafe" data-cuisine="cafe, fast food" data-dishes="coffee, snacks, sandwiches">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Bunk Cafe</h2>
+        <p class="outlet-cuisine">Cafe, Fast Food</p>
+        <span class="rating">4.3 ★ (120+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹150</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.5 km (7 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 4AM</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 35 -->
+<div class="outlet-card" data-name="tongue n taste" data-cuisine="multi-cuisine" data-dishes="indian, chinese, continental">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Tongue N Taste</h2>
+        <p class="outlet-cuisine">Multi-Cuisine</p>
+        <span class="rating">4.1 ★ (110+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹150</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.6 km (9 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 11PM</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 36 -->
+<div class="outlet-card" data-name="threesome you me and food" data-cuisine="multi-cuisine" data-dishes="indian, chinese, continental">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Threesome (You Me And Food)</h2>
+        <p class="outlet-cuisine">Multi-Cuisine</p>
+        <span class="rating">4.2 ★ (130+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹150</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.4 km (6 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 4AM</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 38 -->
+<div class="outlet-card" data-name="cafe panjtara" data-cuisine="cafe, multi-cuisine" data-dishes="coffee, snacks, meals">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Cafe Panjtara</h2>
+        <p class="outlet-cuisine">Cafe, Multi-Cuisine</p>
+        <span class="rating">4.1 ★ (90+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹120</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.8 km (12 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 10PM</span>
+        </div>
+    </div>
+</div>
+
+<!-- Restaurant 39 -->
+<div class="outlet-card" data-name="kandoli adda" data-cuisine="north indian, cafe" data-dishes="snacks, meals, beverages">
+    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+        <i class="far fa-heart"></i>
+    </button>
+    <div class="outlet-header">
+        <h2 class="outlet-name">Kandoli Adda</h2>
+        <p class="outlet-cuisine">North Indian, Cafe</p>
+        <span class="rating">4.2 ★ (100+ reviews)</span>
+        <div class="phone-order">
+            <i class="fas fa-phone-alt"></i> Accepts phone orders
+        </div>
+    </div>
+    <div class="outlet-details">
+        <div class="detail-row">
+            <span class="detail-label">Min. Order:</span>
+            <span class="detail-value">₹120</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Distance:</span>
+            <span class="detail-value">0.7 km (10 min walk)</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="status open">Open • Closes at 9:15PM</span>
+        </div>
+    </div>
+</div>
+
+                <!-- Restaurant 40 -->
+                <div class="outlet-card" data-name="cafe sky view" data-cuisine="cafe, multi-cuisine" data-dishes="coffee, snacks, meals">
+                    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <div class="outlet-header">
+                        <h2 class="outlet-name">Cafe Sky View</h2>
+                        <p class="outlet-cuisine">Cafe, Multi-Cuisine</p>
+                        <span class="rating">4.3 ★ (110+ reviews)</span>
+                        <div class="phone-order">
+                            <i class="fas fa-phone-alt"></i> Accepts phone orders
+                        </div>
+                    </div>
+                    <div class="outlet-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Min. Order:</span>
+                            <span class="detail-value">₹150</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Distance:</span>
+                            <span class="detail-value">0.6 km (9 min walk)</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Status:</span>
+                            <span class="status open">Open • Closes at 10:45PM</span>
+                        </div>
+                    </div>
                 </div>
 
-            <div id="menuImagesSection" class="menu-images-section">
-                <h3>Menu / Gallery</h3>
-                <div id="menuGallery" class="menu-gallery">
+                             <!-- Restaurant 41 -->
+                             <div class="outlet-card" data-name="kainchi products" data-cuisine="bakery" data-dishes="bakery">
+                                <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <div class="outlet-header">
+                                    <h2 class="outlet-name">Kainchi Products</h2>
+                                    <p class="outlet-cuisine">Bakery</p>
+                                    <span class="rating">4.3 ★ (110+ reviews)</span>
+                                    <div class="phone-order">
+                                        <i class="fas fa-phone-alt"></i> Accepts phone orders
+                                    </div>
+                                </div>
+                                <div class="outlet-details">
+                                    <div class="detail-row">
+                                        <span class="detail-label">Min. Order:</span>
+                                        <span class="detail-value">₹150</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Distance:</span>
+                                        <span class="detail-value">0.6 km (9 min walk)</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Status:</span>
+                                        <span class="status open">Open • Closes at 10:45PM</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                                <!-- Restaurant 42 -->
+                <div class="outlet-card" data-name="sona restaurant" data-cuisine="cafe, multi-cuisine" data-dishes="coffee, snacks, meals">
+                    <button class="favorite-btn" onclick="event.stopPropagation(); toggleFavorite(this)">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <div class="outlet-header">
+                        <h2 class="outlet-name">Sona Restaurant</h2>
+                        <p class="outlet-cuisine">Cafe, Multi-Cuisine</p>
+                        <span class="rating">4.3 ★ (110+ reviews)</span>
+                        <div class="phone-order">
+                            <i class="fas fa-phone-alt"></i> Accepts phone orders
+                        </div>
                     </div>
+                    <div class="outlet-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Min. Order:</span>
+                            <span class="detail-value">₹150</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Distance:</span>
+                            <span class="detail-value">0.6 km (9 min walk)</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Status:</span>
+                            <span class="status open">Open • Closes at 10:45PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Close grid-container -->
+        </div> <!-- Close restaurants-page -->
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="#" class="footer-link" onclick="showInfoModal('about')">About</a>
+                <a href="#" class="footer-link" onclick="showInfoModal('contact')">Contact</a>
+                <a href="#" class="footer-link" onclick="showInfoModal('terms')">Terms Of Service</a>
+                <a href="#" class="footer-link" onclick="showInfoModal('privacy')">Privacy Policy</a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2023 FoodieSpot. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- Floating Action Button (Mobile) -->
+    <div class="fab" onclick="showAddForm()">
+        <i class="fas fa-plus"></i>
+    </div>
+
+    <!-- Restaurant Modal -->
+    <div class="modal-overlay" id="restaurantModal">
+        <div class="restaurant-modal">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+                <h2 id="modalRestaurantName">Restaurant Name</h2>
+                <p id="modalRestaurantCuisine">Cuisine Type</p>
+                <span class="rating" id="modalRestaurantRating">4.0 ★ (100+ reviews)</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3><i class="fas fa-map-marker-alt"></i> Location</h3>
+                    <p id="modalRestaurantLocation">Address will appear here</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3><i class="fas fa-clock"></i> Timings</h3>
+                    <p id="modalRestaurantTimings">Opening hours will appear here</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3><i class="fas fa-phone"></i> Contact</h3>
+                    <p id="modalRestaurantContact">Phone number will appear here</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3><i class="fas fa-rupee-sign"></i> Minimum Order</h3>
+                    <p id="modalRestaurantMinOrder">Minimum order price will appear here</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3><i class="fas fa-utensils"></i> Order Options</h3>
+                    <p>
+                        Takes orders via call: 
+                        <span class="badge" id="modalRestaurantCallOrder">Yes/No</span>
+                    </p>
+                    <a href="#" class="order-link" id="modalRestaurantOrderLink" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Order on Swiggy/Zomato
+                    </a>
+                </div>
+                
+                <div class="modal-section">
+                    <h3><i class="fas fa-utensils"></i> Popular Dishes</h3>
+                    <p id="modalRestaurantDishes">Popular dishes will appear here</p>
+                </div>
+                
+                <div class="modal-section" id="menuImagesSection">
+                    <h3><i class="fas fa-images"></i> Menu</h3>
+                    <div class="menu-images">
+                        <div class="menu-gallery" id="menuGallery">
+                            <!-- Menu images will be inserted here -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="infoModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeInfoModal()">&times;</span>
-            <h2 id="infoModalTitle"></h2>
-            <div id="infoModalContent"></div>
+    <!-- Info Modal -->
+    <div class="modal-overlay" id="infoModal">
+        <div class="restaurant-modal">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeInfoModal()">&times;</button>
+                <h2 id="infoModalTitle">Info Title</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section" id="infoModalContent">
+                    <!-- Content will be inserted here -->
+                </div>
+            </div>
         </div>
     </div>
 
-    <div id="imageModal" class="modal" onclick="closeImageModal()">
-        <span class="close-button" onclick="closeImageModal()">&times;</span>
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
         <div class="image-modal-content">
-            <img id="modalImage" src="" alt="Full size menu image">
+            <img id="modalImage" src="" alt="">
         </div>
     </div>
 
-
-    <script src="script.js"></script>
-
+    <script src="js/script.js"></script>
 </body>
 </html>
