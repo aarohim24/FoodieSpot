@@ -1,6 +1,7 @@
 :root {
     /* Light Theme Colors */
     --primary-color: #ff6347; /* Tomato red */
+    --primary-color-rgb: 255, 99, 71; /* RGB components for primary color */
     --secondary-color: #4CAF50; /* Green for success */
     --background-color: #f4f7f6;
     --card-bg-color: #ffffff;
@@ -11,6 +12,7 @@
 
     /* Dark Theme Colors (will be overridden by data-theme="dark") */
     --dark-primary-color: #e04e30;
+    --dark-primary-color-rgb: 224, 78, 48; /* RGB components for dark primary color */
     --dark-secondary-color: #5cb85c;
     --dark-background-color: #2c2c2c;
     --dark-card-bg-color: #3a3a3a;
@@ -23,6 +25,7 @@
 /* Dark Theme Specifics */
 html[data-theme='dark'] {
     --primary-color: var(--dark-primary-color);
+    --primary-color-rgb: var(--dark-primary-color-rgb); /* Override RGB for dark theme */
     --secondary-color: var(--dark-secondary-color);
     --background-color: var(--dark-background-color);
     --card-bg-color: var(--dark-card-bg-color);
@@ -102,14 +105,14 @@ nav .nav-btn {
 }
 
 nav .nav-btn:hover {
-    background-color: rgba(var(--primary-color-rgb, 255, 99, 71), 0.1);
+    background-color: rgba(var(--primary-color-rgb), 0.1);
     color: var(--primary-color);
 }
 
 nav .nav-btn.active {
     background-color: var(--primary-color);
     color: #fff;
-    box-shadow: 0 2px 5px rgba(var(--primary-color-rgb, 255, 99, 71), 0.3);
+    box-shadow: 0 2px 5px rgba(var(--primary-color-rgb), 0.3);
 }
 
 .theme-toggle {
@@ -250,7 +253,7 @@ nav .nav-btn.active {
 }
 
 .search-results-message.results-found {
-    background-color: rgba(var(--primary-color-rgb, 255, 99, 71), 0.1);
+    background-color: rgba(var(--primary-color-rgb), 0.1);
     color: var(--primary-color);
 }
 
@@ -289,14 +292,14 @@ nav .nav-btn.active {
 .filter-btn:hover {
     border-color: var(--primary-color);
     color: var(--primary-color);
-    box-shadow: 0 4px 8px rgba(var(--primary-color-rgb, 255, 99, 71), 0.2);
+    box-shadow: 0 4px 8px rgba(var(--primary-color-rgb), 0.2);
 }
 
 .filter-btn.active {
     background-color: var(--primary-color);
     color: #fff;
     border-color: var(--primary-color);
-    box-shadow: 0 4px 8px rgba(var(--primary-color-rgb, 255, 99, 71), 0.3);
+    box-shadow: 0 4px 8px rgba(var(--primary-color-rgb), 0.3);
 }
 
 /* Browse All Button (Home Page) */
@@ -314,7 +317,7 @@ nav .nav-btn.active {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 5px 15px rgba(var(--primary-color-rgb, 255, 99, 71), 0.4);
+    box-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.4);
 }
 
 .browse-all-btn:hover {
@@ -774,7 +777,7 @@ footer p {
 .form-group input[type="text"]:focus,
 .form-group input[type="email"]:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb, 255, 99, 71), 0.2);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
     outline: none;
 }
 
@@ -790,7 +793,7 @@ footer p {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 5px 15px rgba(var(--primary-color-rgb, 255, 99, 71), 0.4);
+    box-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.4);
 }
 
 .submit-btn:hover {
