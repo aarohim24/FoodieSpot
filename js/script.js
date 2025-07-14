@@ -766,22 +766,22 @@ function initializeDarkMode() {
     const savedMode = localStorage.getItem('darkMode');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    // Apply dark mode if previously saved or if user prefers dark mode
-    if (savedMode === 'enabled' || (!savedMode && prefersDark)) {
-        document.body.classList.add('dark-mode');
+    // Apply light mode only if explicitly saved or if user prefers light mode
+    if (savedMode === 'light' || (savedMode === null && !prefersDark)) {
+        document.body.classList.add('light-mode');
         updateDarkModeIcon();
     }
 }
 
 function toggleDarkMode() {
     const body = document.body;
-    body.classList.toggle('dark-mode');
+    body.classList.toggle('light-mode');
     
     // Save user preference
-    if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('darkMode', 'enabled');
+    if (body.classList.contains('light-mode')) {
+        localStorage.setItem('darkMode', 'light');
     } else {
-        localStorage.setItem('darkMode', 'disabled');
+        localStorage.setItem('darkMode', 'dark');
     }
     
     updateDarkModeIcon();
@@ -792,10 +792,10 @@ function updateDarkModeIcon() {
     if (!toggle) return;
     
     const icon = toggle.querySelector('i');
-    if (document.body.classList.contains('dark-mode')) {
-        icon.className = 'fas fa-sun';
-    } else {
+    if (document.body.classList.contains('light-mode')) {
         icon.className = 'fas fa-moon';
+    } else {
+        icon.className = 'fas fa-sun';
     }
 }
 
@@ -1030,20 +1030,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Listen for system theme changes
-    if (window.matchMedia) {
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-            // Only auto-switch if user hasn't manually set a preference
-            if (!localStorage.getItem('darkMode')) {
-                if (e.matches) {
-                    document.body.classList.add('dark-mode');
-                } else {
-                    document.body.classList.remove('dark-mode');
-                }
-                updateDarkModeIcon();
+    // Listen for system theme changes
+if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        // Only auto-switch if user hasn't manually set a preference
+        if (!localStorage.getItem('darkMode')) {
+            if (e.matches) {
+                document.body.classList.remove('light-mode');
+            } else {
+                document.body.classList.add('light-mode');
             }
-        });
-    }
-    
+            updateDarkModeIcon();
+        }
+    });
+}
     showPage('home');
     
     // Add animation to elements when they come into view
@@ -1085,3 +1085,14 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('homeSearchInput').addEventListener('input', handleSearch);
     document.getElementById('restaurantSearchInput').addEventListener('input', handleSearch);
 });
+
+
+
+
+
+
+
+
+
+
+    
