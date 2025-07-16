@@ -81,6 +81,7 @@ body:not(.light-mode) .dark-mode-toggle i { color: #FFCA28; }
 .phone-order .fa-phone-alt { color: #66BB6A; }
 .phone-order .fa-times-circle { color: #EF5350; }
 .favorite-btn { position: absolute; top: 15px; right: 15px; background: color-mix(in srgb, var(--card-bg) 70%, transparent); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #f44336; cursor: pointer; transition: 0.3s; border: none; backdrop-filter: blur(4px); font-size: 1rem;}
+.search-results-message { text-align: center; color: var(--text-dark); margin: 30px 0; padding: 15px; display: none; }
 .search-results-message.show { display: block; }
 .modal-overlay, .image-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; backdrop-filter: blur(5px); }
 .modal-overlay.active, .image-modal.active { opacity: 1; pointer-events: all; }
@@ -111,8 +112,8 @@ body:not(.light-mode) .badge.yes { background: #1B5E20; color: #C8E6C9; } body:n
 @media (max-width: 768px) {
     .container { width: 95%; }
     .header { flex-direction: column; gap: 15px; padding: 15px 0; }
-    .nav-btn { padding: 6px 16px; font-size: 0.8rem; }
-    .dark-mode-toggle { top: 15px; right: 15px; width: 40px; height: 40px; font-size: 1rem; }
+    .dark-mode-toggle { top: 20px; right: 15px; width: 40px; height: 40px; font-size: 1rem; }
+    .light-mode .dark-mode-toggle { top: 15px; }
     .title-section { margin: 20px 0; }
     .filter-buttons { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; scrollbar-width: none; padding-bottom: 15px; }
     .filter-buttons::-webkit-scrollbar { display: none; }
@@ -122,6 +123,6 @@ body:not(.light-mode) .badge.yes { background: #1B5E20; color: #C8E6C9; } body:n
     .outlet-header { padding: 15px; }
     .outlet-name { font-size: 1.1rem; }
     .outlet-cuisine { font-size: 0.7rem; }
-    .outlet-details { padding: 15px; margin-top: 10px; padding-top: 10px; }
+    .outlet-details { padding: 15px; }
     .rating, .phone-order { font-size: 0.8rem; gap: 6px; }
 }
