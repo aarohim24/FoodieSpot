@@ -1,9 +1,9 @@
-  
-    (function() {
+
+   (function() {
     'use strict';
 
     // --- DATA ---
-    const restaurantData = [
+const restaurantData = [
         { name: "Anup Roll & Shake Fast Food", searchName: "anup roll & shake fast food", cuisine: "Fast Food", rating: "4.0 ★ (100+)", location: "71, Vikas Nagar, Bidholi, Dehradun", timings: "Closes at 4AM", contact: "+917088677105", minOrder: "₹100", orderLink: "https://www.zomato.com/dehradun/anup-roll-shake-fast-food-bidholi", takesCallOrders: true, dishes: "Rolls, Shakes, Burgers, Wraps", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Anup_Roll.jpeg"] },
         { name: "Isquare Restaurant And Cafe", searchName: "isquare restaurant and cafe", cuisine: "Multi-Cuisine, Cafe", rating: "4.2 ★ (150+)", location: "Post Office Road, Near I Square Girls Hostel, Bidholi", timings: "Closes at 11:30PM", contact: "+918858857775", minOrder: "₹150", orderLink: "https://www.zomato.com/dehradun/isquare-restaurant-and-cafe-bidholi/order", takesCallOrders: true, dishes: "Indian, Chinese, Continental, Beverages", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare1.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare2.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare3.jpeg"] },
         { name: "All Rounder Chacha", searchName: "all rounder chacha restaurant & cafe", cuisine: "North Indian", rating: "4.1 ★ (120+)", location: "Near Bright Wave School, Bidholi, Dehradun", timings: "Open 24 Hours", contact: "+918818037720", minOrder: "₹120", orderLink: "https://www.zomato.com/dehradun/all-rounder-chacha-restaurant-cafe-bidholi", takesCallOrders: true, dishes: "Roti, Dal, Sabzi, Curry, Biryani", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/AllRounder.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/AllRounder1.jpeg"] },
@@ -57,8 +57,7 @@
     const DOMElements = {
         homePage: document.getElementById('homePage'), restaurantsPage: document.getElementById('restaurantsPage'),
         restaurantsGrid: document.getElementById('restaurantsGrid'), homeSearchInput: document.getElementById('homeSearchInput'),
-        restaurantSearchInput: document.getElementById('restaurantSearchInput'), clearHomeSearch: document.getElementById('clearHomeSearch'),
-        clearRestaurantSearch: document.getElementById('clearRestaurantSearch'), searchResultsMessage: document.getElementById('searchResultsMessage'),
+        restaurantSearchInput: document.getElementById('restaurantSearchInput'), searchResultsMessage: document.getElementById('searchResultsMessage'),
         homeFilterButtons: document.getElementById('homeFilterButtons'), restaurantFilterButtons: document.getElementById('restaurantFilterButtons'),
         restaurantModal: document.getElementById('restaurantModal'), infoModal: document.getElementById('infoModal'),
         addOutletModal: document.getElementById('addOutletModal'), imageModal: document.getElementById('imageModal'),
@@ -82,16 +81,7 @@
             card.className = 'outlet-card';
             card.dataset.name = resto.searchName;
             const isFavorite = favoriteRestaurants.includes(resto.searchName);
-            card.innerHTML = `
-                <button class="favorite-btn" aria-label="Toggle Favorite"><i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i></button>
-                <div class="outlet-header">
-                    <h2 class="outlet-name">${resto.name}</h2>
-                    <p class="outlet-cuisine">${resto.cuisine}</p>
-                </div>
-                <div class="outlet-details">
-                    <div class="rating"><i class="fas fa-star"></i> ${resto.rating}</div>
-                    <div class="phone-order"><i class="fas ${resto.takesCallOrders ? 'fa-phone-alt' : 'fa-times-circle'}"></i> ${resto.takesCallOrders ? 'Phone Orders' : 'No Phone Orders'}</div>
-                </div>`;
+            card.innerHTML = `<button class="favorite-btn" aria-label="Toggle Favorite"><i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i></button><div class="outlet-header"><h2 class="outlet-name">${resto.name}</h2><p class="outlet-cuisine">${resto.cuisine}</p></div><div class="outlet-details"><div class="rating"><i class="fas fa-star"></i> ${resto.rating}</div><div class="phone-order"><i class="fas ${resto.takesCallOrders ? 'fa-phone-alt' : 'fa-times-circle'}"></i> ${resto.takesCallOrders ? 'Phone Orders' : 'No Phone Orders'}</div></div>`;
             fragment.appendChild(card);
         });
         DOMElements.restaurantsGrid.appendChild(fragment);
@@ -150,18 +140,18 @@
     function showModal(modalElement) { modalElement.classList.add('active'); document.body.style.overflow = 'hidden'; }
     function closeModal(modalElement) { modalElement.classList.remove('active'); document.body.style.overflow = 'auto'; }
     function showRestaurantModal(resto) {
-        const setContent = (id, content) => { document.getElementById(id).textContent = content || 'N/A'; };
+        const setContent = (id, content) => { DOMElements.restaurantModal.querySelector(`#${id}`).textContent = content || 'N/A'; };
         setContent('modalRestaurantName', resto.name); setContent('modalRestaurantCuisine', resto.cuisine); setContent('modalRestaurantRating', resto.rating);
         setContent('modalRestaurantLocation', resto.location); setContent('modalRestaurantTimings', resto.timings); setContent('modalRestaurantContact', resto.contact);
         setContent('modalRestaurantMinOrder', resto.minOrder); setContent('modalRestaurantDishes', resto.dishes);
-        const orderLink = document.getElementById('modalRestaurantOrderLink');
+        const orderLink = DOMElements.restaurantModal.querySelector('#modalRestaurantOrderLink');
         orderLink.style.display = resto.orderLink ? 'inline-block' : 'none';
         if (resto.orderLink) orderLink.href = resto.orderLink;
-        const callOrderBadge = document.getElementById('modalRestaurantCallOrder');
+        const callOrderBadge = DOMElements.restaurantModal.querySelector('#modalRestaurantCallOrder');
         callOrderBadge.textContent = resto.takesCallOrders ? 'Yes' : 'No';
         callOrderBadge.className = `badge ${resto.takesCallOrders ? 'yes' : 'no'}`;
-        const menuGallery = document.getElementById('menuGallery'); menuGallery.innerHTML = '';
-        document.getElementById('menuImagesSection').style.display = (resto.menuImages && resto.menuImages.length > 0) ? 'block' : 'none';
+        const menuGallery = DOMElements.restaurantModal.querySelector('#menuGallery'); menuGallery.innerHTML = '';
+        DOMElements.restaurantModal.querySelector('#menuImagesSection').style.display = (resto.menuImages && resto.menuImages.length > 0) ? 'block' : 'none';
         if (resto.menuImages) { resto.menuImages.forEach(src => menuGallery.innerHTML += `<div class="menu-image"><img src="${src}" alt="${resto.name} menu" loading="lazy"></div>`); }
         showModal(DOMElements.restaurantModal);
     }
@@ -173,26 +163,25 @@
     }
     function toggleDarkMode() { document.body.classList.toggle('light-mode'); localStorage.setItem('darkMode', document.body.classList.contains('light-mode') ? 'light' : 'dark'); updateDarkModeIcon(); }
     function updateDarkModeIcon() { DOMElements.darkModeToggle.querySelector('i').className = document.body.classList.contains('light-mode') ? 'fas fa-moon' : 'fas fa-sun'; }
-    
     function setupEventListeners() {
         document.getElementById('logoLink').addEventListener('click', (e) => { e.preventDefault(); showPage('home'); });
         document.getElementById('homeBtn').addEventListener('click', () => showPage('home'));
         document.getElementById('browseAllBtn').addEventListener('click', (e) => { e.preventDefault(); showPage('restaurants'); });
-        [DOMElements.homeSearchInput, DOMElements.restaurantSearchInput].forEach(input => input.addEventListener('input', handleSearch));
-        DOMElements.clearHomeSearch.addEventListener('click', () => clearSearch(DOMElements.homeSearchInput));
-        DOMElements.clearRestaurantSearch.addEventListener('click', () => clearSearch(DOMElements.restaurantSearchInput));
-        [DOMElements.homeFilterButtons, DOMElements.restaurantFilterButtons].forEach(c => c.addEventListener('click', handleFilterClick));
         document.getElementById('addOutletBtn').addEventListener('click', () => showModal(DOMElements.addOutletModal));
-        [DOMElements.restaurantModal, DOMElements.infoModal, DOMElements.addOutletModal, DOMElements.imageModal].forEach(m => {
-            m.querySelector('.modal-close').addEventListener('click', () => closeModal(m));
+        [DOMElements.homeSearchInput, DOMElements.restaurantSearchInput].forEach(input => {
+            input.addEventListener('input', handleSearch);
+            input.nextElementSibling.nextElementSibling.addEventListener('click', () => clearSearch(input));
         });
+        [DOMElements.homeFilterButtons, DOMElements.restaurantFilterButtons].forEach(c => c.addEventListener('click', handleFilterClick));
+        document.querySelectorAll('.modal-overlay').forEach(m => m.querySelector('.modal-close').addEventListener('click', () => closeModal(m)));
+        DOMElements.imageModal.querySelector('.image-modal-close').addEventListener('click', () => closeModal(DOMElements.imageModal));
         document.querySelector('.footer-links').addEventListener('click', e => {
             if (e.target.matches('.footer-link')) {
                 e.preventDefault();
                 const info = infoContent[e.target.dataset.modal];
                 if (info) {
-                    document.getElementById('infoModalTitle').textContent = info.title;
-                    document.getElementById('infoModalContent').innerHTML = info.content;
+                    DOMElements.infoModal.querySelector('#infoModalTitle').textContent = info.title;
+                    DOMElements.infoModal.querySelector('#infoModalContent').innerHTML = info.content;
                     showModal(DOMElements.infoModal);
                 }
             }
@@ -215,6 +204,5 @@
             if (!localStorage.getItem('darkMode')) { document.body.classList.toggle('light-mode', !e.matches); updateDarkModeIcon(); }
         });
     }
-
     document.addEventListener('DOMContentLoaded', () => { initializeDarkMode(); populateFilters(); renderRestaurants(); setupEventListeners(); showPage('home'); });
 })();
