@@ -1,12 +1,13 @@
+  
     (function() {
     'use strict';
 
     // --- DATA ---
-    const restaurantData = [
+         const restaurantData = [
         { name: "Anup Roll & Shake Fast Food", searchName: "anup roll & shake fast food", cuisine: "Fast Food", rating: "4.0 ★ (100+)", location: "71, Vikas Nagar, Bidholi, Dehradun", timings: "Closes at 4AM", contact: "+917088677105", minOrder: "₹100", orderLink: "https://www.zomato.com/dehradun/anup-roll-shake-fast-food-bidholi", takesCallOrders: true, dishes: "Rolls, Shakes, Burgers, Wraps", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Anup_Roll.jpeg"] },
         { name: "Isquare Restaurant And Cafe", searchName: "isquare restaurant and cafe", cuisine: "Multi-Cuisine, Cafe", rating: "4.2 ★ (150+)", location: "Post Office Road, Near I Square Girls Hostel, Bidholi", timings: "Closes at 11:30PM", contact: "+918858857775", minOrder: "₹150", orderLink: "https://www.zomato.com/dehradun/isquare-restaurant-and-cafe-bidholi/order", takesCallOrders: true, dishes: "Indian, Chinese, Continental, Beverages", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare1.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare2.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare3.jpeg"] },
         { name: "All Rounder Chacha", searchName: "all rounder chacha restaurant & cafe", cuisine: "North Indian", rating: "4.1 ★ (120+)", location: "Near Bright Wave School, Bidholi, Dehradun", timings: "Open 24 Hours", contact: "+918818037720", minOrder: "₹120", orderLink: "https://www.zomato.com/dehradun/all-rounder-chacha-restaurant-cafe-bidholi", takesCallOrders: true, dishes: "Roti, Dal, Sabzi, Curry, Biryani", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/AllRounder.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/AllRounder1.jpeg"] },
-{ name: "Maal & Chooz", searchName: "maal & chooz", cuisine: "Fast Food, Snacks", rating: "4.0 ★ (90+)", location: "Vikasnagar, Bidholi, Dehradun", timings: "Closes at 1:45AM", contact: "+917737178155", minOrder: "₹80", orderLink: "https://www.zomato.com/dehradun/maal-chooz-bidholi", takesCallOrders: true, dishes: "Snacks, Fast Food, Sandwiches, Momos", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Maal_&_Chooz.jpeg"] },
+        { name: "Maal & Chooz", searchName: "maal & chooz", cuisine: "Fast Food, Snacks", rating: "4.0 ★ (90+)", location: "Vikasnagar, Bidholi, Dehradun", timings: "Closes at 1:45AM", contact: "+917737178155", minOrder: "₹80", orderLink: "https://www.zomato.com/dehradun/maal-chooz-bidholi", takesCallOrders: true, dishes: "Snacks, Fast Food, Sandwiches, Momos", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Maal_&_Chooz.jpeg"] },
         { name: "Swadu Cafe", searchName: "swadu cafe", cuisine: "Cafe, Continental", rating: "4.3 ★ (110+)", location: "Upper Kandoli, UPES Road, Near Girls Hostel, Bidholi", timings: "Closes at 10:45PM", contact: "+919119862486", minOrder: "₹150", orderLink: "https://www.zomato.com/dehradun/swadu-cafe-bidholi", takesCallOrders: true, dishes: "Coffee, Sandwiches, Pasta, Desserts", menuImages: [] },
         { name: "Romnik Pizza", searchName: "romnik pizza", cuisine: "Pizza, Fast Food", rating: "4.1 ★ (85+)", location: "Near UPES, Bidholi, Dehradun", timings: "Closes at 11PM", contact: "+917900688688", minOrder: "₹200", orderLink: "https://www.zomato.com/dehradun/romnik-pizza-bidholi", takesCallOrders: true, dishes: "Pizza, Garlic Bread, Pasta, Wings", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Romnik_Pizza.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Romnik_Pizza1.jpeg"] },
         { name: "Having Craving", searchName: "having craving", cuisine: "Fast Food, Snacks", rating: "3.9 ★ (75+)", location: "Shop 19, Bidholi Complex, Near UPES, Bidholi", timings: "Closes at 11PM", contact: "+918439333330", minOrder: "₹100", orderLink: "https://www.zomato.com/dehradun/having-craving-bidholi", takesCallOrders: false, dishes: "Burgers, Fries, Momos, Sandwiches", menuImages: [] },
@@ -172,6 +173,7 @@
     }
     function toggleDarkMode() { document.body.classList.toggle('light-mode'); localStorage.setItem('darkMode', document.body.classList.contains('light-mode') ? 'light' : 'dark'); updateDarkModeIcon(); }
     function updateDarkModeIcon() { DOMElements.darkModeToggle.querySelector('i').className = document.body.classList.contains('light-mode') ? 'fas fa-moon' : 'fas fa-sun'; }
+    
     function setupEventListeners() {
         document.getElementById('logoLink').addEventListener('click', (e) => { e.preventDefault(); showPage('home'); });
         document.getElementById('homeBtn').addEventListener('click', () => showPage('home'));
@@ -213,7 +215,6 @@
             if (!localStorage.getItem('darkMode')) { document.body.classList.toggle('light-mode', !e.matches); updateDarkModeIcon(); }
         });
     }
-    document.addEventListener('DOMContentLoaded', () => { initializeDarkMode(); populateFilters(); renderRestaurants(); setupEventListeners(); showPage('home'); });
-})();
 
+    document.addEventListener('DOMContentLoaded', () => { initializeDarkMode(); populateFilters(); renderRestaurants(); setupEventListeners(); showPage('home'); });
 })();
