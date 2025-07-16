@@ -1,13 +1,12 @@
-(function() {
+    (function() {
     'use strict';
 
     // --- DATA ---
-    // The complete list of all 42 restaurants.
     const restaurantData = [
-         { name: "Anup Roll & Shake Fast Food", searchName: "anup roll & shake fast food", cuisine: "Fast Food", rating: "4.0 ★ (100+)", location: "71, Vikas Nagar, Bidholi, Dehradun", timings: "Closes at 4AM", contact: "+917088677105", minOrder: "₹100", orderLink: "https://www.zomato.com/dehradun/anup-roll-shake-fast-food-bidholi", takesCallOrders: true, dishes: "Rolls, Shakes, Burgers, Wraps", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Anup_Roll.jpeg"] },
+        { name: "Anup Roll & Shake Fast Food", searchName: "anup roll & shake fast food", cuisine: "Fast Food", rating: "4.0 ★ (100+)", location: "71, Vikas Nagar, Bidholi, Dehradun", timings: "Closes at 4AM", contact: "+917088677105", minOrder: "₹100", orderLink: "https://www.zomato.com/dehradun/anup-roll-shake-fast-food-bidholi", takesCallOrders: true, dishes: "Rolls, Shakes, Burgers, Wraps", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Anup_Roll.jpeg"] },
         { name: "Isquare Restaurant And Cafe", searchName: "isquare restaurant and cafe", cuisine: "Multi-Cuisine, Cafe", rating: "4.2 ★ (150+)", location: "Post Office Road, Near I Square Girls Hostel, Bidholi", timings: "Closes at 11:30PM", contact: "+918858857775", minOrder: "₹150", orderLink: "https://www.zomato.com/dehradun/isquare-restaurant-and-cafe-bidholi/order", takesCallOrders: true, dishes: "Indian, Chinese, Continental, Beverages", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare1.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare2.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare3.jpeg"] },
         { name: "All Rounder Chacha", searchName: "all rounder chacha restaurant & cafe", cuisine: "North Indian", rating: "4.1 ★ (120+)", location: "Near Bright Wave School, Bidholi, Dehradun", timings: "Open 24 Hours", contact: "+918818037720", minOrder: "₹120", orderLink: "https://www.zomato.com/dehradun/all-rounder-chacha-restaurant-cafe-bidholi", takesCallOrders: true, dishes: "Roti, Dal, Sabzi, Curry, Biryani", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/AllRounder.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/AllRounder1.jpeg"] },
-        { name: "Maal & Chooz", searchName: "maal & chooz", cuisine: "Fast Food, Snacks", rating: "4.0 ★ (90+)", location: "Vikasnagar, Bidholi, Dehradun", timings: "Closes at 1:45AM", contact: "+917737178155", minOrder: "₹80", orderLink: "https://www.zomato.com/dehradun/maal-chooz-bidholi", takesCallOrders: true, dishes: "Snacks, Fast Food, Sandwiches, Momos", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Maal_&_Chooz.jpeg"] },
+{ name: "Maal & Chooz", searchName: "maal & chooz", cuisine: "Fast Food, Snacks", rating: "4.0 ★ (90+)", location: "Vikasnagar, Bidholi, Dehradun", timings: "Closes at 1:45AM", contact: "+917737178155", minOrder: "₹80", orderLink: "https://www.zomato.com/dehradun/maal-chooz-bidholi", takesCallOrders: true, dishes: "Snacks, Fast Food, Sandwiches, Momos", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Maal_&_Chooz.jpeg"] },
         { name: "Swadu Cafe", searchName: "swadu cafe", cuisine: "Cafe, Continental", rating: "4.3 ★ (110+)", location: "Upper Kandoli, UPES Road, Near Girls Hostel, Bidholi", timings: "Closes at 10:45PM", contact: "+919119862486", minOrder: "₹150", orderLink: "https://www.zomato.com/dehradun/swadu-cafe-bidholi", takesCallOrders: true, dishes: "Coffee, Sandwiches, Pasta, Desserts", menuImages: [] },
         { name: "Romnik Pizza", searchName: "romnik pizza", cuisine: "Pizza, Fast Food", rating: "4.1 ★ (85+)", location: "Near UPES, Bidholi, Dehradun", timings: "Closes at 11PM", contact: "+917900688688", minOrder: "₹200", orderLink: "https://www.zomato.com/dehradun/romnik-pizza-bidholi", takesCallOrders: true, dishes: "Pizza, Garlic Bread, Pasta, Wings", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Romnik_Pizza.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Romnik_Pizza1.jpeg"] },
         { name: "Having Craving", searchName: "having craving", cuisine: "Fast Food, Snacks", rating: "3.9 ★ (75+)", location: "Shop 19, Bidholi Complex, Near UPES, Bidholi", timings: "Closes at 11PM", contact: "+918439333330", minOrder: "₹100", orderLink: "https://www.zomato.com/dehradun/having-craving-bidholi", takesCallOrders: false, dishes: "Burgers, Fries, Momos, Sandwiches", menuImages: [] },
@@ -46,55 +45,36 @@
         { name: "Kainchi Products", searchName: "kainchi products", cuisine: "Bakery", rating: "4.0 ★ (50+)", location: "Not specified", timings: "Not specified", contact: "+918630273212", minOrder: "Not specified", orderLink: "", takesCallOrders: true, dishes: "Not specified", menuImages: [] },
         { name: "Sona Restaurant", searchName: "sona restaurant", cuisine: "Multi-Cuisine", rating: "4.0 ★ (50+)", location: "Not specified", timings: "Not specified", contact: "+918057411534, +919259039141", minOrder: "Not specified", orderLink: "", takesCallOrders: true, dishes: "Not specified", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Sona.jpeg"] }
     ];
-
     const infoContent = {
         about: { title: "About FoodieSpot", content: `<p>FoodieSpot is your ultimate guide to discovering the best food options around UPES campus, Dehradun.</p><p>Our mission is to help students and faculty find great places to eat, with detailed information about each outlet including menus, prices, and ordering options.</p>` },
         contact: { title: "Contact Us", content: `<p><i class="fas fa-envelope"></i> Email: contact@foodiespot.upes</p><p><i class="fas fa-map-marker-alt"></i> Address: UPES Bidholi Campus, Dehradun</p>` },
         terms: { title: "Terms of Service", content: `<p>By using FoodieSpot, you agree to these terms: We strive to provide accurate information but cannot guarantee all details are current or correct. Users are responsible for verifying restaurant details before visiting or ordering.</p>`},
         privacy: { title: "Privacy Policy", content: `<p>FoodieSpot respects your privacy. We may collect basic usage data to improve our service, but we don't store personal information without your consent. Any data collected is used solely to enhance your experience.</p>` }
     };
-
-    // --- STATE ---
     let currentSearchTerm = '', currentFilter = 'all', searchDebounceTimer;
     let favoriteRestaurants = JSON.parse(localStorage.getItem('favoriteRestaurants')) || [];
-
-    // --- DOM ELEMENTS ---
     const DOMElements = {
-        homePage: document.getElementById('homePage'),
-        restaurantsPage: document.getElementById('restaurantsPage'),
-        restaurantsGrid: document.getElementById('restaurantsGrid'),
-        homeSearchInput: document.getElementById('homeSearchInput'),
-        restaurantSearchInput: document.getElementById('restaurantSearchInput'),
-        clearHomeSearch: document.getElementById('clearHomeSearch'),
-        clearRestaurantSearch: document.getElementById('clearRestaurantSearch'),
-        searchResultsMessage: document.getElementById('searchResultsMessage'),
-        homeFilterButtons: document.getElementById('homeFilterButtons'),
-        restaurantFilterButtons: document.getElementById('restaurantFilterButtons'),
-        restaurantModal: document.getElementById('restaurantModal'),
-        infoModal: document.getElementById('infoModal'),
-        addOutletModal: document.getElementById('addOutletModal'),
-        imageModal: document.getElementById('imageModal'),
-        modalImage: document.getElementById('modalImage'),
-        darkModeToggle: document.querySelector('.dark-mode-toggle'),
+        homePage: document.getElementById('homePage'), restaurantsPage: document.getElementById('restaurantsPage'),
+        restaurantsGrid: document.getElementById('restaurantsGrid'), homeSearchInput: document.getElementById('homeSearchInput'),
+        restaurantSearchInput: document.getElementById('restaurantSearchInput'), clearHomeSearch: document.getElementById('clearHomeSearch'),
+        clearRestaurantSearch: document.getElementById('clearRestaurantSearch'), searchResultsMessage: document.getElementById('searchResultsMessage'),
+        homeFilterButtons: document.getElementById('homeFilterButtons'), restaurantFilterButtons: document.getElementById('restaurantFilterButtons'),
+        restaurantModal: document.getElementById('restaurantModal'), infoModal: document.getElementById('infoModal'),
+        addOutletModal: document.getElementById('addOutletModal'), imageModal: document.getElementById('imageModal'),
+        modalImage: document.getElementById('modalImage'), darkModeToggle: document.querySelector('.dark-mode-toggle'),
     };
-
-    // --- FUNCTIONS ---
     function renderRestaurants() {
         const filteredData = restaurantData.filter(resto => {
-            const searchName = resto.searchName || resto.name.toLowerCase();
-            const cuisine = resto.cuisine ? resto.cuisine.toLowerCase() : '';
-            const dishes = resto.dishes ? resto.dishes.toLowerCase() : '';
-            const matchesFilter = currentFilter === 'all' || cuisine.includes(currentFilter);
-            const matchesSearch = !currentSearchTerm || searchName.includes(currentSearchTerm) || cuisine.includes(currentSearchTerm) || dishes.includes(currentSearchTerm);
+            const s = (str) => str ? str.toLowerCase() : '';
+            const matchesFilter = currentFilter === 'all' || s(resto.cuisine).includes(currentFilter);
+            const matchesSearch = !currentSearchTerm || s(resto.searchName).includes(currentSearchTerm) || s(resto.cuisine).includes(currentSearchTerm) || s(resto.dishes).includes(currentSearchTerm);
             return matchesFilter && matchesSearch;
         });
-
         DOMElements.restaurantsGrid.innerHTML = '';
-        if (filteredData.length === 0) {
-            DOMElements.searchResultsMessage.innerHTML = `No restaurants found for "<strong>${currentSearchTerm || currentFilter}</strong>"`;
+        if (filteredData.length === 0 && (currentSearchTerm || currentFilter !== 'all')) {
+            DOMElements.searchResultsMessage.innerHTML = `No results found for "<strong>${currentSearchTerm || currentFilter}</strong>"`;
             DOMElements.searchResultsMessage.className = 'search-results-message show';
-        } else { DOMElements.searchResultsMessage.style.display = 'none'; }
-        
+        } else { DOMElements.searchResultsMessage.className = 'search-results-message'; }
         const fragment = document.createDocumentFragment();
         filteredData.forEach(resto => {
             const card = document.createElement('div');
@@ -115,7 +95,6 @@
         });
         DOMElements.restaurantsGrid.appendChild(fragment);
     }
-    
     function populateFilters() {
         const cuisines = ['all', ...new Set(restaurantData.flatMap(r => r.cuisine.toLowerCase().split(/, | & /)).filter(c => c && c !== 'not specified'))];
         const createButtons = (container) => {
@@ -131,28 +110,27 @@
         createButtons(DOMElements.homeFilterButtons);
         createButtons(DOMElements.restaurantFilterButtons);
     }
-
     function handleSearch(event) {
         const input = event.target;
+        input.nextElementSibling.nextElementSibling.classList.toggle('visible', input.value.length > 0);
         clearTimeout(searchDebounceTimer);
         searchDebounceTimer = setTimeout(() => {
             currentSearchTerm = input.value.toLowerCase().trim();
             if (currentSearchTerm && DOMElements.homePage.style.display !== 'none') {
                 showPage('restaurants');
                 DOMElements.restaurantSearchInput.value = currentSearchTerm;
-                DOMElements.restaurantSearchInput.focus();
+                DOMElements.restaurantSearchInput.nextElementSibling.nextElementSibling.classList.add('visible');
             }
             renderRestaurants();
         }, 300);
     }
-
+    function clearSearch(input) { input.value = ''; input.dispatchEvent(new Event('input')); }
     function handleFilterClick(event) {
         if (!event.target.matches('.filter-btn')) return;
         currentFilter = event.target.dataset.filter;
         document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.filter === currentFilter));
         renderRestaurants();
     }
-
     function showPage(pageId) {
         DOMElements.homePage.style.display = 'none';
         DOMElements.restaurantsPage.style.display = 'none';
@@ -162,85 +140,50 @@
         if (pageId === 'restaurants') { DOMElements.restaurantSearchInput.value = DOMElements.homeSearchInput.value; }
         window.scrollTo(0, 0);
     }
-    
     function toggleFavorite(restoName) {
         const index = favoriteRestaurants.indexOf(restoName);
         if (index > -1) { favoriteRestaurants.splice(index, 1); } else { favoriteRestaurants.push(restoName); }
         localStorage.setItem('favoriteRestaurants', JSON.stringify(favoriteRestaurants));
         renderRestaurants();
     }
-
-    function showModal(modalElement) {
-        modalElement.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal(modalElement) {
-        modalElement.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-    
+    function showModal(modalElement) { modalElement.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeModal(modalElement) { modalElement.classList.remove('active'); document.body.style.overflow = 'auto'; }
     function showRestaurantModal(resto) {
         const setContent = (id, content) => { document.getElementById(id).textContent = content || 'N/A'; };
         setContent('modalRestaurantName', resto.name); setContent('modalRestaurantCuisine', resto.cuisine); setContent('modalRestaurantRating', resto.rating);
         setContent('modalRestaurantLocation', resto.location); setContent('modalRestaurantTimings', resto.timings); setContent('modalRestaurantContact', resto.contact);
         setContent('modalRestaurantMinOrder', resto.minOrder); setContent('modalRestaurantDishes', resto.dishes);
-        
         const orderLink = document.getElementById('modalRestaurantOrderLink');
         orderLink.style.display = resto.orderLink ? 'inline-block' : 'none';
         if (resto.orderLink) orderLink.href = resto.orderLink;
-        
         const callOrderBadge = document.getElementById('modalRestaurantCallOrder');
         callOrderBadge.textContent = resto.takesCallOrders ? 'Yes' : 'No';
         callOrderBadge.className = `badge ${resto.takesCallOrders ? 'yes' : 'no'}`;
-        
-        const menuGallery = document.getElementById('menuGallery');
-        menuGallery.innerHTML = '';
+        const menuGallery = document.getElementById('menuGallery'); menuGallery.innerHTML = '';
         document.getElementById('menuImagesSection').style.display = (resto.menuImages && resto.menuImages.length > 0) ? 'block' : 'none';
-        if (resto.menuImages) {
-            resto.menuImages.forEach(src => menuGallery.innerHTML += `<div class="menu-image"><img src="${src}" alt="${resto.name} menu" loading="lazy"></div>`);
-        }
+        if (resto.menuImages) { resto.menuImages.forEach(src => menuGallery.innerHTML += `<div class="menu-image"><img src="${src}" alt="${resto.name} menu" loading="lazy"></div>`); }
         showModal(DOMElements.restaurantModal);
     }
-    
     function initializeDarkMode() {
         const savedMode = localStorage.getItem('darkMode');
         const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
         document.body.classList.toggle('light-mode', savedMode === 'light' || (!savedMode && !prefersDark));
         updateDarkModeIcon();
     }
-
-    function toggleDarkMode() {
-        document.body.classList.toggle('light-mode');
-        localStorage.setItem('darkMode', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-        updateDarkModeIcon();
-    }
-
-    function updateDarkModeIcon() {
-        const icon = DOMElements.darkModeToggle.querySelector('i');
-        if (icon) icon.className = document.body.classList.contains('light-mode') ? 'fas fa-moon' : 'fas fa-sun';
-    }
-
+    function toggleDarkMode() { document.body.classList.toggle('light-mode'); localStorage.setItem('darkMode', document.body.classList.contains('light-mode') ? 'light' : 'dark'); updateDarkModeIcon(); }
+    function updateDarkModeIcon() { DOMElements.darkModeToggle.querySelector('i').className = document.body.classList.contains('light-mode') ? 'fas fa-moon' : 'fas fa-sun'; }
     function setupEventListeners() {
-        // --- Header & Page Navigation ---
         document.getElementById('logoLink').addEventListener('click', (e) => { e.preventDefault(); showPage('home'); });
         document.getElementById('homeBtn').addEventListener('click', () => showPage('home'));
         document.getElementById('browseAllBtn').addEventListener('click', (e) => { e.preventDefault(); showPage('restaurants'); });
-
-        // --- Search ---
         [DOMElements.homeSearchInput, DOMElements.restaurantSearchInput].forEach(input => input.addEventListener('input', handleSearch));
-        
-        // --- Filters ---
-        [DOMElements.homeFilterButtons, DOMElements.restaurantFilterButtons].forEach(container => container.addEventListener('click', handleFilterClick));
-
-        // --- Modals ---
+        DOMElements.clearHomeSearch.addEventListener('click', () => clearSearch(DOMElements.homeSearchInput));
+        DOMElements.clearRestaurantSearch.addEventListener('click', () => clearSearch(DOMElements.restaurantSearchInput));
+        [DOMElements.homeFilterButtons, DOMElements.restaurantFilterButtons].forEach(c => c.addEventListener('click', handleFilterClick));
         document.getElementById('addOutletBtn').addEventListener('click', () => showModal(DOMElements.addOutletModal));
-        document.getElementById('fabBtn').addEventListener('click', () => showModal(DOMElements.addOutletModal));
-        document.getElementById('closeRestaurantModalBtn').addEventListener('click', () => closeModal(DOMElements.restaurantModal));
-        document.getElementById('closeInfoModalBtn').addEventListener('click', () => closeModal(DOMElements.infoModal));
-        document.getElementById('closeAddOutletModalBtn').addEventListener('click', () => closeModal(DOMElements.addOutletModal));
-        document.getElementById('closeImageModalBtn').addEventListener('click', () => closeModal(DOMElements.imageModal));
-
+        [DOMElements.restaurantModal, DOMElements.infoModal, DOMElements.addOutletModal, DOMElements.imageModal].forEach(m => {
+            m.querySelector('.modal-close').addEventListener('click', () => closeModal(m));
+        });
         document.querySelector('.footer-links').addEventListener('click', e => {
             if (e.target.matches('.footer-link')) {
                 e.preventDefault();
@@ -252,8 +195,6 @@
                 }
             }
         });
-        
-        // --- Event Delegation for Dynamic Content ---
         DOMElements.restaurantsGrid.addEventListener('click', e => {
             const card = e.target.closest('.outlet-card');
             if (!card) return;
@@ -261,30 +202,18 @@
             if (e.target.closest('.favorite-btn')) { toggleFavorite(card.dataset.name); } 
             else if (restoData) { showRestaurantModal(restoData); }
         });
-        
         DOMElements.restaurantModal.addEventListener('click', e => {
             if(e.target.matches('.menu-image img')) {
                 DOMElements.modalImage.src = e.target.src;
                 showModal(DOMElements.imageModal);
             }
         });
-
-        // --- Dark Mode ---
         DOMElements.darkModeToggle.addEventListener('click', toggleDarkMode);
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            if (!localStorage.getItem('darkMode')) {
-                document.body.classList.toggle('light-mode', !e.matches);
-                updateDarkModeIcon();
-            }
+            if (!localStorage.getItem('darkMode')) { document.body.classList.toggle('light-mode', !e.matches); updateDarkModeIcon(); }
         });
     }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        initializeDarkMode();
-        populateFilters();
-        renderRestaurants();
-        setupEventListeners();
-        showPage('home');
-    });
+    document.addEventListener('DOMContentLoaded', () => { initializeDarkMode(); populateFilters(); renderRestaurants(); setupEventListeners(); showPage('home'); });
+})();
 
 })();
