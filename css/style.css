@@ -932,6 +932,8 @@ body::before {
 }
 /* ===== IMPROVED MOBILE RESPONSIVE STYLES ===== */
 
+/* ===== IMPROVED MOBILE RESPONSIVE STYLES ===== */
+
 /* Better breakpoints for modern devices */
 @media (max-width: 1200px) {
     .grid-container {
@@ -1037,13 +1039,14 @@ body::before {
         justify-content: center;
     }
     
-    /* Better touch targets for navigation buttons */
+    /* Smaller navigation buttons for mobile */
     .nav-btn {
-        padding: 12px 18px; /* Increased from 8px 16px */
-        font-size: 0.9rem; /* Increased from 0.85rem */
+        padding: 8px 12px; /* Reduced for smaller buttons */
+        font-size: 0.8rem; /* Reduced font size */
         flex: 1;
-        max-width: 130px; /* Increased from 120px */
-        min-height: 44px; /* Apple's minimum touch target */
+        max-width: 100px; /* Reduced from 130px */
+        min-height: 36px; /* Reduced from 44px */
+        border-radius: 18px; /* Smaller border radius to match size */
     }
     
     .outlet-card {
@@ -1152,9 +1155,11 @@ body::before {
     }
     
     .nav-btn {
-        padding: 10px 12px;
-        font-size: 0.8rem;
-        max-width: 110px;
+        padding: 6px 10px; /* Even smaller for very small screens */
+        font-size: 0.75rem; /* Smaller font */
+        max-width: 90px; /* Reduced from 110px */
+        min-height: 32px; /* Smaller height */
+        border-radius: 16px; /* Adjust border radius */
     }
     
     .search-box input {
