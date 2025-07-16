@@ -4,7 +4,7 @@
     // --- DATA ---
     // The complete list of all 42 restaurants.
     const restaurantData = [
-        { name: "Anup Roll & Shake Fast Food", searchName: "anup roll & shake fast food", cuisine: "Fast Food", rating: "4.0 ★ (100+)", location: "71, Vikas Nagar, Bidholi, Dehradun", timings: "Closes at 4AM", contact: "+917088677105", minOrder: "₹100", orderLink: "https://www.zomato.com/dehradun/anup-roll-shake-fast-food-bidholi", takesCallOrders: true, dishes: "Rolls, Shakes, Burgers, Wraps", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Anup_Roll.jpeg"] },
+         { name: "Anup Roll & Shake Fast Food", searchName: "anup roll & shake fast food", cuisine: "Fast Food", rating: "4.0 ★ (100+)", location: "71, Vikas Nagar, Bidholi, Dehradun", timings: "Closes at 4AM", contact: "+917088677105", minOrder: "₹100", orderLink: "https://www.zomato.com/dehradun/anup-roll-shake-fast-food-bidholi", takesCallOrders: true, dishes: "Rolls, Shakes, Burgers, Wraps", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Anup_Roll.jpeg"] },
         { name: "Isquare Restaurant And Cafe", searchName: "isquare restaurant and cafe", cuisine: "Multi-Cuisine, Cafe", rating: "4.2 ★ (150+)", location: "Post Office Road, Near I Square Girls Hostel, Bidholi", timings: "Closes at 11:30PM", contact: "+918858857775", minOrder: "₹150", orderLink: "https://www.zomato.com/dehradun/isquare-restaurant-and-cafe-bidholi/order", takesCallOrders: true, dishes: "Indian, Chinese, Continental, Beverages", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare1.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare2.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/ISquare3.jpeg"] },
         { name: "All Rounder Chacha", searchName: "all rounder chacha restaurant & cafe", cuisine: "North Indian", rating: "4.1 ★ (120+)", location: "Near Bright Wave School, Bidholi, Dehradun", timings: "Open 24 Hours", contact: "+918818037720", minOrder: "₹120", orderLink: "https://www.zomato.com/dehradun/all-rounder-chacha-restaurant-cafe-bidholi", takesCallOrders: true, dishes: "Roti, Dal, Sabzi, Curry, Biryani", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/AllRounder.jpeg", "https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/AllRounder1.jpeg"] },
         { name: "Maal & Chooz", searchName: "maal & chooz", cuisine: "Fast Food, Snacks", rating: "4.0 ★ (90+)", location: "Vikasnagar, Bidholi, Dehradun", timings: "Closes at 1:45AM", contact: "+917737178155", minOrder: "₹80", orderLink: "https://www.zomato.com/dehradun/maal-chooz-bidholi", takesCallOrders: true, dishes: "Snacks, Fast Food, Sandwiches, Momos", menuImages: ["https://raw.githubusercontent.com/aarohim24/FoodieSpot_images/main/Maal_&_Chooz.jpeg"] },
@@ -55,9 +55,7 @@
     };
 
     // --- STATE ---
-    let currentSearchTerm = '';
-    let currentFilter = 'all';
-    let searchDebounceTimer;
+    let currentSearchTerm = '', currentFilter = 'all', searchDebounceTimer;
     let favoriteRestaurants = JSON.parse(localStorage.getItem('favoriteRestaurants')) || [];
 
     // --- DOM ELEMENTS ---
@@ -74,92 +72,59 @@
         restaurantFilterButtons: document.getElementById('restaurantFilterButtons'),
         restaurantModal: document.getElementById('restaurantModal'),
         infoModal: document.getElementById('infoModal'),
+        addOutletModal: document.getElementById('addOutletModal'),
         imageModal: document.getElementById('imageModal'),
         modalImage: document.getElementById('modalImage'),
+        darkModeToggle: document.querySelector('.dark-mode-toggle'),
     };
 
     // --- FUNCTIONS ---
-
-    /** Renders restaurant cards based on filtered data. */
     function renderRestaurants() {
         const filteredData = restaurantData.filter(resto => {
             const searchName = resto.searchName || resto.name.toLowerCase();
             const cuisine = resto.cuisine ? resto.cuisine.toLowerCase() : '';
             const dishes = resto.dishes ? resto.dishes.toLowerCase() : '';
-
             const matchesFilter = currentFilter === 'all' || cuisine.includes(currentFilter);
-            const matchesSearch = !currentSearchTerm ||
-                searchName.includes(currentSearchTerm) ||
-                cuisine.includes(currentSearchTerm) ||
-                dishes.includes(currentSearchTerm);
-
+            const matchesSearch = !currentSearchTerm || searchName.includes(currentSearchTerm) || cuisine.includes(currentSearchTerm) || dishes.includes(currentSearchTerm);
             return matchesFilter && matchesSearch;
         });
 
-        DOMElements.restaurantsGrid.innerHTML = ''; // Clear existing cards
-        
+        DOMElements.restaurantsGrid.innerHTML = '';
         if (filteredData.length === 0) {
             DOMElements.searchResultsMessage.innerHTML = `No restaurants found for "<strong>${currentSearchTerm || currentFilter}</strong>"`;
-            DOMElements.searchResultsMessage.className = 'search-results-message show no-results';
-        } else {
-            if (currentSearchTerm || currentFilter !== 'all') {
-                DOMElements.searchResultsMessage.innerHTML = `Found <strong>${filteredData.length}</strong> matching results`;
-                DOMElements.searchResultsMessage.className = 'search-results-message show results-found';
-            } else {
-                DOMElements.searchResultsMessage.style.display = 'none';
-            }
-        }
+            DOMElements.searchResultsMessage.className = 'search-results-message show';
+        } else { DOMElements.searchResultsMessage.style.display = 'none'; }
         
         const fragment = document.createDocumentFragment();
         filteredData.forEach(resto => {
             const card = document.createElement('div');
             card.className = 'outlet-card';
             card.dataset.name = resto.searchName;
-            card.setAttribute('role', 'button');
-            card.setAttribute('tabindex', '0');
-            
             const isFavorite = favoriteRestaurants.includes(resto.searchName);
-
             card.innerHTML = `
-                <button class="favorite-btn" aria-label="Add to favorites">
-                    <i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i>
-                </button>
+                <button class="favorite-btn" aria-label="Toggle Favorite"><i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i></button>
                 <div class="outlet-header">
                     <h2 class="outlet-name">${resto.name}</h2>
                     <p class="outlet-cuisine">${resto.cuisine}</p>
-                    <span class="rating">${resto.rating}</span>
-                    <div class="phone-order">
-                        <i class="fas ${resto.takesCallOrders ? 'fa-phone-alt' : 'fa-times-circle'}"></i> 
-                        ${resto.takesCallOrders ? 'Accepts phone orders' : 'No phone orders'}
-                    </div>
                 </div>
                 <div class="outlet-details">
-                    <div class="detail-row">
-                        <span class="detail-label">Min. Order:</span>
-                        <span class="detail-value">${resto.minOrder || 'N/A'}</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Status:</span>
-                        <span class="status">${resto.timings || 'N/A'}</span>
-                    </div>
-                </div>
-            `;
+                    <div class="rating"><i class="fas fa-star"></i> ${resto.rating}</div>
+                    <div class="phone-order"><i class="fas ${resto.takesCallOrders ? 'fa-phone-alt' : 'fa-times-circle'}"></i> ${resto.takesCallOrders ? 'Phone Orders' : 'No Phone Orders'}</div>
+                </div>`;
             fragment.appendChild(card);
         });
         DOMElements.restaurantsGrid.appendChild(fragment);
     }
     
-    /** Populates filter buttons in the DOM. */
     function populateFilters() {
         const cuisines = ['all', ...new Set(restaurantData.flatMap(r => r.cuisine.toLowerCase().split(/, | & /)).filter(c => c && c !== 'not specified'))];
         const createButtons = (container) => {
             container.innerHTML = '';
             cuisines.forEach(cuisine => {
                 const btn = document.createElement('button');
-                btn.className = 'filter-btn';
+                btn.className = `filter-btn ${cuisine === 'all' ? 'active' : ''}`;
                 btn.dataset.filter = cuisine;
                 btn.textContent = cuisine.charAt(0).toUpperCase() + cuisine.slice(1);
-                if (cuisine === 'all') btn.classList.add('active');
                 container.appendChild(btn);
             });
         };
@@ -167,13 +132,8 @@
         createButtons(DOMElements.restaurantFilterButtons);
     }
 
-    /** Handles search input with debouncing. */
     function handleSearch(event) {
         const input = event.target;
-        const clearBtn = input.nextElementSibling.nextElementSibling;
-        
-        clearBtn.classList.toggle('visible', input.value.length > 0);
-        
         clearTimeout(searchDebounceTimer);
         searchDebounceTimer = setTimeout(() => {
             currentSearchTerm = input.value.toLowerCase().trim();
@@ -181,111 +141,37 @@
                 showPage('restaurants');
                 DOMElements.restaurantSearchInput.value = currentSearchTerm;
                 DOMElements.restaurantSearchInput.focus();
-                DOMElements.clearRestaurantSearch.classList.add('visible');
             }
             renderRestaurants();
         }, 300);
     }
 
-    /** Clears a search input field. */
-    function clearSearch(inputElement) {
-        inputElement.value = '';
-        inputElement.dispatchEvent(new Event('input', { bubbles: true }));
-    }
-
-    /** Handles filter button clicks. */
     function handleFilterClick(event) {
         if (!event.target.matches('.filter-btn')) return;
-        event.preventDefault();
-        
-        const filter = event.target.dataset.filter;
-        currentFilter = filter;
-        
-        const parentContainer = event.target.closest('.filter-buttons');
-        parentContainer.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        event.target.classList.add('active');
-        
+        currentFilter = event.target.dataset.filter;
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.filter === currentFilter));
         renderRestaurants();
     }
 
-    /** Shows a specific page and hides others. */
     function showPage(pageId) {
         DOMElements.homePage.style.display = 'none';
         DOMElements.restaurantsPage.style.display = 'none';
-        
         const pageToShow = document.getElementById(`${pageId}Page`);
         if(pageToShow) pageToShow.style.display = 'block';
-
-        if (pageId === 'restaurants') {
-            DOMElements.restaurantSearchInput.value = DOMElements.homeSearchInput.value;
-        }
-        
+        DOMElements.darkModeToggle.style.display = pageId === 'home' ? 'flex' : 'none';
+        if (pageId === 'restaurants') { DOMElements.restaurantSearchInput.value = DOMElements.homeSearchInput.value; }
         window.scrollTo(0, 0);
     }
     
-    /** Toggles the favorite status of a restaurant. */
     function toggleFavorite(restoName) {
         const index = favoriteRestaurants.indexOf(restoName);
-        if (index > -1) {
-            favoriteRestaurants.splice(index, 1);
-        } else {
-            favoriteRestaurants.push(restoName);
-        }
+        if (index > -1) { favoriteRestaurants.splice(index, 1); } else { favoriteRestaurants.push(restoName); }
         localStorage.setItem('favoriteRestaurants', JSON.stringify(favoriteRestaurants));
         renderRestaurants();
     }
 
-    /** Shows the modal with restaurant details. */
-    function showRestaurantModal(resto) {
-        document.getElementById('modalRestaurantName').textContent = resto.name;
-        document.getElementById('modalRestaurantCuisine').textContent = resto.cuisine;
-        document.getElementById('modalRestaurantRating').textContent = resto.rating;
-        document.getElementById('modalRestaurantLocation').textContent = resto.location;
-        document.getElementById('modalRestaurantTimings').textContent = resto.timings;
-        document.getElementById('modalRestaurantContact').textContent = resto.contact;
-        document.getElementById('modalRestaurantMinOrder').textContent = resto.minOrder;
-        document.getElementById('modalRestaurantDishes').textContent = resto.dishes;
-
-        const orderLink = document.getElementById('modalRestaurantOrderLink');
-        if(resto.orderLink) {
-            orderLink.href = resto.orderLink;
-            orderLink.style.display = 'inline-block';
-        } else {
-            orderLink.style.display = 'none';
-        }
-
-        const callOrderBadge = document.getElementById('modalRestaurantCallOrder');
-        callOrderBadge.textContent = resto.takesCallOrders ? 'Yes' : 'No';
-        callOrderBadge.className = `badge ${resto.takesCallOrders ? 'yes' : 'no'}`;
-
-        const menuGallery = document.getElementById('menuGallery');
-        const menuSection = document.getElementById('menuImagesSection');
-        menuGallery.innerHTML = '';
-        if (resto.menuImages && resto.menuImages.length > 0) {
-            menuSection.style.display = 'block';
-            resto.menuImages.forEach(src => {
-                const imgContainer = document.createElement('div');
-                imgContainer.className = 'menu-image';
-                imgContainer.innerHTML = `<img src="${src}" alt="${resto.name} menu" loading="lazy">`;
-                menuGallery.appendChild(imgContainer);
-            });
-        } else {
-            menuSection.style.display = 'none';
-        }
-        
-        DOMElements.restaurantModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    
-    /** Shows the info modal (About, Contact, etc.). */
-    function showInfoModal(type) {
-        const info = infoContent[type];
-        if (!info) return;
-        document.getElementById('infoModalTitle').textContent = info.title;
-        document.getElementById('infoModalContent').innerHTML = info.content;
-        DOMElements.infoModal.classList.add('active');
+    function showModal(modalElement) {
+        modalElement.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 
@@ -293,14 +179,34 @@
         modalElement.classList.remove('active');
         document.body.style.overflow = 'auto';
     }
-
-    /** Dark Mode Logic */
+    
+    function showRestaurantModal(resto) {
+        const setContent = (id, content) => { document.getElementById(id).textContent = content || 'N/A'; };
+        setContent('modalRestaurantName', resto.name); setContent('modalRestaurantCuisine', resto.cuisine); setContent('modalRestaurantRating', resto.rating);
+        setContent('modalRestaurantLocation', resto.location); setContent('modalRestaurantTimings', resto.timings); setContent('modalRestaurantContact', resto.contact);
+        setContent('modalRestaurantMinOrder', resto.minOrder); setContent('modalRestaurantDishes', resto.dishes);
+        
+        const orderLink = document.getElementById('modalRestaurantOrderLink');
+        orderLink.style.display = resto.orderLink ? 'inline-block' : 'none';
+        if (resto.orderLink) orderLink.href = resto.orderLink;
+        
+        const callOrderBadge = document.getElementById('modalRestaurantCallOrder');
+        callOrderBadge.textContent = resto.takesCallOrders ? 'Yes' : 'No';
+        callOrderBadge.className = `badge ${resto.takesCallOrders ? 'yes' : 'no'}`;
+        
+        const menuGallery = document.getElementById('menuGallery');
+        menuGallery.innerHTML = '';
+        document.getElementById('menuImagesSection').style.display = (resto.menuImages && resto.menuImages.length > 0) ? 'block' : 'none';
+        if (resto.menuImages) {
+            resto.menuImages.forEach(src => menuGallery.innerHTML += `<div class="menu-image"><img src="${src}" alt="${resto.name} menu" loading="lazy"></div>`);
+        }
+        showModal(DOMElements.restaurantModal);
+    }
+    
     function initializeDarkMode() {
         const savedMode = localStorage.getItem('darkMode');
         const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
-        if (savedMode === 'light' || (savedMode === null && !prefersDark)) {
-            document.body.classList.add('light-mode');
-        }
+        document.body.classList.toggle('light-mode', savedMode === 'light' || (!savedMode && !prefersDark));
         updateDarkModeIcon();
     }
 
@@ -311,72 +217,68 @@
     }
 
     function updateDarkModeIcon() {
-        const icon = document.querySelector('.dark-mode-toggle i');
-        if (icon) {
-            icon.className = document.body.classList.contains('light-mode') ? 'fas fa-moon' : 'fas fa-sun';
-        }
+        const icon = DOMElements.darkModeToggle.querySelector('i');
+        if (icon) icon.className = document.body.classList.contains('light-mode') ? 'fas fa-moon' : 'fas fa-sun';
     }
 
-    // --- EVENT LISTENERS ---
     function setupEventListeners() {
+        // --- Header & Page Navigation ---
+        document.getElementById('logoLink').addEventListener('click', (e) => { e.preventDefault(); showPage('home'); });
         document.getElementById('homeBtn').addEventListener('click', () => showPage('home'));
-        document.getElementById('browseAllBtn').addEventListener('click', (e) => {
-            e.preventDefault();
-            showPage('restaurants');
-        });
-        document.getElementById('addOutletBtn').addEventListener('click', () => alert('Feature to add an outlet coming soon!'));
-        document.getElementById('fabBtn').addEventListener('click', () => alert('Feature to add an outlet coming soon!'));
+        document.getElementById('browseAllBtn').addEventListener('click', (e) => { e.preventDefault(); showPage('restaurants'); });
 
-        DOMElements.homeSearchInput.addEventListener('input', handleSearch);
-        DOMElements.restaurantSearchInput.addEventListener('input', handleSearch);
-        DOMElements.clearHomeSearch.addEventListener('click', () => clearSearch(DOMElements.homeSearchInput));
-        DOMElements.clearRestaurantSearch.addEventListener('click', () => clearSearch(DOMElements.restaurantSearchInput));
+        // --- Search ---
+        [DOMElements.homeSearchInput, DOMElements.restaurantSearchInput].forEach(input => input.addEventListener('input', handleSearch));
         
-        DOMElements.homeFilterButtons.addEventListener('click', handleFilterClick);
-        DOMElements.restaurantFilterButtons.addEventListener('click', handleFilterClick);
+        // --- Filters ---
+        [DOMElements.homeFilterButtons, DOMElements.restaurantFilterButtons].forEach(container => container.addEventListener('click', handleFilterClick));
+
+        // --- Modals ---
+        document.getElementById('addOutletBtn').addEventListener('click', () => showModal(DOMElements.addOutletModal));
+        document.getElementById('fabBtn').addEventListener('click', () => showModal(DOMElements.addOutletModal));
+        document.getElementById('closeRestaurantModalBtn').addEventListener('click', () => closeModal(DOMElements.restaurantModal));
+        document.getElementById('closeInfoModalBtn').addEventListener('click', () => closeModal(DOMElements.infoModal));
+        document.getElementById('closeAddOutletModalBtn').addEventListener('click', () => closeModal(DOMElements.addOutletModal));
+        document.getElementById('closeImageModalBtn').addEventListener('click', () => closeModal(DOMElements.imageModal));
+
+        document.querySelector('.footer-links').addEventListener('click', e => {
+            if (e.target.matches('.footer-link')) {
+                e.preventDefault();
+                const info = infoContent[e.target.dataset.modal];
+                if (info) {
+                    document.getElementById('infoModalTitle').textContent = info.title;
+                    document.getElementById('infoModalContent').innerHTML = info.content;
+                    showModal(DOMElements.infoModal);
+                }
+            }
+        });
         
-        document.querySelector('.dark-mode-toggle').addEventListener('click', toggleDarkMode);
+        // --- Event Delegation for Dynamic Content ---
+        DOMElements.restaurantsGrid.addEventListener('click', e => {
+            const card = e.target.closest('.outlet-card');
+            if (!card) return;
+            const restoData = restaurantData.find(r => r.searchName === card.dataset.name);
+            if (e.target.closest('.favorite-btn')) { toggleFavorite(card.dataset.name); } 
+            else if (restoData) { showRestaurantModal(restoData); }
+        });
+        
+        DOMElements.restaurantModal.addEventListener('click', e => {
+            if(e.target.matches('.menu-image img')) {
+                DOMElements.modalImage.src = e.target.src;
+                showModal(DOMElements.imageModal);
+            }
+        });
+
+        // --- Dark Mode ---
+        DOMElements.darkModeToggle.addEventListener('click', toggleDarkMode);
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
             if (!localStorage.getItem('darkMode')) {
                 document.body.classList.toggle('light-mode', !e.matches);
                 updateDarkModeIcon();
             }
         });
-        
-        document.getElementById('closeRestaurantModalBtn').addEventListener('click', () => closeModal(DOMElements.restaurantModal));
-        document.getElementById('closeInfoModalBtn').addEventListener('click', () => closeModal(DOMElements.infoModal));
-        document.getElementById('closeImageModalBtn').addEventListener('click', () => closeModal(DOMElements.imageModal));
-
-        document.querySelector('.footer-links').addEventListener('click', e => {
-            if (e.target.matches('.footer-link')) {
-                e.preventDefault();
-                showInfoModal(e.target.dataset.modal);
-            }
-        });
-        
-        DOMElements.restaurantsGrid.addEventListener('click', e => {
-            const card = e.target.closest('.outlet-card');
-            if (!card) return;
-
-            const restoName = card.dataset.name;
-            const restoData = restaurantData.find(r => (r.searchName || r.name.toLowerCase()) === restoName);
-
-            if (e.target.closest('.favorite-btn')) {
-                toggleFavorite(restoName);
-            } else if (restoData) {
-                showRestaurantModal(restoData);
-            }
-        });
-        
-        DOMElements.restaurantModal.addEventListener('click', e => {
-            if(e.target.matches('.menu-image img')) {
-                DOMElements.modalImage.src = e.target.src;
-                DOMElements.imageModal.classList.add('active');
-            }
-        });
     }
 
-    // --- INITIALIZATION ---
     document.addEventListener('DOMContentLoaded', () => {
         initializeDarkMode();
         populateFilters();
