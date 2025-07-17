@@ -108,21 +108,48 @@ body:not(.light-mode) .badge.yes { background: #1B5E20; color: #C8E6C9; } body:n
 .footer-link { color: var(--primary); text-decoration: none; font-weight: 500; transition: 0.3s ease; }
 .footer-link:hover { color: var(--secondary); text-decoration: underline; }
 
-/* === MOBILE ONLY STYLES === */
+/* === NEW STYLES FOR ORDER LINKS === */
+#modalOrderLinksContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-left: 28px; /* Aligns with the paragraphs above it */
+    margin-top: 10px;
+}
+
+.order-link {
+    text-decoration: none;
+    color: white;
+    background: var(--primary);
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-link:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+
 /* === MOBILE ONLY STYLES === */
 @media (max-width: 768px) {
     .container {
-        width: 95%; /* Good, no change */
+        width: 95%;
     }
 
     .header {
         flex-direction: column;
-        gap: 20px; /* Increased gap for better separation */
-        padding: 20px 0; /* More vertical padding */
-        text-align: center; /* Center the logo and buttons */
+        gap: 20px;
+        padding: 20px 0;
+        text-align: center;
     }
 
-    /* Keep dark mode toggle out of the flow of the header */
     .dark-mode-toggle {
         top: 15px;
         right: 15px;
@@ -131,38 +158,34 @@ body:not(.light-mode) .badge.yes { background: #1B5E20; color: #C8E6C9; } body:n
         font-size: 1rem;
     }
 
-    /* Remove the light-mode specific toggle positioning */
-    /* .light-mode .dark-mode-toggle { top: 15px; } */
-
     .title-section {
-        margin: 20px 0 30px; /* Adjusted margin */
+        margin: 20px 0 30px;
     }
 
     .search-section {
-        padding: 20px; /* Reduced padding */
+        padding: 20px;
     }
 
-    /* This makes the filter buttons scrollable without a visible scrollbar */
     .filter-buttons {
         flex-wrap: nowrap;
         overflow-x: auto;
         justify-content: flex-start;
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
-        padding-bottom: 15px; /* Space below the scrollable area */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        padding-bottom: 15px;
     }
 
     .filter-buttons::-webkit-scrollbar {
-        display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+        display: none;
     }
 
     .filter-btn {
-        flex-shrink: 0; /* Prevent buttons from shrinking */
+        flex-shrink: 0;
     }
 
     .grid-container {
-        grid-template-columns: 1fr; /* Good, no change */
-        gap: 20px; /* Slightly increased gap for better card separation */
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
     
     .outlet-card {
@@ -170,15 +193,15 @@ body:not(.light-mode) .badge.yes { background: #1B5E20; color: #C8E6C9; } body:n
     }
     
     .outlet-header {
-        padding: 20px; /* More balanced padding */
+        padding: 20px;
     }
     
     .outlet-name {
-        font-size: 1.2rem; /* Larger, more readable name */
+        font-size: 1.2rem;
     }
     
     .outlet-cuisine {
-        font-size: 0.8rem; /* Slightly larger */
+        font-size: 0.8rem;
     }
     
     .outlet-details {
@@ -186,12 +209,11 @@ body:not(.light-mode) .badge.yes { background: #1B5E20; color: #C8E6C9; } body:n
     }
     
     .rating, .phone-order {
-        font-size: 0.85rem; /* Larger for readability */
+        font-size: 0.85rem;
         gap: 8px;
     }
 
     .menu-image {
-        /* On mobile, make menu images stack instead of being side-by-side */
         width: 100%;
     }
 }
