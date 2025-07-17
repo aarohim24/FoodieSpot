@@ -63,13 +63,70 @@
         </footer>
     </div>
     <div class="modal-overlay" id="restaurantModal">
-        <div class="restaurant-modal"><div class="modal-header"><button class="modal-close">&times;</button><h2 id="modalRestaurantName"></h2><p id="modalRestaurantCuisine"></p><span class="rating" id="modalRestaurantRating"></span></div><div class="modal-body"><div class="modal-section"><h3><i class="fas fa-map-marker-alt"></i> Location</h3><p id="modalRestaurantLocation"></p></div><div class="modal-section"><h3><i class="fas fa-clock"></i> Timings</h3><p id="modalRestaurantTimings"></p></div><div class="modal-section"><h3><i class="fas fa-phone"></i> Contact</h3><p id="modalRestaurantContact"></p></div><div class="modal-section"><h3><i class="fas fa-rupee-sign"></i> Minimum Order</h3><p id="modalRestaurantMinOrder"></p></div><div class="modal-section"><h3><i class="fas fa-utensils"></i> Order Options</h3><p>Takes orders via call: <span class="badge" id="modalRestaurantCallOrder"></span></p><a href="#" class="order-link" id="modalRestaurantOrderLink" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Order Online</a></div><div class="modal-section"><h3><i class="fas fa-star"></i> Popular Dishes</h3><p id="modalRestaurantDishes"></p></div><div class="modal-section" id="menuImagesSection"><h3><i class="fas fa-images"></i> Menu</h3><div class="menu-gallery" id="menuGallery"></div></div></div></div>
+        <div class="restaurant-modal">
+            <div class="modal-header">
+                <button class="modal-close">&times;</button>
+                <h2 id="modalRestaurantName"></h2>
+                <p id="modalRestaurantCuisine"></p><span class="rating" id="modalRestaurantRating"></span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3><i class="fas fa-map-marker-alt"></i> Location</h3>
+                    <p id="modalRestaurantLocation"></p>
+                </div>
+                <div class="modal-section">
+                    <h3><i class="fas fa-clock"></i> Timings</h3>
+                    <p id="modalRestaurantTimings"></p>
+                </div>
+                <div class="modal-section">
+                    <h3><i class="fas fa-phone"></i> Contact</h3>
+                    <p id="modalRestaurantContact"></p>
+                </div>
+                <div class="modal-section">
+                    <h3><i class="fas fa-rupee-sign"></i> Minimum Order</h3>
+                    <p id="modalRestaurantMinOrder"></p>
+                </div>
+                <div class="modal-section">
+                    <h3><i class="fas fa-utensils"></i> Order Options</h3>
+                    <p>Takes orders via call: <span class="badge" id="modalRestaurantCallOrder"></span></p>
+                    <div id="modalOrderLinksContainer"></div>
+                </div>
+                <div class="modal-section">
+                    <h3><i class="fas fa-star"></i> Popular Dishes</h3>
+                    <p id="modalRestaurantDishes"></p>
+                </div>
+                <div class="modal-section" id="menuImagesSection">
+                    <h3><i class="fas fa-images"></i> Menu</h3>
+                    <div class="menu-gallery" id="menuGallery"></div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal-overlay" id="infoModal">
-        <div class="restaurant-modal"><div class="modal-header"><button class="modal-close">&times;</button><h2 id="infoModalTitle"></h2></div><div class="modal-body"><div class="modal-section" id="infoModalContent"></div></div></div>
+        <div class="restaurant-modal">
+            <div class="modal-header">
+                <button class="modal-close">&times;</button>
+                <h2 id="infoModalTitle"></h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section" id="infoModalContent"></div>
+            </div>
+        </div>
     </div>
     <div class="modal-overlay" id="addOutletModal">
-        <div class="restaurant-modal"><div class="modal-header"><button class="modal-close">&times;</button><h2>List a New Outlet</h2></div><div class="modal-body"><div class="modal-section"><h3>Help Us Grow!</h3><p>Know a place that's not on our list? Click the button below to open your email client and send us the details.</p><p>Please include the restaurant's name, location, cuisine, and contact info if possible.</p></div><a href="mailto:your-email@example.com?subject=New%20Restaurant%20Submission%20for%20FoodieSpot&body=Hi%20FoodieSpot%20Team%2C%0A%0AI'd%20like%20to%20suggest%20a%20new%20restaurant%20for%20your%20list.%0A%0A-%20**Restaurant%20Name%3A**%20%0A-%20**Cuisine%20Type%3A**%20%0A-%20**Location%2FAddress%3A**%20%0A-%20**Contact%20Number%3A**%20(Optional)%0A-%20**Operating%20Hours%3A**%20(Optional)%0A%0AThanks!" class="order-link" style="text-align: center; display: block; margin-top: 20px; width: 100%;"><i class="fas fa-envelope"></i> Send Mail</a></div></div>
+        <div class="restaurant-modal">
+            <div class="modal-header">
+                <button class="modal-close">&times;</button>
+                <h2>List a New Outlet</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>Help Us Grow!</h3>
+                    <p>Know a place that's not on our list? Click the button below to open your email client and send us the details.</p>
+                    <p>Please include the restaurant's name, location, cuisine, and contact info if possible.</p>
+                </div><a href="mailto:your-email@example.com?subject=New%20Restaurant%20Submission%20for%20FoodieSpot&body=Hi%20FoodieSpot%20Team%2C%0A%0AI'd%20like%20to%20suggest%20a%20new%20restaurant%20for%20your%20list.%0A%0A-%20**Restaurant%20Name%3A**%20%0A-%20**Cuisine%20Type%3A**%20%0A-%20**Location%2FAddress%3A**%20%0A-%20**Contact%20Number%3A**%20(Optional)%0A-%20**Operating%20Hours%3A**%20(Optional)%0A%0AThanks!" class="order-link" style="text-align: center; display: block; margin-top: 20px; width: 100%;"><i class="fas fa-envelope"></i> Send Mail</a>
+            </div>
+        </div>
     </div>
     <div class="image-modal" id="imageModal">
         <span class="image-modal-close">&times;</span><img id="modalImage" src="" alt="Menu Image">
