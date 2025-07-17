@@ -109,20 +109,89 @@ body:not(.light-mode) .badge.yes { background: #1B5E20; color: #C8E6C9; } body:n
 .footer-link:hover { color: var(--secondary); text-decoration: underline; }
 
 /* === MOBILE ONLY STYLES === */
+/* === MOBILE ONLY STYLES === */
 @media (max-width: 768px) {
-    .container { width: 95%; }
-    .header { flex-direction: column; gap: 15px; padding: 15px 0; }
-    .dark-mode-toggle { top: 20px; right: 15px; width: 40px; height: 40px; font-size: 1rem; }
-    .light-mode .dark-mode-toggle { top: 15px; }
-    .title-section { margin: 20px 0; }
-    .filter-buttons { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; scrollbar-width: none; padding-bottom: 15px; }
-    .filter-buttons::-webkit-scrollbar { display: none; }
-    .filter-btn { flex-shrink: 0; }
-    .grid-container { grid-template-columns: 1fr; gap: 15px; }
-    .outlet-card { border-radius: 12px; }
-    .outlet-header { padding: 15px; }
-    .outlet-name { font-size: 1.1rem; }
-    .outlet-cuisine { font-size: 0.7rem; }
-    .outlet-details { padding: 15px; }
-    .rating, .phone-order { font-size: 0.8rem; gap: 6px; }
+    .container {
+        width: 95%; /* Good, no change */
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 20px; /* Increased gap for better separation */
+        padding: 20px 0; /* More vertical padding */
+        text-align: center; /* Center the logo and buttons */
+    }
+
+    /* Keep dark mode toggle out of the flow of the header */
+    .dark-mode-toggle {
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    /* Remove the light-mode specific toggle positioning */
+    /* .light-mode .dark-mode-toggle { top: 15px; } */
+
+    .title-section {
+        margin: 20px 0 30px; /* Adjusted margin */
+    }
+
+    .search-section {
+        padding: 20px; /* Reduced padding */
+    }
+
+    /* This makes the filter buttons scrollable without a visible scrollbar */
+    .filter-buttons {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+        padding-bottom: 15px; /* Space below the scrollable area */
+    }
+
+    .filter-buttons::-webkit-scrollbar {
+        display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+    }
+
+    .filter-btn {
+        flex-shrink: 0; /* Prevent buttons from shrinking */
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr; /* Good, no change */
+        gap: 20px; /* Slightly increased gap for better card separation */
+    }
+    
+    .outlet-card {
+        border-radius: 12px;
+    }
+    
+    .outlet-header {
+        padding: 20px; /* More balanced padding */
+    }
+    
+    .outlet-name {
+        font-size: 1.2rem; /* Larger, more readable name */
+    }
+    
+    .outlet-cuisine {
+        font-size: 0.8rem; /* Slightly larger */
+    }
+    
+    .outlet-details {
+        padding: 20px;
+    }
+    
+    .rating, .phone-order {
+        font-size: 0.85rem; /* Larger for readability */
+        gap: 8px;
+    }
+
+    .menu-image {
+        /* On mobile, make menu images stack instead of being side-by-side */
+        width: 100%;
+    }
 }
