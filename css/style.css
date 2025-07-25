@@ -382,9 +382,6 @@ body:not(.light-mode) .dark-mode-toggle i {
     flex-wrap: wrap; 
     margin: 25px auto; 
     max-width: 800px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
     padding: 0 20px 15px;
     position: relative;
 }
