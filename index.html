@@ -22,6 +22,13 @@
             <button class="dark-mode-toggle" aria-label="Toggle theme">
                 <i class="fas fa-moon"></i>
             </button>
+            
+            <div class="fab-container">
+                <button class="fab" id="scrollToTopFab" title="Scroll to top">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+
             <div class="home-page" id="homePage">
                 <section class="title-section">
                     <h1 class="main-title">FOODIESPOT</h1>
@@ -36,22 +43,36 @@
                         <input type="text" id="homeSearchInput" placeholder="e.g. 'Pizza' or 'Anup Roll'">
                         <i class="fas fa-search"></i>
                         <button class="clear-search" title="Clear search"><i class="fas fa-times"></i></button>
+                        <div class="search-suggestions" id="homeSearchSuggestions"></div>
+                    </div>
+                    <div class="quick-categories">
+                        <button class="category-pill" data-category="pizza">Pizza</button>
+                        <button class="category-pill" data-category="fast food">Fast Food</button>
+                        <button class="category-pill" data-category="cafe">Cafe</button>
+                        <button class="category-pill" data-category="north indian">North Indian</button>
                     </div>
                     <div class="filter-buttons" id="homeFilterButtons"></div>
                     <a href="#" class="browse-all-btn" id="browseAllBtn">Browse All Restaurants <i class="fas fa-arrow-right"></i></a>
                 </section>
             </div>
+
             <div class="restaurants-page" id="restaurantsPage" style="display: none;">
-                <div class="search-box page-search-box">
+                <div class="search-box page-search-box" id="pageSearchBox">
                     <input type="text" id="restaurantSearchInput" placeholder="Search restaurants...">
                     <i class="fas fa-search"></i>
                     <button class="clear-search" title="Clear search"><i class="fas fa-times"></i></button>
+                    <div class="search-suggestions" id="restaurantSearchSuggestions"></div>
                 </div>
                 <div class="filter-buttons" id="restaurantFilterButtons"></div>
                 <div class="search-results-message" id="searchResultsMessage"></div>
+                <div class="loading-state" id="loadingState" style="display: none;">
+                    <div class="loading-spinner"></div>
+                    Loading restaurants...
+                </div>
                 <div class="grid-container" id="restaurantsGrid"></div>
             </div>
         </main>
+
         <footer class="footer">
             <div class="footer-links">
                 <a href="#" class="footer-link" data-modal="about">About</a>
@@ -62,8 +83,11 @@
             <div class="footer-copyright">&copy; 2025 FoodieSpot. All Rights Reserved.</div>
         </footer>
     </div>
+
+    <!-- Modals remain the same as your original code -->
     <div class="modal-overlay" id="restaurantModal">
         <div class="restaurant-modal">
+            <div class="modal-handle"></div>
             <div class="modal-header">
                 <button class="modal-close">&times;</button>
                 <h2 id="modalRestaurantName"></h2>
@@ -102,6 +126,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Other modals remain the same -->
     <div class="modal-overlay" id="infoModal">
         <div class="restaurant-modal">
             <div class="modal-header">
@@ -113,6 +139,7 @@
             </div>
         </div>
     </div>
+    
     <div class="modal-overlay" id="addOutletModal">
         <div class="restaurant-modal">
             <div class="modal-header">
@@ -124,13 +151,19 @@
                     <h3>Help Us Grow!</h3>
                     <p>Know a place that's not on our list? Click the button below to open your email client and send us the details.</p>
                     <p>Please include the restaurant's name, location, cuisine, and contact info if possible.</p>
-                </div><a href="mailto:contactfoodiespot@gmail.com?subject=New%20Restaurant%20Submission%20for%20FoodieSpot&body=Hi%20FoodieSpot%20Team%2C%0A%0AI'd%20like%20to%20suggest%20a%20new%20restaurant%20for%20your%20list.%0A%0A-%20**Restaurant%20Name%3A**%20%0A-%20**Cuisine%20Type%3A**%20%0A-%20**Location%2FAddress%3A**%20%0A-%20**Contact%20Number%3A**%20(Optional)%0A-%20**Operating%20Hours%3A**%20(Optional)%0A%0AThanks!" class="order-link" style="text-align: center; display: block; margin-top: 20px; width: 100%;"><i class="fas fa-envelope"></i> Send Mail</a>
+                </div>
+                <a href="mailto:contactfoodiespot@gmail.com?subject=New%20Restaurant%20Submission%20for%20FoodieSpot&body=Hi%20FoodieSpot%20Team%2C%0A%0AI'd%20like%20to%20suggest%20a%20new%20restaurant%20for%20your%20list.%0A%0A-%20**Restaurant%20Name%3A**%20%0A-%20**Cuisine%20Type%3A**%20%0A-%20**Location%2FAddress%3A**%20%0A-%20**Contact%20Number%3A**%20(Optional)%0A-%20**Operating%20Hours%3A**%20(Optional)%0A%0AThanks!" class="order-link" style="text-align: center; display: block; margin-top: 20px; width: 100%;">
+                    <i class="fas fa-envelope"></i> Send Mail
+                </a>
             </div>
         </div>
     </div>
+    
     <div class="image-modal" id="imageModal">
-        <span class="image-modal-close">&times;</span><img id="modalImage" src="" alt="Menu Image">
+        <span class="image-modal-close">&times;</span>
+        <img id="modalImage" src="" alt="Menu Image">
     </div>
+
     <script src="js/script.js"></script>
 </body>
 </html>
