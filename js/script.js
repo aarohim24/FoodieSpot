@@ -46,7 +46,7 @@
 
     const infoContent = {
         about: { title: "About FoodieSpot", content: `<p>FoodieSpot is your ultimate guide to discovering the best food options around UPES campus, Dehradun.</p><p>Our mission is to help students and faculty find great places to eat, with detailed information about each outlet including menus, prices, and ordering options.</p>` },
-        contact: { title: "Contact Us", content: `<p><i class="fas fa-envelope"></i> Email: contact@foodiespot.upes</p><p><i class="fas fa-map-marker-alt"></i> Address: UPES Bidholi Campus, Dehradun</p>` },
+        contact: { title: "Contact Us", content: `<p><i class="fas fa-envelope"></i> Email: contactfoodiespot@gmail.com</p><p><i class="fas fa-map-marker-alt"></i> Address: UPES Bidholi Campus, Dehradun</p>` },
         terms: { title: "Terms of Service", content: `<p>By using FoodieSpot, you agree to these terms: We strive to provide accurate information but cannot guarantee all details are current or correct. Users are responsible for verifying restaurant details before visiting or ordering.</p>`},
         privacy: { title: "Privacy Policy", content: `<p>FoodieSpot respects your privacy. We may collect basic usage data to improve our service, but we don't store personal information without your consent. Any data collected is used solely to enhance your experience.</p>` }
     };
