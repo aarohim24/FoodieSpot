@@ -530,6 +530,24 @@
                 document.querySelectorAll('.modal-overlay.active').forEach(modal => closeModal(modal));
             }
         });
+        
+        const outletForm = document.querySelector('form[name="outlet-suggestion"]');
+        outletForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent the default browser form submission
+    
+            const formData = new FormData(outletForm);
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString(),
+            })
+            .then(() => {
+                closeModal(DOMElements.addOutletModal); // Close the modal on success
+                outletForm.reset(); // Clear the form fields
+                alert("Thanks for your suggestion! We'll review it shortly."); 
+            })
+            .catch((error) => alert("Oops! Something went wrong. Please try again."));
+        });
     }
 
     // Initialize the application
