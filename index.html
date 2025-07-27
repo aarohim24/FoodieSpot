@@ -153,14 +153,51 @@
                 <h2>List a New Outlet</h2>
             </div>
             <div class="modal-body">
-                <div class="modal-section">
-                    <h3>Help Us Grow!</h3>
-                    <p>Know a place that's not on our list? Click the button below to open your email client and send us the details.</p>
-                    <p>Please include the restaurant's name, location, cuisine, and contact info if possible.</p>
-                </div>
-                <a href="mailto:contactfoodiespot@gmail.com?subject=New%20Restaurant%20Submission%20for%20FoodieSpot&body=Hi%20FoodieSpot%20Team%2C%0A%0AI'd%20like%20to%20suggest%20a%20new%20restaurant%20for%20your%20list.%0A%0A-%20**Restaurant%20Name%3A**%20%0A-%20**Cuisine%20Type%3A**%20%0A-%20**Location%2FAddress%3A**%20%0A-%20**Contact%20Number%3A**%20(Optional)%0A-%20**Operating%20Hours%3A**%20(Optional)%0A%0AThanks!" class="order-link" style="text-align: center; display: block; margin-top: 20px; width: 100%;">
-                    <i class="fas fa-envelope"></i> Send Mail
-                </a>
+                <form name="outlet-suggestion" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="outlet-suggestion" />
+                    <p class="hidden" style="display:none;">
+                        <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
+            
+                    <div class="modal-section">
+                        <h3>Help Us Grow!</h3>
+                        <p>Know a place that's not on our list? Fill out the details below. We'll review it and add it to the site. Thanks for your contribution!</p>
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="name">Restaurant Name <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="cuisine">Cuisine Type</label>
+                        <input type="text" id="cuisine" name="cuisine">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="location">Location / Address</label>
+                        <textarea id="location" name="location" rows="3"></textarea>
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="contact">Contact Number</label>
+                        <input type="tel" id="contact" name="contact">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="timings">Operating Hours</label>
+                        <input type="text" id="timings" name="timings">
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="notes">Additional Notes (Optional)</label>
+                        <textarea id="notes" name="notes" rows="2"></textarea>
+                    </div>
+            
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Suggestion
+                    </button>
+                </form>
             </div>
         </div>
     </div>
